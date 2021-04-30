@@ -151,6 +151,7 @@
     <ClInclude Include="Hand.h" />
     <ClInclude Include="HumanMoveStrategy.h" />
     <ClInclude Include="IBlackjackPresenter.h" />
+    <ClInclude Include="IBlackjackView.h" />
     <ClInclude Include="IComputerMoveStrategy.h" />
     <ClInclude Include="IMoveStrategy.h" />
     <ClInclude Include="Money.h" />
