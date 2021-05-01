@@ -1,4 +1,26 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>1060</x><y>440</y><w>100</w><h>110</h></coordinates><panel_attributes>SDLApp</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>780</y><w>230</w><h>260</h></coordinates><panel_attributes>IBlackjackView
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1060</x>
+      <y>440</y>
+      <w>100</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>SDLApp</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>780</y>
+      <w>230</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>IBlackjackView
 -
 /+newGame(int): void = 0/
 /+nextRound(): void = 0/
@@ -12,7 +34,18 @@
 /+onSplit(): void = 0/
 /+onBet(long long): void = 0/
 
-/+render(): void = 0/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1560</x><y>680</y><w>270</w><h>530</h></coordinates><panel_attributes>BlackjackModel
+/+render(): void = 0/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1560</x>
+      <y>680</y>
+      <w>270</w>
+      <h>530</h>
+    </coordinates>
+    <panel_attributes>BlackjackModel
 -
 + BlackjackModel(int)
 + ~BlackjackModel()
@@ -45,7 +78,18 @@
 - mcPlayers: vector&lt;Player&gt;
 - mcDealerHand: Hand
 - mcDealerAI: DealerAI
-- mCurrentPlayerIndex: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1240</x><y>690</y><w>210</w><h>250</h></coordinates><panel_attributes>IBlackjackPresenter
+- mCurrentPlayerIndex: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1240</x>
+      <y>690</y>
+      <w>210</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>IBlackjackPresenter
 -
 /+newGame(int): void = 0/
 /+nextRound(): void = 0/
@@ -60,7 +104,18 @@
 /+updateView(): void = 0/
 /+stand(): void = 0/
 /+stay(): void = 0/
-/+drawCard(): void = 0/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1860</x><y>830</y><w>270</w><h>270</h></coordinates><panel_attributes>Money (JJ)
+/+drawCard(): void = 0/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1860</x>
+      <y>830</y>
+      <w>270</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>Money (JJ)
 --
 -mAmount: long long
 --
@@ -76,7 +131,18 @@
 
 +setAmount (long long): void
 +getAmount (): long long
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1620</x><y>150</y><w>180</w><h>190</h></coordinates><panel_attributes>Card
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1620</x>
+      <y>150</y>
+      <w>180</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Card
 -
 + Card(Suit, Value)
 + getSuit(): Suit
@@ -86,7 +152,18 @@
 -
 - mSuit: Suit
 - mValue: Value
-- mbIsGlobalFaceUp: bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1650</x><y>400</y><w>170</w><h>220</h></coordinates><panel_attributes>Deck
+- mbIsGlobalFaceUp: bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1650</x>
+      <y>400</y>
+      <w>170</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>Deck
 -
 + Deck()
 + Deck(int)
@@ -100,13 +177,57 @@
 - populate(): void
 -
 - mNumDecks: int
-- mCards: vector&lt;Card&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1720</x><y>330</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1720</x><y>610</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1450</x><y>120</y><w>100</w><h>150</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+- mCards: vector&lt;Card&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1720</x>
+      <y>330</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1720</x>
+      <y>610</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1450</x>
+      <y>120</y>
+      <w>100</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
 Suit
 -
 Clubs
 Spades
 Hearts
-Diamonds</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1960</x><y>70</y><w>100</w><h>270</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Diamonds</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1960</x>
+      <y>70</y>
+      <w>100</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
 Value
 -
 Ace
@@ -121,7 +242,40 @@ Nine
 Ten
 Jack
 Queen
-King</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1540</x><y>170</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1790</x><y>180</y><w>190</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>2140</x><y>560</y><w>280</w><h>350</h></coordinates><panel_attributes>Player
+King</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1540</x>
+      <y>170</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1790</x>
+      <y>180</y>
+      <w>190</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2140</x>
+      <y>560</y>
+      <w>280</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>Player
 -
 + Player() = delete
 + Player(IMoveStrategy&amp;)
@@ -145,7 +299,51 @@ King</panel_attributes><additional_attributes></additional_attributes></element>
 - mcMoney: Currency
 - mCurrentHand: int
 -mcMoveStrategy: MoveStrategy
--meStatus: Status</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2120</x><y>900</y><w>100</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;80;70;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1820</x><y>810</y><w>340</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;320;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1790</x><y>250</y><w>170</w><h>270</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;250;150;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1870</x><y>500</y><w>200</w><h>190</h></coordinates><panel_attributes>Hand
+-meStatus: Status</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2120</x>
+      <y>900</y>
+      <w>100</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;80.0;70.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1820</x>
+      <y>810</y>
+      <w>340</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1790</x>
+      <y>250</y>
+      <w>170</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;250.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1870</x>
+      <y>500</y>
+      <w>200</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Hand
 -
 +Hand()
 
@@ -157,7 +355,40 @@ King</panel_attributes><additional_attributes></additional_attributes></element>
 +getFaceUpCards (): vector&lt;Card&gt;
 +getHand (): vector&lt;Card&gt;
 -
--mcCards: vector&lt;Card&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1780</x><y>630</y><w>110</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;50;10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2060</x><y>630</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>920</x><y>830</y><w>220</w><h>310</h></coordinates><panel_attributes>BlackjackTextView
+-mcCards: vector&lt;Card&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1780</x>
+      <y>630</y>
+      <w>110</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2060</x>
+      <y>630</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>830</y>
+      <w>220</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>BlackjackTextView
 -
 +BlackjackTextView(ostream&amp;)
 /+~BlackjackTextView()/
@@ -177,12 +408,45 @@ King</panel_attributes><additional_attributes></additional_attributes></element>
 /+render(): void/
 -
 -mPresenter: IBlackjackPresenter
--mcOut: ostream</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>840</y><w>90</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1610</x><y>1250</y><w>100</w><h>90</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+-mcOut: ostream</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>850</x>
+      <y>840</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1610</x>
+      <y>1250</y>
+      <w>100</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
 Move
 -
 DRAW
 STAND
-SPLIT</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1160</x><y>970</y><w>350</w><h>360</h></coordinates><panel_attributes>BlackjackPresenter
+SPLIT</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1160</x>
+      <y>970</y>
+      <w>350</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>BlackjackPresenter
 -
 /+newGame(): void/
 /+continue(): void/
@@ -206,41 +470,239 @@ SPLIT</panel_attributes><additional_attributes></additional_attributes></element
 /+makeMove(): void/
 -
 -mModel: BlackjackModel
--mView: IBlackjackView</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>1370</x><y>590</y><w>270</w><h>90</h></coordinates><panel_attributes>makeMove() returns false 
+-mView: IBlackjackView</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1370</x>
+      <y>590</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>makeMove() returns false 
 if illegal move is passed in
 -
-makeBet() return false if illegal bet</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2680</x><y>360</y><w>400</w><h>140</h></coordinates><panel_attributes>IMoveStrategy
+makeBet() return false if illegal bet</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2680</x>
+      <y>360</y>
+      <w>400</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>IMoveStrategy
 -
 /+ determineMove(Player&amp;, Move&amp;, vector&lt;Card&gt;&amp;): bool = 0/
 /+ determineBet(Player&amp;, Money&amp;): void = 0/
-/+ isHuman(): bool = 0/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2090</x><y>420</y><w>370</w><h>110</h></coordinates><panel_attributes>HumanMoveStrategy
+/+ isHuman(): bool = 0/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2090</x>
+      <y>420</y>
+      <w>370</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>HumanMoveStrategy
 -
 /+ determineMove(Player&amp;, Move&amp;, vector&lt;Card&gt;&amp;): bool/
 /+ determineBet(Player&amp;, Money&amp;): void/
-/+ isHuman(): bool/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2680</x><y>530</y><w>410</w><h>140</h></coordinates><panel_attributes>/IComputerMoveStrategy/
+/+ isHuman(): bool/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2680</x>
+      <y>530</y>
+      <w>410</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>/IComputerMoveStrategy/
 -
 /+ determineMove(Player&amp;, Move&amp;, vector&lt;Card&gt;&amp;): bool = 0/
 /+ determineBet(Player&amp;, Money&amp;): void = 0/
-/+ isHuman(): bool/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2410</x><y>480</y><w>290</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;60;90;60;10;270;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>2140</x><y>380</y><w>270</w><h>40</h></coordinates><panel_attributes>Returns false for Split if invalid
-True otherwise</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>2940</x><y>670</y><w>180</w><h>40</h></coordinates><panel_attributes>Sets the Move parameter</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1870</x><y>700</y><w>230</w><h>110</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+/+ isHuman(): bool/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2410</x>
+      <y>480</y>
+      <w>290</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;60.0;90.0;60.0;10.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>2140</x>
+      <y>380</y>
+      <w>270</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Returns false for Split if invalid
+True otherwise</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>2940</x>
+      <y>670</y>
+      <w>180</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Sets the Move parameter</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1870</x>
+      <y>700</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
 Status
 -
 BUST //Lose the round
 LOSE //Kicked out of game
 BLACKJACK //Bet + 150% of Bet
-WIN //Bet + 100% of Bet</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1820</x><y>950</y><w>60</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1340</x><y>930</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>1500</x><y>1030</y><w>80</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1130</x><y>850</y><w>130</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1130</x><y>870</y><w>130</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>110;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>2440</x><y>740</y><w>370</w><h>110</h></coordinates><panel_attributes>DealerAI
+WIN //Bet + 100% of Bet</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1820</x>
+      <y>950</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1340</x>
+      <y>930</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1500</x>
+      <y>1030</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1130</x>
+      <y>850</y>
+      <w>130</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1130</x>
+      <y>870</y>
+      <w>130</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2440</x>
+      <y>740</y>
+      <w>370</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>DealerAI
 -
 /+ determineMove(Player&amp;, Move&amp;, vector&lt;Card&gt;&amp;): bool/
 /+ determineBet(Player&amp;, Money&amp;): void/
-/+ isHuman(): bool/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2850</x><y>730</y><w>380</w><h>120</h></coordinates><panel_attributes>CardCounterAI
+/+ isHuman(): bool/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2850</x>
+      <y>730</y>
+      <w>380</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>CardCounterAI
 -
 /+ determineMove(Player&amp;, Move&amp;, vector&lt;Card&gt;&amp;): bool/
 /+ determineBet(Player&amp;, Money&amp;): void/
 /+ isHuman(): bool/
 -
-macCardsOnTable: vector&lt;Card&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1820</x><y>840</y><w>800</w><h>320</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;300;360;300;360;200;780;200;780;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>2250</x><y>1140</y><w>220</w><h>70</h></coordinates><panel_attributes>MoveStrategyFactory
+macCardsOnTable: vector&lt;Card&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1820</x>
+      <y>840</y>
+      <w>800</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;300.0;360.0;300.0;360.0;200.0;780.0;200.0;780.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2250</x>
+      <y>1140</y>
+      <w>220</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>MoveStrategyFactory
 -
-makeStrategy(string): &amp;IMoveStrategy</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>2470</x><y>1090</y><w>420</w><h>140</h></coordinates><panel_attributes>Parameterized factory 
+makeStrategy(string): &amp;IMoveStrategy</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>2470</x>
+      <y>1090</y>
+      <w>420</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Parameterized factory 
 (makes moveStrats based on stratname, used in BlackjackModel::setPlayer)
 (two ways of implementing: 
 -this way where there's one factory that's edited whenever a new moveStrat 
@@ -248,18 +710,106 @@ is made, and outputs the list to choose from
 -have this be a parent class and subclass a new factory with each moveStrat
 subclass, which is more true to the factory method we saw in class, but then 
 would have to include and make every factory in presenter and pass to model. 
-(bad))</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1820</x><y>1160</y><w>450</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;430;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2120</x><y>490</y><w>610</w><h>550</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>590;10;590;30;370;30;370;100;310;100;310;530;10;530</additional_attributes></element><element><id>Relation</id><coordinates><x>2720</x><y>660</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>2890</x><y>660</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>2810</x><y>660</y><w>30</w><h>240</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;220</additional_attributes></element><element><id>UMLClass</id><coordinates><x>2660</x><y>880</y><w>410</w><h>140</h></coordinates><panel_attributes>DrunkAI (Optional)
+(bad))</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1820</x>
+      <y>1160</y>
+      <w>450</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;430.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2120</x>
+      <y>490</y>
+      <w>610</w>
+      <h>550</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>590.0;10.0;590.0;30.0;370.0;30.0;370.0;100.0;310.0;100.0;310.0;530.0;10.0;530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2720</x>
+      <y>660</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2890</x>
+      <y>660</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2810</x>
+      <y>660</y>
+      <w>30</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2660</x>
+      <y>880</y>
+      <w>410</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>DrunkAI (Optional)
 -
 /+ determineMove(Player&amp;, Move&amp;, vector&lt;Card&gt;&amp;): bool/
 /+ determineBet(Player&amp;, Money&amp;): void/
 /+ isHuman(): bool/
 -
-mShots: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1940</x><y>1200</y><w>170</w><h>100</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+mShots: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1940</x>
+      <y>1200</y>
+      <w>170</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
 MoveStrategy
 -
 Human
 CardCounterAI
-DrunkAI</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>690</x><y>260</y><w>270</w><h>460</h></coordinates><panel_attributes>BlackjackViewSDL
+DrunkAI</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>260</y>
+      <w>290</w>
+      <h>460</h>
+    </coordinates>
+    <panel_attributes>BlackjackViewSDL
 -
 +BlackjackApp()
 +~BlackjackApp()
@@ -279,24 +829,53 @@ DrunkAI</panel_attributes><additional_attributes></additional_attributes></eleme
 /+render (): void/
 -
 -mPresenter: IBlackjackPresenter
--mcCards: map&lt;string, CardViewSDL&gt;
 -mcPlayers: vector&lt;PlayerViewSDL&gt;
 -mcBetButton: SDLButton
 -mcDrawButton: SDLButton
 -mcSplitButton: SDLButton
 -mcStandButton: SDLButton
 -mcNumPlayersInput: SDLTextInput
--mcBetAmountInput: SDLTextInput</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>570</y><w>200</w><h>170</h></coordinates><panel_attributes>PlayerViewSDL
+-mcBetAmountInput: SDLTextInput
+-mcDrawableWidgets: vector&lt;ISDLWidget*&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>230</x>
+      <y>570</y>
+      <w>350</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>PlayerViewSDL
 -
 +PlayerViewSDL(string)
 /+~PlayerViewSDL()/
 
-+clear(): void
++discardHand(): void
++addCard(std::string, bool)
 +draw(SDLApp&amp;): void
-
++showCards(): void
++setName(std::string): void
 -
 -mName: string
--mcName: SDLTextWidget*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>220</y><w>190</w><h>140</h></coordinates><panel_attributes>DealerViewSDL
+-mMoney: long long
+-mcNameDisplay: SDLTextWidget*
+-mcMoneyDisplay: SDLTextWidget*
+-mcCards: std::vector&lt;std::unique_ptr&lt;CardViewSDL&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>220</y>
+      <w>190</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>DealerViewSDL
 -
 +DealerViewSDL(string)
 /+~DealerViewSDL()/
@@ -304,7 +883,18 @@ DrunkAI</panel_attributes><additional_attributes></additional_attributes></eleme
 +clear(): void
 +draw(SDLApp&amp;): void
 -
--mcName: SDLTextWidget*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>340</x><y>380</y><w>230</w><h>170</h></coordinates><panel_attributes>CardViewSDL
+-mcName: SDLTextWidget*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>340</x>
+      <y>370</y>
+      <w>230</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>CardViewSDL
 -
 +CardViewSDL(SDLSprite*, SDLSprite*)
 /+~CardViewSDL()/
@@ -314,18 +904,174 @@ DrunkAI</panel_attributes><additional_attributes></additional_attributes></eleme
 +draw(SDLApp&amp;): void
 -
 -mcFaceUp: SDLSprite*
--mcFaceDown: SDLSprite*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>290</y><w>180</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>160;10;18;10</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>430</y><w>150</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>580</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1780</x><y>1200</y><w>180</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60;160;60</additional_attributes></element><element><id>Relation</id><coordinates><x>2100</x><y>1200</y><w>260</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>240;10;240;60;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>190</x><y>380</y><w>100</w><h>80</h></coordinates><panel_attributes>SDLSprite</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>0</y><w>250</w><h>190</h></coordinates><panel_attributes>SDLButton
+-mcFaceDown: SDLSprite*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>290</y>
+      <w>180</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;18.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>530</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>580</y>
+      <w>140</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1780</x>
+      <y>1200</y>
+      <w>180</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;160.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2100</x>
+      <y>1200</y>
+      <w>260</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>240.0;10.0;240.0;60.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>370</y>
+      <w>100</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>SDLSprite</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>140</y>
+      <w>400</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>ButtonViewSDL
 -
-+SDLButton(string)
-/+~SDLButton()/
-
-+clear(): void
-+draw(): void
-
-+isClicked(): bool
--
--mText: SDLTextWidget*
--mName</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1820</x><y>750</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1650</x><y>1200</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>1700</x><y>460</y><w>1560</w><h>870</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>1380;10;1540;10;1540;850;10;850</additional_attributes></element><element><id>Relation</id><coordinates><x>950</x><y>450</y><w>130</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>110;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2450</x><y>420</y><w>250</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>230;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2800</x><y>490</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>390</y><w>180</w><h>60</h></coordinates><panel_attributes>SDLTextWidget</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>760</y><w>250</w><h>190</h></coordinates><panel_attributes>MoneyViewSDL
++ ButtonViewSDL(std::string, int, int, std::function&lt;void(void)&gt;)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1820</x>
+      <y>750</y>
+      <w>70</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1650</x>
+      <y>1200</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1700</x>
+      <y>460</y>
+      <w>1560</w>
+      <h>870</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>1380.0;10.0;1540.0;10.0;1540.0;850.0;10.0;850.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>970</x>
+      <y>450</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2450</x>
+      <y>420</y>
+      <w>250</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2800</x>
+      <y>490</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>380</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>SDLTextWidget</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>870</y>
+      <w>250</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>MoneyViewSDL
 -
 +MoneyViewSDL(long long)
 /+~MoneyViewSDL()/
@@ -336,7 +1082,128 @@ DrunkAI</panel_attributes><additional_attributes></additional_attributes></eleme
 
 -
 -mMoney: long long
--mcName: SDLTextWidget*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>660</y><w>130</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>110;10;10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>410</y><w>80</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>280</y><w>240</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>220;10;10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>70</y><w>470</w><h>340</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>450;10;10;10;10;320</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>440</y><w>230</w><h>230</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>210;210;10;210;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>440</y><w>280</w><h>400</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>260;380;10;380;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>180</y><w>40</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>20;80;18;10</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>710</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>950</x><y>380</y><w>370</w><h>330</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;350;10;350;310</additional_attributes></element><element><id>Relation</id><coordinates><x>950</x><y>330</y><w>410</w><h>380</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>390;360;390;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>0</y><w>250</w><h>190</h></coordinates><panel_attributes>SDLTextInput
+-mcName: SDLTextWidget*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>660</y>
+      <w>130</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>290</x>
+      <y>400</y>
+      <w>70</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>280</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>160</y>
+      <w>320</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>300.0;10.0;10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>430</y>
+      <w>110</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;220.0;10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>430</y>
+      <w>290</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;500.0;10.0;500.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>180</y>
+      <w>40</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>20.0;80.0;18.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>710</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>970</x>
+      <y>380</y>
+      <w>350</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;330.0;10.0;330.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>970</x>
+      <y>330</y>
+      <w>390</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>370.0;360.0;370.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>820</x>
+      <y>0</y>
+      <w>250</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>SDLTextInput
 -
 +SDLButton(string)
 /+~SDLButton()/
@@ -347,4 +1214,18 @@ DrunkAI</panel_attributes><additional_attributes></additional_attributes></eleme
 +isClicked(): bool
 -
 -mText: SDLTextWidget*
--mName</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>180</y><w>40</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>20;80;18;10</additional_attributes></element></diagram>
+-mName</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>850</x>
+      <y>180</y>
+      <w>40</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>20.0;80.0;18.0;10.0</additional_attributes>
+  </element>
+</diagram>
