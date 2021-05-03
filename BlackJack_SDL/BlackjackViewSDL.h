@@ -11,13 +11,12 @@
 #include <functional>
 #include <vector>
 
-#include "SDLApp.h"
-#include "ButtonViewSDL.h"
+#include "..\SDLApp2\SDLApp.h"
 #include "IBlackjackView.h"
 #include "IBlackjackPresenter.h"
-#include "ISDLWidget.h"
+#include "..\SDLApp2\ISDLWidget.h"
 #include "PlayerView.h"
-#include "SDLTextWidget.h"
+#include "..\SDLApp2\SDLTextWidget.h"
 
 class BlackjackViewSDL : public SDLApp, IBlackjackView {
   public:
@@ -25,7 +24,7 @@ class BlackjackViewSDL : public SDLApp, IBlackjackView {
     ~BlackjackViewSDL();
 
     //events from presenter
-    void newGame (int);
+    /*void newGame ();
     void nextRound ();
     void stand ();
     void drawCard ();
@@ -39,23 +38,25 @@ class BlackjackViewSDL : public SDLApp, IBlackjackView {
     void onSplit ();
     void onBet (long long amount);
     void onSetNumPlayers();
+    void onNewGame();
 
     //events from UI Widgets
-    void onSetNumPlayersWidget(SDLTextWidget* widget);
     void onBetWidget(SDLTextWidget* widget);
+    void onHumanPlayerWidget(SDLTextWidget* widget);*/
 
     void render ();
 
   private:
     IBlackjackPresenter* mpcPresenter;
     std::vector<PlayerView> mcPlayers;
+    PlayerView* mpcCurrentPlayer;
     SDLTextWidget mcStandButton;
-    SDLTextWidget mcBetButton;
     SDLTextWidget mcSplitButton;
     SDLTextWidget mcDrawButton;
     SDLTextWidget mcBetAmount;
     SDLTextWidget mcNumPlayersInput;
-    //SDLTextWidget mcHumanPlayerInput;
+    SDLTextWidget mcNewGame;
+    SDLTextWidget mcStartNewGame;
 
     std::vector<ISDLWidget*> mcDrawableWidget;
 };

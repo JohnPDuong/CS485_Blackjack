@@ -72,16 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\groupBlackjack;$(SolutionDir)\SDLApp2;C:\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Debug;C:\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\SDLApp2;C:\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Debug;C:\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\My Stuff\Code\groupBlackjack\groupBlackjack;D:\My Stuff\Code\groupBlackjack\SDLApp2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\My Stuff\Code\groupBlackjack\SDLApp2;D:\My Stuff\Code\groupBlackjack\groupBlackjack;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
