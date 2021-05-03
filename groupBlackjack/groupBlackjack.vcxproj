@@ -176,13 +176,9 @@
     <ClCompile Include="HumanMoveStrategy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Money.cpp" />
-    <ClCompile Include="Move.cpp" />
     <ClCompile Include="MoveStrategyFactory.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Status.cpp" />
-    <ClCompile Include="Suit.cpp" />
     <ClCompile Include="TextView.cpp" />
-    <ClCompile Include="Value.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

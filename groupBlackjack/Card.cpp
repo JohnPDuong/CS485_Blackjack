@@ -80,4 +80,3 @@ Value Card::getValue ()
 {
 	return meValue;
 }
-
