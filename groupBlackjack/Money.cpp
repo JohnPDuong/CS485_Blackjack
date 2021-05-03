@@ -76,6 +76,19 @@ Money &Money::operator= (const Money &rcCurrency)
 	return *this;
 }
 //****************************************************************************
+// Function:		setAmount
+// 
+// Description: Sets mAmount to amount
+//
+// Paramaters:	amount - the amount
+//
+// Returns:			None
+//****************************************************************************
+void Money::setAmount (long long amount)
+{
+	mAmount = amount;
+}
+//****************************************************************************
 // Function:		getAmount
 // 
 // Description: Returns mAmount

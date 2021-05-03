@@ -10,7 +10,7 @@
 #include "Player.h"
 
 Player::Player(std::shared_ptr<IMoveStrategy> pcMoveStrat,
-               std::string name = "DEFAULT_NAME", Money cBank = 100000){
+               std::string name, Money cBank){
   mpcMoveStrat = pcMoveStrat;
   mName = name;
   mcBank = cBank;

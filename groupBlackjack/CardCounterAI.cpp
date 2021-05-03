@@ -13,7 +13,7 @@
 bool CardCounterAI::determineMove(Hand& cCurrentHand,
                                   std::shared_ptr<IMove> pcCurrentMove,
                                   std::vector<Card>& cTableCards){
-  if(cCurrentHand.handValue < 16){
+  if(cCurrentHand.getHandValue() < 16){
     pcCurrentMove = std::make_shared<Draw>;
   }
   else{

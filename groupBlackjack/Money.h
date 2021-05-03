@@ -19,6 +19,7 @@ class Money {
 
 		Money &operator= (const Money &rcCurrency);
 
+		void setAmount (long long amount);
 		long long getAmount ();
 
 		void operator= (long long amount);
