@@ -1,10 +1,15 @@
 //***************************************************************************
-// File name:  DrunkAI.cpp
+// File name:  Draw.cpp
 // Author:     Kitt Oster
 // Date:       5/2/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    Implement the drunk Move Strat
+// Purpose:    implement draw command
 //***************************************************************************
 
-#include "DrunkAI.h"
+#include "Draw.h"
+
+bool Draw::execute(Deck& cTableDeck, Player& cPlayer){
+  cPlayer.receiveCard(cTableDeck.draw());
+  return true;
+}

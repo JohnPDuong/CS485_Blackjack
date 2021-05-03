@@ -1,8 +1,24 @@
 //***************************************************************************
-// File name:  
-// Author:     
-// Date:       5/7/2021
+// File name:  IHumanMoveStrategy.cpp
+// Author:     Kitt Oster
+// Date:       5/2/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    
+// Purpose:    Implement the Move Strategy for human players
 //***************************************************************************
+
+#include "HumanMoveStrategy.h"
+
+bool HumanMoveStrategy::determineMove(Hand& cCurrentHand,
+                                      std::shared_ptr<IMove> pcCurrentMove,
+                                      std::vector<Card>& cTableCards){
+  
+}
+
+bool HumanMoveStrategy::determineBet(Player& player, Money& bet){
+  return bet.getAmount() > 0 && bet.getAmount() <= player.getBank.getAmount();
+}
+
+bool HumanMoveStrategy::isHuman(){
+  return true;
+}

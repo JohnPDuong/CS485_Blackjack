@@ -1,10 +1,16 @@
 //***************************************************************************
-// File name:  DrunkAI.cpp
+// File name:  Split.h
 // Author:     Kitt Oster
 // Date:       5/2/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    Implement the drunk Move Strat
+// Purpose:    Define split command
 //***************************************************************************
 
-#include "DrunkAI.h"
+#pragma once
+#include "IMove.h"
+
+class Split: public IMove{
+public:
+  virtual bool execute(Deck& cTableDeck, Player& cPlayer) override;
+};
