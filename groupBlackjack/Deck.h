@@ -24,7 +24,7 @@ class Deck
 		void fillShuffle ();
 
 		Card draw ();
-		Card draw ();
+//		Card draw ();
 
 	private:
 		int mNumDecks;

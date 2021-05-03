@@ -12,7 +12,7 @@
 #include "Player.h"
 #include "Hand.h"
 #include "Card.h"
-#include "Move.h"
+#include "IMove.h"
 #include <vector>
 #include <memory>
 
