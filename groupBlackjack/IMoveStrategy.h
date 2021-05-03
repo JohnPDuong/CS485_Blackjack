@@ -13,8 +13,15 @@
 #include "Hand.h"
 #include "Card.h"
 #include "IMove.h"
+#include "Money.h"
 #include <vector>
 #include <memory>
+
+//Forward declaration necessary because Player uses IMoveStrat and so can
+//sometimes hit circular dependency issues
+
+class Player;
+class IMove;
 
 class IMoveStrategy {
 public:

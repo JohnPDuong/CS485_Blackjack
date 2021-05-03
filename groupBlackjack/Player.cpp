@@ -34,8 +34,26 @@ bool Player::makeMove(std::shared_ptr<IMove> pcMove,
                                      pcMove, tableCards);
 }
 
+bool Player::makeBet(Money cAmount){
+  if(mpcMoveStrat->determineBet(*this, cAmount)){
+    mcBet = cAmount;
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 bool Player::isHuman(){
   return mpcMoveStrat->isHuman();
+}
+
+bool Player::trySplit(){
+  //Need a split in hand.
+}
+
+void Player::changeStrat(std::shared_ptr<IMoveStrategy> newStrat){
+  mpcMoveStrat = newStrat;
 }
   
 std::vector<Card> Player::getFaceUpCards(){
@@ -53,12 +71,12 @@ std::vector<Hand> Player::getHands(){
   return mcHands;
 }
 
-Hand Player::getCurrentHand(){
+Hand& Player::getCurrentHand(){
   return mcHands.at(mCurrentHand);
 }
 
 int Player::getNumHands(){
-  return mcHands.size();
+  return (int) mcHands.size();
 }
 
 Money Player::getBank(){
@@ -67,6 +85,27 @@ Money Player::getBank(){
 
 Money Player::getBet(){
   return mcBet;
+}
+
+std::string Player::getName(){
+  return mName;
+}
+
+void Player::setName(std::string name){
+  mName = name;
+}
+
+bool Player::isFullyBust(){
+  for(int i = 0; i < getNumHands(); i++){
+    if(mcHands[i].getHandValue() <= 21){
+      return false;
+    }
+  }
+  return true;
+}
+
+bool Player::readyToStart(){
+  return mpcMoveStrat == nullptr;
 }
 
 void Player::clearHands(){

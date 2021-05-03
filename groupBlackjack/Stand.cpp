@@ -12,3 +12,11 @@
 bool Stand::execute(Deck& cTableDeck, Player& cPlayer){
   return true;
 }
+
+bool Stand::execute(Deck& cTableDeck, Hand& cPlayerHand){
+  return true;
+}
+
+std::string Stand::moveName(){
+  return "Stand";
+}

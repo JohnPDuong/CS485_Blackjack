@@ -13,50 +13,58 @@
 #include "MoveStrategyFactory.h"
 #include "Hand.h"
 #include "Money.h"
+#include "Stand.h"
+#include "Split.h"
+#include "Draw.h"
 #include <vector>
 
-class BlackjackModel
-{
-  public:
-    BlackjackModel(int numDecks = 1);
-    ~BlackjackModel();
+class BlackjackModel{
+public:
+  BlackjackModel(int numPlayers, int numDecks = 1);
+  ~BlackjackModel();
   
-    void newGame();
-    void newGame(int numDecks);
+  bool newGame();
+  bool newGame(int numDecks);
   
-    bool isBust();
-    bool isBust(int playerIndex);
-    void initialDeal();
-    bool isHuman();
-    bool isHuman(int index);
-    bool isBetTime();
+  bool isBust();
+  bool isBust(int playerIndex);
+  void initialDeal();
+  bool isHuman();
+  bool isHuman(int index);
+  bool isBetTime();
   
-    void moveDealer();
-    void makeMove();
+  void moveDealer();
+  void makeMove();
   
-    bool makeBet(Money bet);
-    void stand();
-    bool split();
-    void drawCard();
+  bool makeBet(Money cBet);
+  void stand();
+  bool split();
+  void drawCard();
   
-    void setPlayerName(std::string name);
-    void setPlayerName(std::string name, int index);
-    void setPlayerType(std::string stratType);
-    void setPlayerType(std::string stratType, int index);
+  void setPlayerName(std::string name);
+  void setPlayerName(std::string name, int index);
+  void setPlayerType(std::string stratType);
+  void setPlayerType(std::string stratType, int index);
   
-    Hand getCurrentPlayerHand();
-    std::vector<Card> getFaceUpCards();
+  std::vector<std::string> getTypeList();
   
-    std::string getName();
-    std::string getName(int index);
-    int getNumPlayers();
-    Money getBalance();
-    Money getBalance(int index);
+  Hand getCurrentPlayerHand();
+  std::vector<Card> getFaceUpCards();
   
-  private:
-    Deck mcDeck;
-    std::vector<Player> players;
-    int mCurrentPlayerIndex;
-    Hand mcDealerHand;
-    DealerAI mcDealerBrain;
+  std::string getName();
+  std::string getName(int index);
+  int getNumPlayers();
+  Money getBalance();
+  Money getBalance(int index);
+  Money getBet();
+  Money getBet(int index);
+  
+private:
+  
+  
+  std::shared_ptr<Deck> mpcDeck;
+  std::vector<Player> mcPlayers;
+  int mCurrentPlayerIndex;
+  Hand mcDealerHand;
+  DealerAI mcDealerBrain;
 };
