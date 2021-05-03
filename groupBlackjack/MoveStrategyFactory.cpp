@@ -9,5 +9,11 @@
 
 #include "MoveStrategyFactory.h"
 
-std::shared_ptr<IMoveStrategy> MoveStrategyFactory::makeStrategy(std::string stratName);
-virtual static std::vector<std::string> listStrats()
+std::shared_ptr<IMoveStrategy> MoveStrategyFactory::makeStrategy(std::string stratName)
+{
+	return std::shared_ptr<IMoveStrategy> ();
+}
+std::vector<std::string> listStrats()
+{
+	return std::vector<std::string> ();
+}
