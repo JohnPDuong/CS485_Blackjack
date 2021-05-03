@@ -20,4 +20,4 @@ class MoveStrategyFactory
   public:
     virtual std::shared_ptr<IMoveStrategy> makeStrategy(std::string stratName);
     static std::vector<std::string> listStrats();
-}
+};
