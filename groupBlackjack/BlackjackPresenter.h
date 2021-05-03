@@ -33,7 +33,6 @@ public:
 	virtual void updateView();
 
 private:
-	Blackjack mcGame;
-
-
+	BlackjackModel mModel;
+	//BlackjackView mView; Link views
 };

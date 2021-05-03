@@ -16,6 +16,7 @@
 #include <vector>
 
 class BlackjackModel{
+public:
   BlackjackModel(int numDecks = 1);
   ~BlackjackModel();
   
