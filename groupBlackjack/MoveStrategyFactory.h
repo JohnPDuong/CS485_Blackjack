@@ -15,8 +15,9 @@
 #include "DrunkAI.h"
 #include <string>
 
-class MoveStrategyFactory{
-public:
-  virtual std::shared_ptr<IMoveStrategy> makeStrategy(std::string stratName);
-  virtual static std::vector<std::string> listStrats();
+class MoveStrategyFactory
+{
+  public:
+    virtual std::shared_ptr<IMoveStrategy> makeStrategy(std::string stratName);
+    static std::vector<std::string> listStrats();
 }

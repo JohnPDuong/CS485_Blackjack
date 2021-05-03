@@ -13,7 +13,7 @@ std::shared_ptr<IMoveStrategy> MoveStrategyFactory::makeStrategy(std::string str
 {
 	return std::shared_ptr<IMoveStrategy> ();
 }
-std::vector<std::string> listStrats()
+std::vector<std::string> MoveStrategyFactory::listStrats()
 {
-	return std::vector<std::string> ();
+	return std::vector<std::string>();
 }
