@@ -1,10 +1,10 @@
 //***************************************************************************
-// File name:  DrunkAI.cpp
+// File name:  Split.cpp
 // Author:     Kitt Oster
 // Date:       5/2/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    Implement the drunk Move Strat
+// Purpose:    implement split command
 //***************************************************************************
 
-#include "DrunkAI.h"
+#include "Split.h"
