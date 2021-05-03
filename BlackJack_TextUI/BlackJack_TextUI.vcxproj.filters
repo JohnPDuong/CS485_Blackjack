@@ -15,21 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BlackjackViewSDL.cpp">
+    <ClCompile Include="BlackjackTextUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BlackjackViewSDL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CardViewSDL.h">
+    <ClInclude Include="BlackjackTextUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
