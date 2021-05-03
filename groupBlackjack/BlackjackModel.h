@@ -13,15 +13,18 @@
 #include "MoveStrategyFactory.h"
 #include "Hand.h"
 #include "Money.h"
+#include "Stand.h"
+#include "Split.h"
+#include "Draw.h"
 #include <vector>
 
 class BlackjackModel{
 public:
-  BlackjackModel(int numDecks = 1);
+  BlackjackModel(int numPlayers, int numDecks = 1);
   ~BlackjackModel();
   
-  void newGame();
-  void newGame(int numDecks);
+  bool newGame();
+  bool newGame(int numDecks);
   
   bool isBust();
   bool isBust(int playerIndex);
@@ -33,7 +36,7 @@ public:
   void moveDealer();
   void makeMove();
   
-  bool makeBet(Money bet);
+  bool makeBet(Money cBet);
   void stand();
   bool split();
   void drawCard();
@@ -57,9 +60,11 @@ public:
   Money getBet(int index);
   
 private:
-  Deck mcDeck;
+  
+  
+  std::shared_ptr<Deck> mpcDeck;
   std::vector<Player> mcPlayers;
   int mCurrentPlayerIndex;
   Hand mcDealerHand;
   DealerAI mcDealerBrain;
-}
+};

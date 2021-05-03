@@ -22,7 +22,7 @@ bool DealerAI::determineMove(Hand& cCurrentHand,
 }
 
 bool DealerAI::determineBet(Player& player, Money& bet){
-  bet.setAmount(player.getBank.getAmount/5);
+  bet = player.getBank() * 0.2;
   return true;
 }
 

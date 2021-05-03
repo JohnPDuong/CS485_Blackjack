@@ -12,11 +12,13 @@
 bool HumanMoveStrategy::determineMove(Hand& cCurrentHand,
                                       std::shared_ptr<IMove> pcCurrentMove,
                                       std::vector<Card>& cTableCards){
-  
+  return pcCurrentMove != nullptr && (pcCurrentMove->moveName() != "Split"
+                                      || true);
+  //Need some check in hand for if can split to replace that true
 }
 
 bool HumanMoveStrategy::determineBet(Player& player, Money& bet){
-  return bet.getAmount() > 0 && bet.getAmount() <= player.getBank.getAmount();
+  return bet.getAmount() > 0 && bet.getAmount() <= player.getBank().getAmount();
 }
 
 bool HumanMoveStrategy::isHuman(){

@@ -9,6 +9,15 @@
 
 #include "Split.h"
 
-bool Split::execute(Deck& cTableDeck, Player* cPlayer){
-  return cPlayer->trySplit();
+bool Split::execute(Deck& cTableDeck, Player& cPlayer){
+  return cPlayer.trySplit();
+}
+
+
+bool Split::execute(Deck& cTableDeck, Hand& cPlayerHand){
+  return ;//this should never be used really but we need the function in hand.
+}
+
+std::string Split::moveName(){
+  return "Split";
 }
