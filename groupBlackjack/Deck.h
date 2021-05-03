@@ -24,11 +24,10 @@ class Deck
 		void fillShuffle ();
 
 		Card draw ();
-		Card draw ();
 
 	private:
 		int mNumDecks;
-		std::vector <Card> mCards;
+		std::vector <Card> macCards;
 
-		void populate();
+		void populate ();
 };

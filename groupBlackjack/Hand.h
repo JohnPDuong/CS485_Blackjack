@@ -1,14 +1,34 @@
 //***************************************************************************
-// File name:  
-// Author:     
+// File name:  Hand.h
+// Author:     John Duong
 // Date:       5/7/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    
+// Purpose:    Function prototypes and member variables for Hand class
 //***************************************************************************
 #pragma once
 
+#include "Card.h"
+#include <vector>
+#include "Suit.h"
+#include "Value.h"
+#include "Status.h"
+
 class Hand
 {
+	public:
+		Hand ();
+
+		void addCard (Card cCard);
+
+		int getHandValue ();
+		int getFaceUpValue ();
+		int getFaceDownValue ();
+
+		std::vector<Card> getFaceUpCards ();
+		std::vector<Card> getHand ();
+
+	private:
+		std::vector<Card> mcCards;
 
 };

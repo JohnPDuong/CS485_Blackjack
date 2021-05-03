@@ -1,4 +1,3 @@
-#include "Deck.h"
 //***************************************************************************
 // File name:  
 // Author:     
@@ -8,54 +7,106 @@
 // Purpose:    
 //***************************************************************************
 
-Deck::Deck()
+#include "Deck.h"
+
+//***************************************************************************
+// Constructor: Deck
+//
+// Description: Initializes mNumDecks to 0
+//
+// Parameters:  None
+//
+// Return:			None
+//***************************************************************************
+Deck::Deck ()
 {
 	mNumDecks = 0;
 }
-
-Deck::Deck(int numDecks)
+//***************************************************************************
+// Function:		Deck
+//
+// Description: Initializes mNumDecks to numDecks
+//
+// Parameters:  None
+//
+// Return:			None
+//***************************************************************************
+Deck::Deck (int numDecks)
 {
 	mNumDecks = numDecks;
 }
-
-void Deck::shuffle()
+//***************************************************************************
+// Function:		shuffle
+//
+// Description: Shuffles mcCards
+//
+// Parameters:  None
+//
+// Return:			None
+//***************************************************************************
+void Deck::shuffle ()
 {
 	unsigned int seed = std::chrono::system_clock::
-											now().time_since_epoch().count();
+											now ().time_since_epoch ().count ();
 
-	std::shuffle (mCards.begin(), mCards.end(), 
-								std::default_random_engine(seed));
+	std::shuffle (macCards.begin (), macCards.end (), 
+								std::default_random_engine (seed));
 }
-
+//***************************************************************************
+// Function:		fillShuffle
+//
+// Description: Clears the deck, repopulates and shuffles the deck
+//
+// Parameters:  None
+//
+// Return:			None
+//***************************************************************************
 void Deck::fillShuffle()
 {
-	for (int i = 0; i < mCards.size(); i++)
+	for (int i = 0; i < macCards.size (); i++)
 	{
-		mCards.pop_back();
+		macCards.pop_back ();
 	}
 
-	populate();
-	shuffle();
+	populate ();
+	shuffle ();
 }
-
-Card Deck::draw()
+//***************************************************************************
+// Function:		draw
+//
+// Description: Returns a card object from the top of the deck
+//
+// Parameters:  None
+//
+// Return:			A card object from the top of the dock
+//***************************************************************************
+Card Deck::draw ()
 {
-	Card cRetVal = mCards.front();
+	Card cRetVal = macCards.front ();
 
-	mCards.erase (mCards.begin());
+	macCards.erase (macCards.begin ());
 
 	return cRetVal;
 }
-
-void Deck::populate()
+//***************************************************************************
+// Function:		populate
+//
+// Description: Generates all suits and values of the cards multiplied by
+//							the number of decks
+//
+// Parameters:  None
+//
+// Return:			None
+//***************************************************************************
+void Deck::populate ()
 {
 	for (int deck = 0; deck < mNumDecks; deck++)
 	{
-		for (int suit = 0; suit < (int)Suit::Count; suit++)
+		for (int suit = 0; suit < (int) Suit::Count; suit++)
 		{
-			for (int value = 0; value < (int)Value::Count; value++)
+			for (int value = 0; value < (int) Value::Count; value++)
 			{
-				mCards.push_back (Card ((Suit) suit, (Value) value));
+				macCards.push_back (Card ((Suit) suit, (Value) value));
 			}
 		}
 	}
