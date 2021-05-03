@@ -9,5 +9,29 @@
 
 #include "MoveStrategyFactory.h"
 
-std::shared_ptr<IMoveStrategy> MoveStrategyFactory::makeStrategy(std::string stratName);
-virtual static std::vector<std::string> listStrats()
+std::shared_ptr<IMoveStrategy> MoveStrategyFactory::makeStrategy(std::string stratName){
+  if(stratName == "Human"){
+    return std::make_shared<HumanMoveStrategy>();
+  }
+  if(stratName == "Dealer"){
+    return std::make_shared<DealerAI>();
+  }
+  if(stratName == "Card Counter"){
+    return std::make_shared<CardCounterAI>();
+  }
+  if(stratName == "Drunk"){
+    return std::make_shared<DrunkAI>();
+  }
+  return nullptr;
+}
+
+std::vector<std::string> MoveStrategyFactory::listStrats(){
+  std::vector<std::string> stratList;
+  stratList.push_back("Human");
+  stratList.push_back("Dealer");
+  stratList.push_back("Card Counter");
+  stratList.push_back("Drunk");
+  
+  return stratList;
+}
+

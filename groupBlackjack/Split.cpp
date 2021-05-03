@@ -8,3 +8,7 @@
 //***************************************************************************
 
 #include "Split.h"
+
+bool Split::execute(Deck& cTableDeck, Player* cPlayer){
+  return cPlayer->trySplit();
+}

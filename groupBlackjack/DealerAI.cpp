@@ -10,14 +10,15 @@
 #include "DealerAI.h"
 
 bool DealerAI::determineMove(Hand& cCurrentHand,
-                             std::shared_ptr<IMove> pcCurrentMove,
-                             std::vector<Card>& cTableCards){
-  if(cCurrentHand.handValue < 16){
-    pcCurrentMove = make_shared<Stand>;
+                           std::shared_ptr<IMove> pcCurrentMove,
+                           std::vector<Card>& cTableCards){
+  if(cCurrentHand.getHandValue() < 16){
+    pcCurrentMove = std::make_shared<Draw>();
   }
   else{
-    
+    pcCurrentMove = std::make_shared<Stand>();
   }
+  return true;
 }
 
 bool DealerAI::determineBet(Player& player, Money& bet){

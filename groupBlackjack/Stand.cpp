@@ -9,6 +9,6 @@
 
 #include "Stand.h"
 
-bool Stand::execute(Deck& cTableDeck, Player& cPlayer){
+bool Stand::execute(Deck& cTableDeck, Player* cPlayer){
   return true;
 }

@@ -10,6 +10,8 @@
 #pragma once
 
 #include "IComputerMoveStrategy.h"
+#include "Stand.h"
+#include "Draw.h"
 
 class DealerAI : public IComputerMoveStrategy {
 public:

@@ -27,6 +27,9 @@ public:
   void receiveCard(Card cNewCard, int handNum);
   bool makeMove(std::shared_ptr<IMove> pcMove, std::vector<Card> tableCards);
   bool isHuman();
+  bool trySplit();
+  
+  void changeStrat(std::shared_ptr<IMoveStrategy> newStrat);
   
   std::vector<Card> getFaceUpCards();
   std::vector<Hand> getHands();
@@ -34,6 +37,8 @@ public:
   int getNumHands();
   Money getBank();
   Money getBet();
+  
+  bool isFullyBust();
   
 private:
   void clearHands();

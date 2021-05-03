@@ -37,6 +37,14 @@ bool Player::makeMove(std::shared_ptr<IMove> pcMove,
 bool Player::isHuman(){
   return mpcMoveStrat->isHuman();
 }
+
+bool Player::trySplit(){
+  return true;
+}
+
+void Player::changeStrat(std::shared_ptr<IMoveStrategy> newStrat){
+  mpcMoveStrat = newStrat;
+}
   
 std::vector<Card> Player::getFaceUpCards(){
   std::vector<Card> cFaceUpCards;
@@ -67,6 +75,15 @@ Money Player::getBank(){
 
 Money Player::getBet(){
   return mcBet;
+}
+
+bool Player::isFullyBust(){
+  for(int i = 0; i < getNumHands(); i++){
+    if(mcHands[i].getHandValue() <= 21){
+      return false;
+    }
+  }
+  return true;
 }
 
 void Player::clearHands(){

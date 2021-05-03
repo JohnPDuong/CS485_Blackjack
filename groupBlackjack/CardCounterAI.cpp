@@ -13,12 +13,8 @@
 bool CardCounterAI::determineMove(Hand& cCurrentHand,
                                   std::shared_ptr<IMove> pcCurrentMove,
                                   std::vector<Card>& cTableCards){
-  if(cCurrentHand.handValue < 16){
-    pcCurrentMove = std::make_shared<Draw>;
-  }
-  else{
-    pcCurrentMove = std::make_shared<Stand>;
-  }
+  
+  
 }
 
 bool CardCounterAI::determineBet(Player& player, Money& bet){

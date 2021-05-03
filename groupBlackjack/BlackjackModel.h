@@ -42,6 +42,8 @@ class BlackjackModel{
   void setPlayerType(std::string stratType);
   void setPlayerType(std::string stratType, int index);
   
+  std::vector<std::string> getTypeList();
+  
   Hand getCurrentPlayerHand();
   std::vector<Card> getFaceUpCards();
   
@@ -50,10 +52,12 @@ class BlackjackModel{
   int getNumPlayers();
   Money getBalance();
   Money getBalance(int index);
+  Money getBet();
+  Money getBet(int index);
   
 private:
   Deck mcDeck;
-  std::vector<Player> players;
+  std::vector<Player> mcPlayers;
   int mCurrentPlayerIndex;
   Hand mcDealerHand;
   DealerAI mcDealerBrain;

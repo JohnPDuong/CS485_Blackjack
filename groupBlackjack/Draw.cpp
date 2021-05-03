@@ -9,7 +9,7 @@
 
 #include "Draw.h"
 
-bool Draw::execute(Deck& cTableDeck, Player& cPlayer){
-  cPlayer.receiveCard(cTableDeck.draw());
+bool Draw::execute(Deck& cTableDeck, Player* cPlayer){
+  cPlayer->receiveCard(cTableDeck.draw());
   return true;
 }

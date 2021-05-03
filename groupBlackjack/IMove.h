@@ -13,6 +13,7 @@
 
 class IMove{
 public:
-  virtual bool execute(Deck& cTableDeck, Player& cPlayer) = 0;
+  //Had to change player to pointer because reference caused dependency loop
+  virtual bool execute(Deck& cTableDeck, Player* cPlayer) = 0;
   virtual std::string moveName() = 0;
 };

@@ -11,7 +11,7 @@
 
 #include "IMoveStrategy.h"
 
-class IHumanMoveStrategy : public IMoveStrategy {
+class HumanMoveStrategy : public IMoveStrategy {
 public:
   virtual bool determineMove(Hand& cCurrentHand,
                              std::shared_ptr<IMove> pcCurrentMove,

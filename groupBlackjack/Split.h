@@ -12,5 +12,5 @@
 
 class Split: public IMove{
 public:
-  virtual bool execute(Deck& cTableDeck, Player& cPlayer) override;
+  virtual bool execute(Deck& cTableDeck, Player* cPlayer) override;
 };
