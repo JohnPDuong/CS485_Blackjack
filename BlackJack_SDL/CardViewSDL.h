@@ -20,6 +20,8 @@ class CardViewSDL {
     void flip();
     void draw(SDLApp &app);
 
+    bool isFaceUp() { return bIsFaceUp; };
+
   private:
     SDLSprite* mpFaceUp;
     SDLSprite* mpFaceDown;
