@@ -11,17 +11,17 @@
 
 void BlackjackPresenter::newGame(int players)
 {
-
+	mcModel.newGame(players);
 }
 
 void BlackjackPresenter::nextRound()
 {
-
+	mcModel.nextRound();
 }
 
 void BlackjackPresenter::endGame()
 {
-
+	
 }
 
 void BlackjackPresenter::result()

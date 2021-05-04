@@ -9,6 +9,7 @@
 #pragma once
 
 #include "IBlackjackPresenter.h"
+#include "IBlackjackView.h"
 #include "BlackjackModel.h"
 
 class BlackjackPresenter : public IBlackjackPresenter {
@@ -33,6 +34,6 @@ public:
 	virtual void updateView();
 
 private:
-	BlackjackModel mModel;
-	//BlackjackView mView; Link views
+	BlackjackModel mcModel;
+	IBlackjackView *mpcView;
 };

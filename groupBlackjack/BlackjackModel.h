@@ -18,10 +18,13 @@
 #include "Draw.h"
 #include <vector>
 
-class BlackjackModel{
+class BlackjackModel {
 public:
   BlackjackModel(int numPlayers, int numDecks = 1);
   ~BlackjackModel();
+
+  enum Move {DRAW, STAND, SPLIT};
+  enum Status {UNDER, BUST, LOSE, BLACKJACK, WIN};
   
   bool newGame();
   bool newGame(int numDecks);
@@ -35,6 +38,7 @@ public:
   
   void moveDealer();
   void makeMove();
+  void nextRound(); // Dear Kitt, I added this for the presenter. Sincerely, Julian
   
   bool makeBet(Money cBet);
   void stand();
