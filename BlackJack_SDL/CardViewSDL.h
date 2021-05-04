@@ -8,8 +8,6 @@
 //***************************************************************************
 #pragma once
 
-#include <memory>
-
 #include "SDLSprite.h"
 
 class CardViewSDL {
@@ -17,13 +15,13 @@ class CardViewSDL {
     CardViewSDL(SDLSprite* faceUp, SDLSprite* faceDown, bool isFaceUp);
     ~CardViewSDL();
 
-    void flip();
+    void flip() { mbIsFaceUp = true; };
     void draw(SDLApp &app);
 
-    bool isFaceUp() { return bIsFaceUp; };
+    bool isFaceUp() { return mbIsFaceUp; };
 
   private:
     SDLSprite* mpFaceUp;
     SDLSprite* mpFaceDown;
-    bool bIsFaceUp;
+    bool mbIsFaceUp;
 };
