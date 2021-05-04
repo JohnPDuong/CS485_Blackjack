@@ -21,60 +21,60 @@ void BlackjackPresenter::nextRound()
 
 void BlackjackPresenter::endGame()
 {
-	
+	// Do we need this?
 }
 
-void BlackjackPresenter::result()
+BlackjackModel::Status BlackjackPresenter::result()
 {
-
+	return mcModel.result();
 }
 
 long long BlackjackPresenter::getBalance()
 {
-
+	return mcModel.getBalance();
 }
 
-void BlackjackPresenter::getNumPlayers()
+int BlackjackPresenter::getNumPlayers()
 {
-
+	return mcModel.getNumPlayers();
 }
 
 std::string BlackjackPresenter::getName()
 {
-
+	mcModel.getName();
 }
 
 void BlackjackPresenter::setName(std::string name)
 {
-
+	mcModel.setPlayerName(name);
 }
 
 void BlackjackPresenter::stand()
 {
-
+	mcModel.stand();
 }
 
 void BlackjackPresenter::bet(long long amount)
 {
-
+	mcModel.makeBet(amount);
 }
 
 void BlackjackPresenter::split()
 {
-
+	mcModel.split();
 }
 
 void BlackjackPresenter::draw()
 {
-
+	mcModel.drawCard();
 }
 
 void BlackjackPresenter::makeMove()
 {
-
+	mcModel.makeMove();
 }
 
 void BlackjackPresenter::updateView()
 {
-
+	mpcView->render();
 }

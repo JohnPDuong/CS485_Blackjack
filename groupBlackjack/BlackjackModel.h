@@ -39,6 +39,7 @@ public:
   void moveDealer();
   void makeMove();
   void nextRound(); // Dear Kitt, I added this for the presenter. Sincerely, Julian
+  Status result(); // p.s. And this.
   
   bool makeBet(Money cBet);
   void stand();
@@ -58,10 +59,10 @@ public:
   std::string getName();
   std::string getName(int index);
   int getNumPlayers();
-  Money getBalance();
-  Money getBalance(int index);
-  Money getBet();
-  Money getBet(int index);
+  long long getBalance();
+  long long getBalance(int index);
+  long long getBet();
+  long long getBet(int index);
   
 private:
   

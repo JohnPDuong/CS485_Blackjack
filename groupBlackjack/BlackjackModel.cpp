@@ -168,18 +168,18 @@ int BlackjackModel::getNumPlayers(){
   return mcPlayers.size();
 }
 
-Money BlackjackModel::getBalance(){
+long long BlackjackModel::getBalance(){
   return getBalance(mCurrentPlayerIndex);
 }
 
-Money BlackjackModel::getBalance(int index){
-  return mcPlayers.at(index).getBank();
+long long BlackjackModel::getBalance(int index){
+  return mcPlayers.at(index).getBank().getAmount();
 }
 
-Money BlackjackModel::getBet(){
+long long BlackjackModel::getBet(){
   return getBet(mCurrentPlayerIndex);
 }
 
-Money BlackjackModel::getBet(int index){
-  return mcPlayers.at(index).getBet();
+long long BlackjackModel::getBet(int index){
+  return mcPlayers.at(index).getBet().getAmount();
 }

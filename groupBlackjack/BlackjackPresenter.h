@@ -18,10 +18,10 @@ public:
 
 	virtual void nextRound();
 	virtual void endGame();
-	virtual void result();
+	virtual BlackjackModel::Status result();
 	//virtual void addBalance(long long amount) = 0;
 	virtual long long getBalance();
-	virtual void getNumPlayers();
+	virtual int getNumPlayers();
 	virtual std::string getName();
 	virtual void setName(std::string name);
 
