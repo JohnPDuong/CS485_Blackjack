@@ -111,12 +111,12 @@ void BlackjackViewSDL::newGame (int numPlayers)
   for (int i = 0; i < numPlayers; i++) {
     PlayerView cCreated(10, 100 + 10 * i);
     mcPlayers.push_back(cCreated);
-    mcDrawableWidget.push_back((ISDLWidget*)&cCreated);
+    mcDrawableWidget.push_back(&cCreated);
   }
   PlayerView cDealer(10, 90);
   cDealer.makeDealer();
   mcPlayers.push_back(cDealer);
-  mcDrawableWidget.push_back ((ISDLWidget*)&cDealer);
+  mcDrawableWidget.push_back (&cDealer);
 
   mcCurrentPlayer = mcPlayers.begin();
 
@@ -356,4 +356,8 @@ void BlackjackViewSDL::onBetWidget (SDLTextWidget* widget)
 void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
 {
   onSetNumPlayers(stoi(widget->getData()));
+}
+
+void BlackjackViewSDL::render ()
+{
 }

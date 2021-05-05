@@ -16,7 +16,7 @@
 #include "SDLSprite.h"
 #include "CardViewSDL.h"
 
-class PlayerView {
+class PlayerView : public ISDLWidget {
   public:
     PlayerView(int x, int y);
     ~PlayerView();
