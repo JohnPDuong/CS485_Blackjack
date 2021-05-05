@@ -358,6 +358,20 @@ void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
   onSetNumPlayers(stoi(widget->getData()));
 }
 
+//***************************************************************************
+// Function:    render
+//
+// Description: Displays UI to the screen
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
+
 void BlackjackViewSDL::render ()
 {
+  for (auto value : mcDrawableWidget) {
+    if(value->isVisible())
+      value->draw();
+  }
 }
