@@ -90,6 +90,11 @@ void BlackjackModel::makeMove(){
                      mcPlayers.at(mCurrentPlayerIndex));
 }
 
+void nextRound() // Julian made this
+{
+
+}
+
 bool BlackjackModel::makeBet(Money cBet){
   return mcPlayers.at(mCurrentPlayerIndex).makeBet(cBet);
 }

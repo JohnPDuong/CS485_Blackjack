@@ -21,4 +21,4 @@ public:
 };
 
 //Providing parent isHuman so subclasses can just call parent class one.
-bool IComputerMoveStrategy::isHuman(){return false;};
+//bool IComputerMoveStrategy::isHuman(){return false;};
