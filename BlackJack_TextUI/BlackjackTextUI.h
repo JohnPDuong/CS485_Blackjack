@@ -5,6 +5,7 @@
 
 class BlackjackTextUI : public IBlackjackView {
 public:
+  BlackjackTextUI();
   BlackjackTextUI(int numPlayers);
 
   virtual void newGame(int numPlayers);
@@ -20,6 +21,12 @@ public:
   virtual void onBet(long long amount);
 
   virtual void render();
+
+  // TextUI specific functions
+  void printWelcome();
+  void printHeader();
+  void onGameStartup();
+  void playGame(); 
 
 
 private:

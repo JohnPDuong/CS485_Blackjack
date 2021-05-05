@@ -10,6 +10,12 @@
 #include "BlackjackPresenter.h"
 #include "Status.h"
 
+
+BlackjackPresenter::BlackjackPresenter(IBlackjackView* pcView)
+{
+	mpcView = pcView;
+}
+
 BlackjackPresenter::BlackjackPresenter(IBlackjackView* pcView, int numPlayers, int numDecks)
 	: mcModel (numPlayers, numDecks)
 {

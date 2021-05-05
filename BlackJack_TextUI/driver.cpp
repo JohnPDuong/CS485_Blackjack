@@ -5,7 +5,13 @@
 using namespace std;
 
 int main()
-{
+{	
+	BlackjackTextUI cGame;
 	
-	cout << "hi" << endl;
+	system("cls");
+	cGame.printWelcome();
+	cGame.onGameStartup();
+
+
+	return EXIT_SUCCESS;
 }
