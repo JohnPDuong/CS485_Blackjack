@@ -19,6 +19,3 @@ public:
   virtual bool determineBet(Player& player, Money& bet) = 0;
   virtual bool isHuman() = 0;
 };
-
-//Providing parent isHuman so subclasses can just call parent class one.
-bool IComputerMoveStrategy::isHuman(){return false;};
