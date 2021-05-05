@@ -19,7 +19,7 @@
 #include "PlayerView.h"
 #include "SDLTextWidget.h"
 
-class BlackjackViewSDL : public SDLApp, IBlackjackView {
+class BlackjackViewSDL : public SDLApp{
   public:
     BlackjackViewSDL();
     ~BlackjackViewSDL();
