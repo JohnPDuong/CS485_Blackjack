@@ -55,7 +55,7 @@ CardViewSDL::~CardViewSDL ()
 void CardViewSDL::draw (SDLApp& app)
 {
   if(mbIsFaceUp)
-    mpFaceUp->draw();
+    mpFaceUp->draw(app);
   else
-    mpFaceDown->draw();
+    mpFaceDown->draw(app);
 }
