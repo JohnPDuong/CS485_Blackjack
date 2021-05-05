@@ -50,6 +50,7 @@ bool Player::isHuman(){
 
 bool Player::trySplit(){
   //Need a split in hand.
+  return true;
 }
 
 void Player::changeStrat(std::shared_ptr<IMoveStrategy> newStrat){

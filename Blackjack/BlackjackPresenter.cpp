@@ -9,6 +9,11 @@
 
 #include "BlackjackPresenter.h"
 
+BlackjackPresenter::BlackjackPresenter()
+{
+	std::cout << "Hi";
+}
+
 void BlackjackPresenter::newGame(int players)
 {
 	mcModel.newGame(players);
@@ -41,7 +46,7 @@ int BlackjackPresenter::getNumPlayers()
 
 std::string BlackjackPresenter::getName()
 {
-	mcModel.getName();
+	return mcModel.getName();
 }
 
 void BlackjackPresenter::setName(std::string name)

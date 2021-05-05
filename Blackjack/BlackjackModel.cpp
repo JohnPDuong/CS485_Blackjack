@@ -9,6 +9,12 @@
 
 #include "BlackjackModel.h"
 
+BlackjackModel::BlackjackModel()
+{
+  std::cout << "ctor BlackjackModel";
+  mCurrentPlayerIndex = 0;
+}
+
 BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
   mcPlayers = std::vector<Player>(numPlayers);
   mpcDeck = std::make_shared<Deck>(numDecks);
@@ -54,16 +60,18 @@ void BlackjackModel::initialDeal(){
   }
 }
 
+/*
 bool BlackjackModel::isHuman(){
-  return isHuman(mCurrentPlayerIndex);
-}
+  return true; //isHuman(mCurrentPlayerIndex); INFINITE RECURSION
+}*/
 
+/*
 bool BlackjackModel::isHuman(int index){
   return mcPlayers.at(index).isHuman();
-}
+}*/
 
 bool BlackjackModel::isBetTime(){
-  
+  return true;
 }
 
 void BlackjackModel::moveDealer(){
@@ -88,7 +96,7 @@ bool BlackjackModel::makeBet(Money cBet){
 
 void BlackjackModel::stand(){
   bool bSuccess = false;
-  if(isHuman()){
+  if(true){
     std::shared_ptr<IMove> pcMove = std::make_shared<Stand>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
@@ -98,7 +106,7 @@ void BlackjackModel::stand(){
 
 bool BlackjackModel::split(){
   bool bSuccess = false;
-  if(isHuman()){
+  if(true){
     std::shared_ptr<IMove> pcMove = std::make_shared<Split>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
@@ -108,7 +116,7 @@ bool BlackjackModel::split(){
 
 void BlackjackModel::drawCard(){
   bool bSuccess = false;
-  if(isHuman()){
+  if(true){
     std::shared_ptr<IMove> pcMove = std::make_shared<Draw>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
@@ -142,7 +150,7 @@ std::vector<std::string> BlackjackModel::getTypeList(){
 }
 
 Hand BlackjackModel::getCurrentPlayerHand(){
-  mcPlayers.at(mCurrentPlayerIndex).getCurrentHand();
+  return mcPlayers.at(mCurrentPlayerIndex).getCurrentHand();
 }
 
 std::vector<Card> BlackjackModel::getFaceUpCards(){
@@ -157,7 +165,7 @@ std::vector<Card> BlackjackModel::getFaceUpCards(){
 }
 
 std::string BlackjackModel::getName(){
-  getName(mCurrentPlayerIndex);
+  return getName(mCurrentPlayerIndex);
 }
 
 std::string BlackjackModel::getName(int index){

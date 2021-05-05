@@ -14,11 +14,11 @@ bool CardCounterAI::determineMove(Hand& cCurrentHand,
                                   std::shared_ptr<IMove> pcCurrentMove,
                                   std::vector<Card>& cTableCards){
   
-  
+  return true;
 }
 
 bool CardCounterAI::determineBet(Player& player, Money& bet){
-  bet.setAmount(player.getBank.getAmount/5);
+  bet.setAmount(player.getBank().getAmount()/5);
   return true;
 }
 

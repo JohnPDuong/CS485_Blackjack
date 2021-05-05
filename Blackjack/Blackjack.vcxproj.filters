@@ -15,73 +15,85 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IMoveStrategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IComputerMoveStrategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DealerAI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CardCounterAI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrunkAI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HumanMoveStrategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveStrategyFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Money.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Status.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Hand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Value.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Suit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Move.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Card.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Deck.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BlackjackModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IBlackjackPresenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BlackjackPresenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextView.h">
+    <ClInclude Include="BlackjackTextUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BlackjackView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CardCounterAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DealerAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Deck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Draw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrunkAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanMoveStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBlackjackPresenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="IBlackjackView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BlackjackTextUI.h">
+    <ClInclude Include="IComputerMoveStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IMove.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IMoveStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Money.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveStrategyFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Split.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Status.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Suit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Value.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -90,6 +102,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlackjackPresenter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackjackTextUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlackjackView.cpp">
@@ -107,6 +122,9 @@
     <ClCompile Include="Deck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="DrunkAI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,6 +132,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HumanMoveStrategy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Money.cpp">
@@ -125,13 +146,13 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Split.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="TextView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BlackjackTextUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

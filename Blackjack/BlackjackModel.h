@@ -8,6 +8,7 @@
 //***************************************************************************
 #pragma once
 
+#include <iostream>
 #include "Deck.h"
 #include "Player.h"
 #include "MoveStrategyFactory.h"
@@ -20,6 +21,7 @@
 
 class BlackjackModel {
 public:
+  BlackjackModel ();
   BlackjackModel(int numPlayers, int numDecks = 1);
   ~BlackjackModel();
 
@@ -32,8 +34,8 @@ public:
   bool isBust();
   bool isBust(int playerIndex);
   void initialDeal();
-  bool isHuman();
-  bool isHuman(int index);
+  //bool isHuman();
+  //bool isHuman(int index);
   bool isBetTime();
   
   void moveDealer();

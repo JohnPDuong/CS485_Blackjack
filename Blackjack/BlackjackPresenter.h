@@ -14,6 +14,9 @@
 
 class BlackjackPresenter : public IBlackjackPresenter {
 public:
+
+	BlackjackPresenter();
+
 	virtual void newGame(int players);
 
 	virtual void nextRound();

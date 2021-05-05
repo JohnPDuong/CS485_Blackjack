@@ -13,13 +13,13 @@
 #include <sstream>
 
 #include "SDLApp.h"
-#include "IBlackjackView.h"
-#include "BlackjackPresenter.h"
 #include "ISDLWidget.h"
 #include "PlayerView.h"
 #include "SDLTextWidget.h"
+#include "../Blackjack/BlackjackPresenter.h"
+#include "../Blackjack/IBlackjackPresenter.h"
 
-class BlackjackViewSDL : public SDLApp{
+class BlackjackViewSDL : public SDLApp {
   public:
     BlackjackViewSDL();
     ~BlackjackViewSDL();

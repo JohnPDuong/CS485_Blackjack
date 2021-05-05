@@ -273,7 +273,7 @@ void BlackjackViewSDL::onSetNumPlayers (int number)
 //***************************************************************************
 void BlackjackViewSDL::onNewGame ()
 {
-  mpcPresenter->newGame(); //I don't think this should take an int since we
+  //mpcPresenter->newGame(); //I don't think this should take an int since we
   //dont know how many players there are yet?
 }
 
