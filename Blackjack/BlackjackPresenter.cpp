@@ -22,6 +22,11 @@ BlackjackPresenter::BlackjackPresenter(IBlackjackView* pcView, int numPlayers, i
 	mpcView = pcView;
 }
 
+BlackjackPresenter::~BlackjackPresenter()
+{
+	delete mpcView;
+}
+
 void BlackjackPresenter::newGame(int players)
 {
 	mcModel.newGame(players);
