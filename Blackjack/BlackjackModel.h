@@ -17,6 +17,7 @@
 #include "Stand.h"
 #include "Split.h"
 #include "Draw.h"
+#include "Status.h"
 #include <vector>
 
 class BlackjackModel {
@@ -25,8 +26,6 @@ public:
   BlackjackModel(int numPlayers, int numDecks = 1);
   ~BlackjackModel();
 
-  enum Move {DRAW, STAND, SPLIT};
-  enum Status {UNDER, BUST, LOSE, BLACKJACK, WIN};
   
   bool newGame();
   bool newGame(int numDecks);

@@ -8,6 +8,7 @@
 //***************************************************************************
 #pragma once
 #include "BlackjackModel.h"
+#include "Status.h"
 #include <iostream>
 
 class IBlackjackPresenter {
@@ -16,7 +17,7 @@ public:
 
 	virtual void nextRound() = 0;
 	virtual void endGame() = 0;
-	virtual BlackjackModel::Status result() = 0;
+	virtual Status result() = 0;
 	//virtual void addBalance(long long amount) = 0;
 	virtual long long getBalance() = 0;
 	virtual int getNumPlayers() = 0;

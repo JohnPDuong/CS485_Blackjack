@@ -8,6 +8,7 @@
 //***************************************************************************
 
 #include "BlackjackPresenter.h"
+#include "Status.h"
 
 BlackjackPresenter::BlackjackPresenter()
 {
@@ -29,7 +30,7 @@ void BlackjackPresenter::endGame()
 	// Do we need this?
 }
 
-BlackjackModel::Status BlackjackPresenter::result()
+Status BlackjackPresenter::result()
 {
 	return mcModel.result();
 }
