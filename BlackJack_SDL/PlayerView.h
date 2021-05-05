@@ -25,6 +25,7 @@ class PlayerView {
 
     void draw(SDLApp& app);
 
+    //TODO: allow user to specify which hand the card should go to
     void addCard(SDLApp* app, std::string card, bool isFaceUp);
     void discardHand();
     void showCards();
@@ -40,5 +41,5 @@ class PlayerView {
     SDLTextWidget mcMoneyDisplay;
     std::vector<CardViewSDL> mcCards;
     std::vector<CardViewSDL> mcSplitHand;
-    int x, y; // need to store these so we can spawn cards in the right place
+    int mX, mY; // need to store these so we can spawn cards in the right place
 };
