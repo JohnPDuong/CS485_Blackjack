@@ -21,9 +21,6 @@
     <ClInclude Include="BlackjackPresenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BlackjackTextUI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BlackjackView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -102,9 +99,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlackjackPresenter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BlackjackTextUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlackjackView.cpp">

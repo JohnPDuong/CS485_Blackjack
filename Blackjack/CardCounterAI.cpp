@@ -23,5 +23,5 @@ bool CardCounterAI::determineBet(Player& player, Money& bet){
 }
 
 bool CardCounterAI::isHuman() {
-  return IComputerMoveStrategy::isHuman();
+  return false; //IComputerMoveStrategy::isHuman();
 }

@@ -10,9 +10,10 @@
 #include "BlackjackPresenter.h"
 #include "Status.h"
 
-BlackjackPresenter::BlackjackPresenter()
+BlackjackPresenter::BlackjackPresenter(IBlackjackView* pcView, int numPlayers, int numDecks)
+	: mcModel (numPlayers, numDecks)
 {
-	std::cout << "Hi";
+	mpcView = pcView;
 }
 
 void BlackjackPresenter::newGame(int players)

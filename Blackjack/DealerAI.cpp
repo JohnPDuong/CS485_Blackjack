@@ -27,5 +27,5 @@ bool DealerAI::determineBet(Player& player, Money& bet){
 }
 
 bool DealerAI::isHuman() {
-  return IComputerMoveStrategy::isHuman();
+  return true;//IComputerMoveStrategy::isHuman();
 }

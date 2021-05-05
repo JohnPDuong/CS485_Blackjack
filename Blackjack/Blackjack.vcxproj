@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="BlackjackModel.h" />
     <ClInclude Include="BlackjackPresenter.h" />
-    <ClInclude Include="BlackjackTextUI.h" />
     <ClInclude Include="BlackjackView.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardCounterAI.h" />
@@ -50,7 +49,6 @@
   <ItemGroup>
     <ClCompile Include="BlackjackModel.cpp" />
     <ClCompile Include="BlackjackPresenter.cpp" />
-    <ClCompile Include="BlackjackTextUI.cpp" />
     <ClCompile Include="BlackjackView.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardCounterAI.cpp" />
