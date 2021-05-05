@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlackjackViewSDL.cpp" />
+    <ClCompile Include="CardViewSDL.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerView.cpp" />
   </ItemGroup>

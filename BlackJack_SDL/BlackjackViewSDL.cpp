@@ -53,15 +53,7 @@ mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255})
   mcSplitButton.setEditable(false);
   mcDrawButton.setEditable(false);
   mcEndGameButton.setEditable(false);
-  mcNextRound.setVisible(false);
-
-  //set invisible objects
-  mcStandButton.setVisible(false);
-  mcSplitButton.setVisible(false);
-  mcDrawButton.setVisible(false);
-  mcEndGameButton.setVisible(false);
-  mcBetButton.setVisible(false);
-  mcNextRound.setVisible(false);
+  mcNextRound.setEditable(false);
 
   enableTextInput();
 
@@ -359,6 +351,27 @@ void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
 }
 
 //***************************************************************************
+// Function:    initGame
+//
+// Description: Initializes the UI elements
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
+
+void BlackjackViewSDL::initGame ()
+{
+  mcStandButton.setVisible (false);
+  mcSplitButton.setVisible (false);
+  mcDrawButton.setVisible (false);
+  mcEndGameButton.setVisible (false);
+  mcBetButton.setVisible (false);
+  mcNextRound.setVisible (false);
+  mcNumPlayersInput.setVisible (true);
+}
+
+//***************************************************************************
 // Function:    render
 //
 // Description: Displays UI to the screen
@@ -367,11 +380,10 @@ void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
 //
 // Returned:    None
 //***************************************************************************
-
 void BlackjackViewSDL::render ()
 {
   for (auto value : mcDrawableWidget) {
     if(value->isVisible())
-      value->draw();
+      value->draw(*this);
   }
 }

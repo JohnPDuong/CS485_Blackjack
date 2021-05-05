@@ -47,6 +47,7 @@ class BlackjackViewSDL : public SDLApp {
     void onBetWidget(SDLTextWidget* widget);
     void onNumPlayersWidget(SDLTextWidget* widget);
 
+    void initGame();
     void render ();
 
   private:
