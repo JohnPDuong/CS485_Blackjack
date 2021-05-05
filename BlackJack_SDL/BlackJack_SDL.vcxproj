@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\CS485_Blackjack;$(SolutionDir)\SDLApp2;c:\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\CS485_Blackjack;$(SolutionDir)\SDLApp2;c:\SDL2\include;$(IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(SolutionDir)\Debug;$(LibraryPath);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
