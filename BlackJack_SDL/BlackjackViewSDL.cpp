@@ -1,10 +1,10 @@
 //***************************************************************************
-// File name:  BlackjackView.cpp
+// File name:  BlackjackViewSDL.cpp
 // Author:     Erin Melia
-// Date:       5/1/2021
+// Date:       5/5/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    Define the primary view used in the SDL app
+// Purpose:    Defines the UI functionality for the SDL version of the game
 //***************************************************************************
 #include "BlackjackViewSDL.h"
 
@@ -19,65 +19,67 @@
 // Returned:    None
 //***************************************************************************
 BlackjackViewSDL::BlackjackViewSDL () :
-mcStandButton("Stand", "", 10, 10, 1, { 255,255,255,255 }),
-mcBetButton("Bet", "", 10, 20, 1, { 255,255,255,255 }),
+mcBetButton("Bet", "", 10, 10, 1, { 255,255,255,255 }),
+mcStandButton("Stand", "", 10, 20, 1, { 255,255,255,255 }),
 mcSplitButton("Split", "", 10, 30, 1, { 255,255,255,255 }),
 mcDrawButton("Draw", "", 10, 40, 1, { 255,255,255,255 }),
-mcNumPlayersInput("Number of Players", "", 10, 60, 1, { 255,255,255,255 }),
-mcPlayerTypeInput("Input Player Type", "", 10, 70, 1, { 255,255,255,255 }),
-mcNewGame("New Game", "", 10, 80, 1, { 255,255,255,255 }),
-mcNameInput("Name", "", 10, 100, 1, { 255,255,255,255 }),
-mcCreatePlayer("Create Player", "", 10, 110, 1, { 255,255,255,255 })
+mcNumPlayersInput("Enter number of Players:", "", 10, 50, 1, { 255,255,255,255 }),
+mcEndGameButton("New Game", "", 10, 60, 1, { 255,255,255,255 }),
+mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255})
 {
   mpcPresenter = new BlackjackPresenter();
   loadFont ("c:/Windows/Fonts/Cour.ttf", 20);
 
-  mcNumPlayersInput.registerStateChangeEventHandler 
+  //set event handlers
+  mcBetButton.registerStateChangeEventHandler 
     (std::bind
-    (&BlackjackViewSDL::onSetNumPlayersWidget, this, &mcNumPlayersInput));
-  mcBetButton.registerStateChangeEventHandler
+    (&BlackjackViewSDL::onBetWidget, this, &mcBetButton));
+  mcNumPlayersInput.registerStateChangeEventHandler
     (std::bind
-    (&BlackjackViewSDL::onBetWidget,this, &mcBetButton));
-  mcNewGame.registerClickEventHandler
-    (std::bind(&BlackjackViewSDL::onNewGame, this));
-  mcCreatePlayer.registerClickEventHandler
-    (std::bind
-    (&BlackjackViewSDL::onCreatePlayerWidget, this, &mcNameInput, 
-    &mcPlayerTypeInput));
+    (&BlackjackViewSDL::onNumPlayersWidget, this, &mcNumPlayersInput));
   mcStandButton.registerClickEventHandler
-    (std::bind (&BlackjackViewSDL::onStand, this));
+    (std::bind(&BlackjackViewSDL::onStand, this));
+  mcSplitButton.registerClickEventHandler
+    (std::bind (&BlackjackViewSDL::onSplit, this));
   mcDrawButton.registerClickEventHandler
     (std::bind(&BlackjackViewSDL::onDrawCard, this));
-  mcSplitButton.registerClickEventHandler
-    (std::bind(&BlackjackViewSDL::onSplit, this));
+  mcEndGameButton.registerClickEventHandler
+    (std::bind(&BlackjackViewSDL::onEndGame, this));
+  mcNextRound.registerClickEventHandler
+    (std::bind(&BlackjackViewSDL::onNextRound, this));
 
-  enableTextInput();
-
-  mcBetButton.setVisible(false);
-  mcStandButton.setVisible(false);
-  mcSplitButton.setVisible(false);
-  mcDrawButton.setVisible(false);
-  mcPlayerTypeInput.setVisible(false);
-  mcNewGame.setVisible(false);
-  mcNameInput.setVisible(false);
-  mcCreatePlayer.setVisible(false);
-
+  //set non-editable text objects
   mcStandButton.setEditable(false);
   mcSplitButton.setEditable(false);
   mcDrawButton.setEditable(false);
-  mcNewGame.setEditable(false);
-  mcCreatePlayer.setEditable(false);
+  mcEndGameButton.setEditable(false);
+  mcNextRound.setVisible(false);
+
+  //set invisible objects
+  mcStandButton.setVisible(false);
+  mcSplitButton.setVisible(false);
+  mcDrawButton.setVisible(false);
+  mcEndGameButton.setVisible(false);
+  mcBetButton.setVisible(false);
+  mcNextRound.setVisible(false);
+
+  enableTextInput();
+
+  registerTextWidget((ISDLWidgetTextable*)&mcBetButton);
+  registerTextWidget((ISDLWidgetTextable*)&mcNumPlayersInput);
+  registerClickableWidget((ISDLWidgetClickable*)&mcStandButton);
+  registerClickableWidget((ISDLWidgetClickable*)&mcSplitButton);
+  registerClickableWidget((ISDLWidgetClickable*)&mcDrawButton);
+  registerClickableWidget((ISDLWidgetClickable*)&mcEndGameButton);
+  registerClickableWidget((ISDLWidgetClickable*)&mcNextRound);
 
   mcDrawableWidget.push_back(&mcBetButton);
-  mcDrawableWidget.push_back(&mcDrawButton);
   mcDrawableWidget.push_back(&mcNumPlayersInput);
-  mcDrawableWidget.push_back(&mcSplitButton);
   mcDrawableWidget.push_back(&mcStandButton);
-  mcDrawableWidget.push_back(&mcPlayerTypeInput);
-  mcDrawableWidget.push_back(&mcNewGame);
-  mcDrawableWidget.push_back(&mcCreatePlayer);
-  mcDrawableWidget.push_back(&mcNameInput);
- }
+  mcDrawableWidget.push_back(&mcDrawButton);
+  mcDrawableWidget.push_back(&mcEndGameButton);
+  mcDrawableWidget.push_back(&mcNextRound);
+}
 
 //***************************************************************************
 // Destructor:  ~BlackjackViewSDL
@@ -94,24 +96,43 @@ BlackjackViewSDL::~BlackjackViewSDL ()
 }
 
 //***************************************************************************
-// Function:    nextRound
+// Function:    newGame
 //
-// Description: removes all the cards from the players' current hands
+// Description: From Presenter: create PlayerViews for the specified number of
+//              players
 //
-// Parameters:  None
+// Parameters:  numPlayers - the number of views to create
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::nextRound ()
+void BlackjackViewSDL::newGame (int numPlayers)
 {
-  for(auto it = mcPlayers.begin(); it != mcPlayers.end(); it++)
-    it->discardHand();
+  //create player views
+  for (int i = 0; i < numPlayers; i++) {
+    PlayerView cCreated(10, 100 + 10 * i);
+    mcPlayers.push_back(cCreated);
+    mcDrawableWidget.push_back((ISDLWidget*)&cCreated);
+  }
+  PlayerView cDealer(10, 90);
+  cDealer.makeDealer();
+  mcPlayers.push_back(cDealer);
+  mcDrawableWidget.push_back ((ISDLWidget*)&cDealer);
+
+  mcCurrentPlayer = mcPlayers.begin();
+
+  //initialize game UI
+  mcStandButton.setVisible (true);
+  mcSplitButton.setVisible (true);
+  mcDrawButton.setVisible (true);
+  mcEndGameButton.setVisible (true);
+  mcBetButton.setVisible (true);
+  mcNumPlayersInput.setVisible(false);
 }
 
 //***************************************************************************
 // Function:    stand
 //
-// Description: advances to the next player
+// Description: From Presenter:  advance to the next player
 //
 // Parameters:  None
 //
@@ -119,83 +140,101 @@ void BlackjackViewSDL::nextRound ()
 //***************************************************************************
 void BlackjackViewSDL::stand ()
 {
-  advancePlayer();
+  mcCurrentPlayer++;
+
+  if(mcCurrentPlayer == mcPlayers.end())
+    mcNextRound.setVisible(true);
+  else
+    mcCurrentPlayer->showCards();
 }
+
 
 //***************************************************************************
 // Function:    drawCard
 //
-// Description: updates the player's hand to reflect their new card
+// Description: From Presenter: add card to the current player's hand
 //
-// Parameters:  card - the card that the player has drawn
+// Parameters:  card     - a string representing which card should be added
+//              isFaceUp - whether the card should be dealt face up or face
+//                         down
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::drawCard (std::string card)
+void BlackjackViewSDL::drawCard (std::string card, bool isFaceUp)
 {
-  mcCurrentPlayer->addCard(this, card, true);
+  mcCurrentPlayer->addCard(this, card, isFaceUp);
 }
 
 //***************************************************************************
-// Function:    setNumPlayers
+// Function:    split
 //
-// Description: hide the UI to set the number of players and display the UI to
-//              set the type of players
+// Description: From Presenter:  split the current player's hand
 //
 // Parameters:  None
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::setNumPlayers ()
+void BlackjackViewSDL::split ()
 {
-  mcNumPlayersInput.setVisible(false);
-  mcPlayerTypeInput.setVisible(true);
-  mcNameInput.setVisible(true);
-  mcCreatePlayer.setVisible(true);
+  mcCurrentPlayer->splitHand();
 }
 
 //***************************************************************************
-// Function:    createPlayer
+// Function:    bet
 //
-// Description: creates a PlayerView for the newly created player and adds it
-//              to the object's data
+// Description: From Presenter:  update the displayed amount of the player's
+//              money
 //
-// Parameters:  name - the name of the player
+// Parameters:  amount - the current player's bank balance
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::createPlayer (std::string name)
+void BlackjackViewSDL::bet (long long amount)
 {
-  PlayerView cCreated;
-  cCreated.setName(name);
-  mcPlayers.push_back(cCreated);
-  mcDrawableWidget.push_back((ISDLWidget*)&cCreated);
+  mcCurrentPlayer->setMoney(std::to_string(amount));
 }
 
 //***************************************************************************
-// Function:    setPlayerType
+// Function:    nextRound
 //
-// Description: Creates the UI for the newly added player and resets the data
-//              in mcPlayerTypeInput
+// Description: From Presenter: reset the UI so the player can begin the next
+//              round
 //
 // Parameters:  None
 //
 // Returned:    None
 //***************************************************************************
-/*void BlackjackViewSDL::setPlayerType ()
+void BlackjackViewSDL::nextRound ()
 {
-  PlayerView cCreated;
+  mcCurrentPlayer = mcPlayers.begin ();
 
-  mcPlayers.push_back(cCreated);
-  mcDrawableWidget.push_back((ISDLWidget*)&cCreated);
+  for (auto it = mcPlayers.begin (); it != mcPlayers.end (); it++)
+    it->discardHand ();
+}
 
-  mcPlayerTypeInput.setData("");
-}*/
+//***************************************************************************
+// Function:    endGame
+//
+// Description: From Presenter: reset the UI to the beginning screen
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
+void BlackjackViewSDL::endGame ()
+{
+  mcStandButton.setVisible (false);
+  mcSplitButton.setVisible (false);
+  mcDrawButton.setVisible (false);
+  mcEndGameButton.setVisible (false);
+  mcBetButton.setVisible (false);
+  mcNumPlayersInput.setVisible (true);
+}
 
 //***************************************************************************
 // Function:    onStand
 //
-// Description: calls the stand function in the presenter
+// Description: UI Event handler: call presenter
 //
 // Parameters:  None
 //
@@ -209,7 +248,7 @@ void BlackjackViewSDL::onStand ()
 //***************************************************************************
 // Function:    onDrawCard
 //
-// Description: calls the draw function in the presenter
+// Description: UI Event handler: call presenter
 //
 // Parameters:  None
 //
@@ -223,7 +262,7 @@ void BlackjackViewSDL::onDrawCard ()
 //***************************************************************************
 // Function:    onSplit
 //
-// Description: calls the split function in the presenter
+// Description: UI Event handler: call presenter
 //
 // Parameters:  None
 //
@@ -235,32 +274,18 @@ void BlackjackViewSDL::onSplit ()
 }
 
 //***************************************************************************
-// Function:    onSetNumPlayers
+// Function:    onBet
 //
 // Description: UI Event handler: call presenter
 //
-// Parameters:  number - the number of players being passed to the presenter
+// Parameters:  amount - the amount of money the player bet
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::onSetNumPlayers (int number)
+void BlackjackViewSDL::onBet (long long amount)
 {
-  //we need to set the number of players in the presenter here
+  mpcPresenter->bet(amount);
 }
-
-//***************************************************************************
-// Function:    onSetPlayerType
-//
-// Description: UI Event handler: call presenter
-//
-// Parameters:  number - the number of players being passed to the presenter
-//
-// Returned:    None
-//***************************************************************************
-/*void BlackjackViewSDL::onSetPlayerType (std::string type)
-{
-  //set the type of the current player
-}*/
 
 //***************************************************************************
 // Function:    onNewGame
@@ -271,45 +296,38 @@ void BlackjackViewSDL::onSetNumPlayers (int number)
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::onNewGame ()
+void BlackjackViewSDL::onEndGame ()
 {
-  //mpcPresenter->newGame(); //I don't think this should take an int since we
-  //dont know how many players there are yet?
+  mpcPresenter->endGame (); //note: at some point in here, new game needs to be
+                            //called
 }
 
 //***************************************************************************
-// Function:    onCreatePlayer
+// Function:    onNextRound
 //
 // Description: UI Event handler: call presenter
 //
-// Parameters:  name - the name of the player to be created
-//              type - the type of player to be created
+// Parameters:  None
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::onCreatePlayer (std::string name, std::string type)
+void BlackjackViewSDL::onNextRound ()
 {
-  //so as I'm writing this the model doesn't seem to have a function to create
-  //a new player. So this function is blank for now
+  mpcPresenter->nextRound();
 }
 
 //***************************************************************************
-// Function:    onSetNumPlayersWidget
+// Function:    onSetNumPlayers
 //
 // Description: UI Event handler: call presenter
 //
-// Parameters:  string - the data from the UI widget
+// Parameters:  None
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::onSetNumPlayersWidget (SDLTextWidget* widget)
+void BlackjackViewSDL::onSetNumPlayers (int number)
 {
-  std::stringstream test(widget->getData());
-  int val = -1;
-  test >> val;
-
-  if(val > 0 && val <= 4)
-    onSetNumPlayers(val);
+  mpcPresenter->newGame(number);
 }
 
 //***************************************************************************
@@ -317,92 +335,25 @@ void BlackjackViewSDL::onSetNumPlayersWidget (SDLTextWidget* widget)
 //
 // Description: UI Event handler: call presenter
 //
-// Parameters:  string - the data from the ui widget
+// Parameters:  string - the data from the UI widget
 //
 // Returned:    None
 //***************************************************************************
 void BlackjackViewSDL::onBetWidget (SDLTextWidget* widget)
 {
-  std::stringstream test(widget->getData());
-  int val = 0;
-  test >> val;
-
-  if(val > 0)
-    onBet(val);
+  onBet(stoll(widget->getData()));
 }
 
 //***************************************************************************
-// Function:    onSetPlayerTypeWidget
+// Function:    onNumPlayersWidget
 //
 // Description: UI Event handler: call presenter
 //
-// Parameters:  string - the data from the UI widget
+// Parameters:  int - the number of players
 //
 // Returned:    None
 //***************************************************************************
-/*void BlackjackViewSDL::onSetPlayerTypeWidget (SDLTextWidget* widget)
+void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
 {
-  //BIG PROBLEM
-  //as it stands, we don't know when to hide mcPlayerTypeInput, since this
-  //function has no way of knowing how many times it needs to run
-
-  if(widget->getData() == "HUMAN" || widget->getData() == "COMPUTER" || 
-    widget->getData() == "CARD COUNTER")
-    onSetPlayerType(widget->getData());
-}*/
-
-//***************************************************************************
-// Function:    onCreatePlayerWidget
-//
-// Description: UI Event handler: call presenter
-//
-// Parameters:  string - the data from the UI widget
-//
-// Returned:    None
-//***************************************************************************
-void BlackjackViewSDL::onCreatePlayerWidget (SDLTextWidget* name, SDLTextWidget* type)
-{
-  if (name->getData () != "")
-  {
-    if (type->getData () == "HUMAN" || type->getData () == "COMPUTER" ||
-      type->getData () == "CARD COUNTER")
-      onCreatePlayer(name->getData(), type->getData());
-  }
-}
-
-//***************************************************************************
-// Function:    render
-//
-// Description: draw all the widgets to the screen
-//
-// Parameters:  None
-//
-// Returned:    None
-//***************************************************************************
-void BlackjackViewSDL::render ()
-{
-  for (auto value : mcDrawableWidget)
-  {
-    if (value->isVisible ())
-    {
-      value->draw (*this);
-    }
-  }
-}
-
-
-//***************************************************************************
-// Function:    advancePlayer
-//
-// Description: advances to the next player
-//
-// Parameters:  None
-//
-// Returned:    None
-//***************************************************************************
-void BlackjackViewSDL::advancePlayer ()
-{
-  mcCurrentPlayer++;
-  if (mcCurrentPlayer == mcPlayers.end ())
-    mcCurrentPlayer = mcPlayers.begin ();
+  onSetNumPlayers(stoi(widget->getData()));
 }

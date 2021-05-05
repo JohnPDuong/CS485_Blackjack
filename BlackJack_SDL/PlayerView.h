@@ -18,7 +18,7 @@
 
 class PlayerView {
   public:
-    PlayerView();
+    PlayerView(int x, int y);
     ~PlayerView();
     //we're going to need a way of determining where the PlayerView should be 
     //placed on the screen since TextWidget doesn't have a default constructor
@@ -28,13 +28,17 @@ class PlayerView {
     void addCard(SDLApp* app, std::string card, bool isFaceUp);
     void discardHand();
     void showCards();
+    void splitHand();
 
     void setName(std::string name) { mcNameDisplay.setData(name); };
     void setMoney(std::string amount) { mcMoneyDisplay.setData(amount); };
+
+    void makeDealer() { setName("Dealer"); mcMoneyDisplay.setVisible(false); };
 
   private:
     SDLTextWidget mcNameDisplay;
     SDLTextWidget mcMoneyDisplay;
     std::vector<CardViewSDL> mcCards;
+    std::vector<CardViewSDL> mcSplitHand;
     int x, y; // need to store these so we can spawn cards in the right place
 };
