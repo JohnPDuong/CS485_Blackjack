@@ -14,7 +14,7 @@
 
 class BlackjackPresenter : public IBlackjackPresenter {
 public:
-
+	BlackjackPresenter ();
 	BlackjackPresenter(IBlackjackView* pcView);
 	BlackjackPresenter(IBlackjackView* pcView, int numPlayers, int numDecks);
 	virtual ~BlackjackPresenter();
