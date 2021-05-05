@@ -21,7 +21,7 @@ public:
 
 	virtual void nextRound();
 	virtual void endGame();
-	virtual BlackjackModel::Status result();
+	virtual Status result();
 	//virtual void addBalance(long long amount) = 0;
 	virtual long long getBalance();
 	virtual int getNumPlayers();
