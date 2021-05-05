@@ -11,6 +11,11 @@
 #include "Status.h"
 
 
+BlackjackPresenter::BlackjackPresenter()
+{
+	std::cout << "ctor" << std::endl;
+}
+
 BlackjackPresenter::BlackjackPresenter(IBlackjackView* pcView)
 {
 	mpcView = pcView;
