@@ -99,9 +99,9 @@ void BlackjackTextUI::printGameState()
 	std::cout << std::endl;
 
 	// print opponents cards
-	for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
+	for (int i = 0; i < mpcPresenter->getNumPlayers() - 1; i++)
 	{
-		std::cout << "Opponent " << i + 1 << "cards: ";
+		std::cout << "Opponent " << i + 1 << " cards: ";
 		for (std::string card : cards[i])
 		{
 			std::cout << card << " ";

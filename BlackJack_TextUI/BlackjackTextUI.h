@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Blackjack/BlackjackView.h"
+//#include "../Blackjack/BlackjackView.h"
 #include "../Blackjack/BlackjackPresenter.h"
 
 class BlackjackTextUI : public IBlackjackView {
