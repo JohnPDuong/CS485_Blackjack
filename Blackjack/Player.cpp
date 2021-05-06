@@ -112,7 +112,7 @@ bool Player::isFullyBust(){
 
 bool Player::readyToStart(){
   mbSplittable = true; //Start of turn, players can split
-  return mpcMoveStrat == nullptr;
+  return mpcMoveStrat != nullptr;
 }
 
 bool Player::canSplit()
