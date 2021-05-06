@@ -99,6 +99,9 @@
     <ClInclude Include="Currency.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BlackjackPresenterSDL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlackjackModel.cpp">
@@ -153,6 +156,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CurrencyMismatchException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackjackPresenterSDL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
