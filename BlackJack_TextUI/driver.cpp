@@ -6,13 +6,25 @@ using namespace std;
 
 int main()
 {	
+	BlackjackModel cModel;
+
+	cModel.newGame(3); for (int i = 0; i < 3 - 1; i++)
+	{
+		cModel.setPlayerType("Card Counter", i);
+	}
+	cModel.setPlayerType("Human", 3 - 1);
+	cout << "GOogd";
+
+	cModel.isHuman();
+
+	/*
 	BlackjackTextUI cGame;
 	
 	system("cls");
 	cGame.printWelcome();
 	cGame.onGameStartup();
 	cGame.playGame();
-
+	*/
 
 	return EXIT_SUCCESS;
 }

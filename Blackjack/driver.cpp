@@ -2,6 +2,9 @@
 
 #include "BlackjackModel.h"
 int main() {
-	std::cout << "Why are you running this this is just to get it to load.";
+	BlackjackModel cGame;
+
+	cGame.newGame(5);
+
 	return 0;
 }
