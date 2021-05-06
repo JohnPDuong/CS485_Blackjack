@@ -53,6 +53,17 @@ void BlackjackPresenterSDL::endGame ()
 	// Do we need this?
 }
 
+std::vector<Status> BlackjackPresenterSDL::endRound()
+{
+	return mcModel.result();
+}
+
+
+bool BlackjackPresenterSDL::roundOngoing()
+{
+	return !mcModel.roundDone();
+}
+
 Status BlackjackPresenterSDL::result ()
 {
 	return mcModel.resultCurrentPlayer ();

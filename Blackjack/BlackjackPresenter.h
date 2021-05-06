@@ -20,35 +20,38 @@ class BlackjackPresenter : public IBlackjackPresenter
 		BlackjackPresenter(IBlackjackView* pcView, int numPlayers, int numDecks);
 		virtual ~BlackjackPresenter();
 
-		virtual void newGame(int players);
+		virtual void newGame(int players) override;
 		virtual void newGame() override;
 
-		virtual void nextRound();
-		virtual void endGame();
-		virtual Status result();
+		virtual void nextRound() override;
+		virtual void endGame() override;
+    virtual std::vector<Status> endRound() override;
+    virtual bool roundOngoing() override;
+		virtual Status result() override;
 		//virtual void addBalance(long long amount) = 0;
-		virtual long long getBalance();
-		virtual std::vector<std::string> getCurrentPlayerHand();
-		virtual std::vector<std::vector<std::string>> getOpponentCards();
-		virtual std::vector<std::string> getDealerCards();
-		virtual int getNumPlayers();
-		virtual std::string getName();
-		virtual void setName(std::string name, int index);
-		virtual void setPlayerType(std::string stratType, int index);
+		virtual long long getBalance() override;
+		virtual std::vector<std::string> getCurrentPlayerHand() override;
+		virtual std::vector<std::vector<std::string>> getOpponentCards() override;
+		virtual std::vector<std::string> getDealerCards() override;
+		virtual int getNumPlayers() override;
+		virtual std::string getName() override;
+		virtual void setName(std::string name) override;
+		virtual void setPlayerType(std::string stratType, int index) override;
 
-		virtual void stand();
-		virtual bool bet(long long amount);
-		virtual void split();
-		virtual void draw();
+		virtual void stand() override;
+		virtual bool bet(long long amount) override;
+		virtual void split() override;
+		virtual void draw() override;
 
-		virtual void makeMove();
-		virtual bool isHuman();
-		virtual bool canSplit();
-		virtual bool isBetTime();
+		virtual void makeMove() override;
+		virtual bool isHuman() override;
+		virtual bool canSplit() override;
+		virtual bool isBetTime() override;
 
-		virtual void updateView();
-		virtual void doCPUMoves();
-		virtual void doCPUBets();
+		virtual void updateView() override;
+		virtual void doCPUMoves() override;
+		virtual void doCPUBets() override;
+>>>>>>> b32ea912e42f992ec48ac56cf7fac95e2e6cd12b
 
 	private:
 		BlackjackModel mcModel;

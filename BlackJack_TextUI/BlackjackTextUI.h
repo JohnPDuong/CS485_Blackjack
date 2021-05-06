@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Blackjack/BlackjackView.h"
+//#include "../Blackjack/BlackjackView.h"
 #include "../Blackjack/BlackjackPresenter.h"
 
 class BlackjackTextUI : public IBlackjackView {
@@ -32,5 +32,6 @@ public:
   void playGame(); 
 
 private:
+  virtual void printEndRoundScreen();
   IBlackjackPresenter* mpcPresenter;
 };
