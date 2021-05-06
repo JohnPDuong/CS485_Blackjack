@@ -2,9 +2,23 @@
 
 #include "BlackjackModel.h"
 int main() {
-	BlackjackModel cGame;
-
-	cGame.newGame(5);
-
+  BlackjackModel test;
+  
+  test.newGame(5);
+  for(int i = 0; i < 4; i++){
+    test.setPlayerType("Card Counter", i);
+  }
+  test.setPlayerType("Human", 4);
+  
+  test.newGame();
+  while(test.isBetTime()){
+    if(!test.isHuman()){
+      test.makeBet();
+    }
+    else{
+      test.makeBet(Money(10,Currency::USD));
+    }
+  }
+  
 	return 0;
 }
