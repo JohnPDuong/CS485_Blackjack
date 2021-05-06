@@ -50,7 +50,7 @@ bool Player::isHuman(){
 }
 
 bool Player::trySplit(){
-  if (canSplit)
+  if (canSplit())
   {
     mbSplittable = false; // can no longer split after splitting
   }
