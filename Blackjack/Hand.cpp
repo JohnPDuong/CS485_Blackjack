@@ -154,3 +154,34 @@ std::vector<Card> Hand::getHand ()
 {
 	return mcCards;
 }
+//***************************************************************************
+// Function:		canSplit
+//
+// Description: Checks to see if the two cards in hand have the same
+//							denomination
+//
+// Parameters:  None
+//
+// Return:			True if same card denomination, false otherwise
+//***************************************************************************
+bool Hand::canSplit()
+{
+	return mcCards[0].getValue() == mcCards[1].getValue();
+}
+//***************************************************************************
+// Function:		split
+//
+// Description: Returns the second card in hand
+//
+// Parameters:  None
+//
+// Return:			Card object
+//***************************************************************************
+Card Hand::split()
+{
+	Card cCard = mcCards[1];
+
+	mcCards.pop_back();
+
+	return cCard;
+}

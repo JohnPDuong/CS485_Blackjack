@@ -28,6 +28,9 @@ class Hand
 		std::vector<Card> getFaceUpCards ();
 		std::vector<Card> getHand ();
 
+		bool canSplit ();
+		Card split ();
+
 	private:
 		std::vector<Card> mcCards;
 
