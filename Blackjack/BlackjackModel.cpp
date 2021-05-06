@@ -701,11 +701,18 @@ std::vector<std::string> BlackjackModel::getDealerCards()
   }
   return stringArry;
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool BlackjackModel::roundDone(){
   return mbRoundDone;
 }
-
 //***************************************************************************
 // Function:
 //
