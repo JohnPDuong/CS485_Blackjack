@@ -182,11 +182,11 @@ bool BlackjackModel::isBetTime(){
 //***************************************************************************
 // Function:    moveDealer
 //
-// Description: 
+// Description: Dealers makes a move through strategy
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 void BlackjackModel::moveDealer(){
   std::shared_ptr<IMove> cDealerMove;
@@ -200,13 +200,13 @@ void BlackjackModel::moveDealer(){
   }
 }
 //***************************************************************************
-// Function:
+// Function:    makeMove
 //
-// Description: 
+// Description: Current player makes move
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 void BlackjackModel::makeMove(){
   std::shared_ptr<IMove> cCompMove;
@@ -216,7 +216,7 @@ void BlackjackModel::makeMove(){
   incrementPlayer();
 }
 //***************************************************************************
-// Function:
+// Function:    nextRound
 //
 // Description: 
 //
