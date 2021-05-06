@@ -97,7 +97,11 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+<<<<<<< HEAD
       <AdditionalDependencies>Blackjack.lib;SDLApp2.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
+=======
+      <AdditionalDependencies>Blackjack.lib;SDLApp2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+>>>>>>> more-sdl
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
