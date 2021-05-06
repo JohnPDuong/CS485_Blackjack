@@ -30,6 +30,7 @@ void Player::receiveCard(Card cNewCard, int handNum){
 
 bool Player::makeMove(std::shared_ptr<IMove> pcMove,
                       std::vector<Card> tableCards){
+  mbSplittable = false; //made a move this turn means they cannot split
   return mpcMoveStrat->determineMove(mcHands.at(mCurrentHand),
                                      pcMove, tableCards);
 }
@@ -106,7 +107,13 @@ bool Player::isFullyBust(){
 }
 
 bool Player::readyToStart(){
+  mbSplittable = true; //Start of turn, players can split
   return mpcMoveStrat == nullptr;
+}
+
+bool Player::canSplit()
+{
+    return mbSplittable;
 }
 
 void Player::clearHands(){

@@ -8,12 +8,14 @@
 //***************************************************************************
 #pragma once
 
-#include <istream>
+#include <iostream>
+#include "Currency.h"
+#include "CurrencyMismatchException.h"
 
 class Money {
 	public:
 		Money ();
-		Money (long long amount);
+		Money (long long amount, Currency type);
 		Money (const Money &rcCurrency);
 		virtual ~Money ();
 
@@ -23,6 +25,10 @@ class Money {
 		long long getAmount ();
 
 		void operator= (long long amount);
+
+		Currency getCurrency();
+		static Currency strToType(std::string type);
+		std::string typeToStr(Currency eType);
 
 		friend Money operator* (const Money &rcCurrency, double fAmount);
 		friend Money operator+ (const Money &rcCurrency, const Money &rcOtherCurrency);
@@ -34,6 +40,9 @@ class Money {
 		friend bool operator< (const Money &rcCurrency, const Money &rcOtherCurrency);
 		friend bool operator> (const Money &rcCurrency, const Money &rcOtherCurrency);
 
+		void throwMismatchException(const Money &rcMoney) const;
+
 	private:
 		long long mAmount;
+		Currency meCurrency;
 };
