@@ -38,6 +38,11 @@ void BlackjackPresenterSDL::newGame (int players)
 	//mpcView->newGame(players);
 }
 
+void BlackjackPresenterSDL::newGame()
+{
+	mcModel.newGame();
+}
+
 void BlackjackPresenterSDL::nextRound ()
 {
 	mcModel.nextRound ();
@@ -134,7 +139,22 @@ bool BlackjackPresenterSDL::canSplit ()
 	return mcModel.canSplit ();
 }
 
+bool BlackjackPresenterSDL::isBetTime()
+{
+	return mcModel.isBetTime();
+}
+
 void BlackjackPresenterSDL::updateView ()
 {
 	mpcView->render ();
+}
+
+void BlackjackPresenterSDL::doCPUMoves()
+{
+	mcModel.doCPUMoves();
+}
+
+void BlackjackPresenterSDL::doCPUBets()
+{
+	mcModel.doCPUBets();
 }

@@ -21,6 +21,7 @@ public:
 	virtual ~BlackjackPresenterSDL ();
 
 	virtual void newGame (int players);
+	virtual void newGame ();
 
 	virtual void nextRound ();
 	virtual void endGame ();
@@ -43,8 +44,11 @@ public:
 	virtual void makeMove ();
 	virtual bool isHuman ();
 	virtual bool canSplit ();
+	virtual bool isBetTime();
 
 	virtual void updateView ();
+	virtual void doCPUMoves();
+	virtual void doCPUBets();
 
 private:
 	BlackjackModel mcModel;
