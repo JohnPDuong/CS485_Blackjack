@@ -80,3 +80,21 @@ Value Card::getValue ()
 {
 	return meValue;
 }
+int Card::getInt()
+{
+
+	return 0;
+}
+//***************************************************************************
+// Function:		getValue
+//
+// Description: return value of card
+//
+// Parameters:  None
+//
+// Return:			enum value of card
+//***************************************************************************
+Value Card::getValue()
+{
+	return meValue;
+}
