@@ -93,6 +93,12 @@
     <ClInclude Include="Value.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CurrencyMismatchException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Currency.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlackjackModel.cpp">
@@ -144,6 +150,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CurrencyMismatchException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
