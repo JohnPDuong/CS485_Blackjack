@@ -154,8 +154,6 @@
     </ClCompile>
     <ClCompile Include="CurrencyMismatchException.cpp">
       <Filter>Source Files</Filter>
-    <ClCompile Include="driver.cpp">
-      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
