@@ -101,9 +101,11 @@ void BlackjackPresenterSDL::stand ()
 	mcModel.stand ();
 }
 
-void BlackjackPresenterSDL::bet (long long amount)
+bool BlackjackPresenterSDL::bet (long long amount)
 {
 	mcModel.makeBet (Money (amount, Currency::USD));
+
+	return true;
 }
 
 void BlackjackPresenterSDL::split ()

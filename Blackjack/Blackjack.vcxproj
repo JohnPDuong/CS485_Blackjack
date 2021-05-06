@@ -22,7 +22,6 @@
     <ClInclude Include="BlackjackModel.h" />
     <ClInclude Include="BlackjackPresenter.h" />
     <ClInclude Include="BlackjackPresenterSDL.h" />
-    <ClInclude Include="BlackjackView.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardCounterAI.h" />
     <ClInclude Include="Currency.h" />
@@ -39,21 +38,18 @@
     <ClInclude Include="IMove.h" />
     <ClInclude Include="IMoveStrategy.h" />
     <ClInclude Include="Money.h" />
-    <ClInclude Include="Move.h" />
     <ClInclude Include="MoveStrategyFactory.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Split.h" />
     <ClInclude Include="Stand.h" />
     <ClInclude Include="Status.h" />
     <ClInclude Include="Suit.h" />
-    <ClInclude Include="TextView.h" />
     <ClInclude Include="Value.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlackjackModel.cpp" />
     <ClCompile Include="BlackjackPresenter.cpp" />
     <ClCompile Include="BlackjackPresenterSDL.cpp" />
-    <ClCompile Include="BlackjackView.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardCounterAI.cpp" />
     <ClCompile Include="CurrencyMismatchException.cpp" />
@@ -69,7 +65,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Split.cpp" />
     <ClCompile Include="Stand.cpp" />
-    <ClCompile Include="TextView.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
