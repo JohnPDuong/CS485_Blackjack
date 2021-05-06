@@ -194,7 +194,6 @@ void BlackjackTextUI::playGame()
 		}
 
 
-
 		turns++;
 	}
 }

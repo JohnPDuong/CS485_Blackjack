@@ -12,12 +12,17 @@
 BlackjackModel::BlackjackModel()
 {
   std::cout << "ctor BlackjackModel";
-  mCurrentPlayerIndex = -1;
+  
+  mCurrentPlayerIndex = 0;
+  mbRoundDone = false;
+  //mCurrentPlayerIndex = -1;
 }
 
 BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
+  mCurrentPlayerIndex = 0;
   mcPlayers = std::vector<Player>(numPlayers);
   mpcDeck = std::make_shared<Deck>(numDecks);
+  mbRoundDone = false;
 }
 
 BlackjackModel::~BlackjackModel(){
@@ -30,6 +35,7 @@ bool BlackjackModel::newGame(){
       return false;
     }
   }
+  mbRoundDone = false;
   mpcDeck->fillShuffle();
   return true;
 }
@@ -54,19 +60,21 @@ bool BlackjackModel::isBust(int playerIndex){
 }
 
 void BlackjackModel::initialDeal(){
-  
   mpcDeck->shuffle();
   for(int i = 0; i < getNumPlayers(); i++){
     mcPlayers.at(i).receiveCard(mpcDeck->draw());
   }
+  mcDealerHand.addCard(mpcDeck->draw());
+  Card cTemp = mpcDeck->draw();
   for(int i = 0; i < getNumPlayers(); i++){
-    Card cTemp = mpcDeck->draw();
     cTemp.flip();
     mcPlayers.at(i).receiveCard(cTemp);
+    cTemp = mpcDeck->draw();
   }
+  cTemp.flip();
+  mcDealerHand.addCard(cTemp);
 }
 
-/*
 bool BlackjackModel::isHuman(){
   return isHuman(mCurrentPlayerIndex); //INFINITE RECURSION
 }
@@ -75,10 +83,14 @@ bool BlackjackModel::isHuman(){
 bool BlackjackModel::isHuman(int index){
   return mcPlayers.at(index).isHuman();
 }
-*/
 
 bool BlackjackModel::isBetTime(){
-  return true;
+  for(int i = 0; i < getNumPlayers(); i++){
+    if(mcPlayers.at(i).getBet().getAmount() == -1){
+      return true;
+    }
+  }
+  return false;
 }
 
 void BlackjackModel::moveDealer(){
@@ -88,6 +100,9 @@ void BlackjackModel::moveDealer(){
   //about run time minor efficiency opportunity here.
   mcDealerBrain.determineMove(mcDealerHand, cDealerMove, cFaceUpCards);
   cDealerMove->execute(*mpcDeck, mcDealerHand);
+  if(cDealerMove->moveName() == "Stand"){
+    mbRoundDone = true;
+  }
 }
 
 void BlackjackModel::makeMove(){
@@ -95,11 +110,37 @@ void BlackjackModel::makeMove(){
   mcPlayers.at(mCurrentPlayerIndex).makeMove(cCompMove, getFaceUpCards());
   cCompMove->execute(*mpcDeck,
                      mcPlayers.at(mCurrentPlayerIndex));
+  incrementPlayer();
 }
 
-void BlackjackModel::nextRound() // Julian made this
+std::vector<Status> BlackjackModel::nextRound() // Julian made this
 {
+  std::vector<Status> results;
+  
+  if(!mbRoundDone){
+    return results;
+  }
+  
+  results = result();
+  
+  for(int i = 0; i < getNumPlayers(); i++){
+    mcPlayers.at(i).endRound();
+  }
+  mbRoundDone = false;
+  mbBetReady = true;
+  
+  return results;
+}
 
+std::vector<Status> BlackjackModel::result(){
+  std::vector<Status> results;
+  
+  for(int i = 0; i < getNumPlayers(); i++){
+    results.push_back(resultCurrentPlayer());
+    mCurrentPlayerIndex = getNextPlayer();
+  }
+  
+  return results;
 }
 
 bool BlackjackModel::makeBet(Money cBet){
@@ -108,30 +149,33 @@ bool BlackjackModel::makeBet(Money cBet){
 
 void BlackjackModel::stand(){
   bool bSuccess = false;
-  if(true){
+  if(isHuman()){
     std::shared_ptr<IMove> pcMove = std::make_shared<Stand>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
+    incrementPlayer();
   }
   return;
 }
 
 bool BlackjackModel::split(){
   bool bSuccess = false;
-  if(true){
+  if(isHuman()){
     std::shared_ptr<IMove> pcMove = std::make_shared<Split>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
+    incrementPlayer();
   }
   return bSuccess;
 }
 
 void BlackjackModel::drawCard(){
   bool bSuccess = false;
-  if(true){
+  if(isHuman()){
     std::shared_ptr<IMove> pcMove = std::make_shared<Draw>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
+    incrementPlayer();
   }
   return;
 }
@@ -173,6 +217,30 @@ std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
   return cardStrs;
 }
 
+
+std::vector<std::vector<std::string>> BlackjackModel::getOpponentCards(){
+  std::vector<std::vector<std::string>> stringHands(getNumPlayers());
+  std::vector<std::vector<Card>> cCardHands;
+  
+  //get hands
+  for(int i = getNextPlayer(mCurrentPlayerIndex); i != mCurrentPlayerIndex; i = getNextPlayer(i)){
+    for(int j = 0; j < mcPlayers.at(i).getNumHands(); j++){
+      cCardHands.at(i).insert(cCardHands.at(i).begin(),
+                            mcPlayers.at(i).getHands().at(j).getHand().begin(),
+                            mcPlayers.at(i).getHands().at(j).getHand().end());
+    }
+  }
+  
+  //stringify hands
+  for(int i = 0; i < cCardHands.size(); i++){
+    for(int j = 0; j < cCardHands.at(i).size(); j++){
+      stringHands.at(i).push_back(toString(cCardHands.at(i).at(j)));
+    }
+  }
+  
+  return stringHands;
+}
+
 std::vector<Card> BlackjackModel::getFaceUpCards(){
   std::vector<Card> cAllFaceUp;
   std::vector<Card> cThisFaceUp;
@@ -193,7 +261,7 @@ std::string BlackjackModel::getName(int index){
 }
 
 int BlackjackModel::getNumPlayers(){
-  return mcPlayers.size();
+  return (int)mcPlayers.size();
 }
 
 long long BlackjackModel::getBalance(){
@@ -278,6 +346,9 @@ std::string BlackjackModel::toString (Card cCard)
     case Value::King:
       cardStr += "K";
       break;
+        
+    case Value::Count:
+      break;
     }
 
     // Adds the suit
@@ -297,6 +368,9 @@ std::string BlackjackModel::toString (Card cCard)
 
     case Suit::Spades:
       cardStr += "S";
+      break;
+        
+    case Suit::Count:
       break;
     }
   }
@@ -346,4 +420,25 @@ Status BlackjackModel::resultCurrentPlayer()
   }
 
   return eStatus;
+}
+
+void BlackjackModel::incrementPlayer() {
+  mCurrentPlayerIndex = getNextPlayer();
+  if (mCurrentPlayerIndex == 0) {
+      moveDealer();
+  }
+}
+
+
+int BlackjackModel::getNextPlayer(){
+  return getNextPlayer(mCurrentPlayerIndex);
+}
+
+int BlackjackModel::getNextPlayer(int currentPlayer){
+  if(++currentPlayer >= getNumPlayers()){
+    return 0;
+  }
+  else{
+    return currentPlayer;
+  }
 }

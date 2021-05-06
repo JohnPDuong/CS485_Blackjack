@@ -26,6 +26,8 @@ private:
   int unhashValue(Value inputValue);
   int estimateNumDecks();
   
+  void evalCards(int& numGoodCards, int& numBadCards, int estimatedNumDecks, int refVal = 8);
+  
   //Some of the slots may be unused because the enum has repeated values.
   int mTotalCardsFoundOfEachType[4][13];
   std::vector<Card> mcCardsSeenThisRound;

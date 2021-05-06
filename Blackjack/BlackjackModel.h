@@ -34,15 +34,16 @@ public:
   bool isBust();
   bool isBust(int playerIndex);
   void initialDeal();
-  //bool isHuman();
-  //bool isHuman(int index);
+  bool isHuman();
+  bool isHuman(int index);
   bool isBetTime();
   
   void moveDealer();
   void makeMove();
-  void nextRound(); // Dear Kitt, I added this for the presenter. Sincerely, Julian
+  std::vector<Status> nextRound(); // Dear Kitt, I added this for the presenter. Sincerely, Julian
+  std::vector<Status> result();
   
-  bool makeBet(Money cBet);
+  bool makeBet(Money cBet = Money());
   void stand();
   bool split();
   void drawCard();
@@ -55,6 +56,8 @@ public:
   std::vector<std::string> getTypeList();
   
   std::vector<std::string> getCurrentPlayerHand();
+  std::vector<std::vector<std::string>> getOpponentCards();
+  
   std::vector<Card> getFaceUpCards();
   
   std::string getName();
@@ -68,8 +71,16 @@ public:
   bool canSplit ();
   std::vector<std::string> getDealerCards();
   Status resultCurrentPlayer ();
+  
+  bool roundDone();
 
 private:
+  void incrementPlayer();
+  int getNextPlayer();
+  int getNextPlayer(int currentPlayer);
+  
+  bool mbRoundDone;
+  bool mbBetReady;
   
   std::string toString(Card cCard); // Julian
   std::shared_ptr<Deck> mpcDeck;
