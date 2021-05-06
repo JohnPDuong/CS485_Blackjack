@@ -12,7 +12,7 @@
 BlackjackModel::BlackjackModel()
 {
   std::cout << "ctor BlackjackModel";
-  mCurrentPlayerIndex = 0;
+  mCurrentPlayerIndex = -1;
 }
 
 BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
