@@ -86,6 +86,7 @@ bool BlackjackModel::isBetTime(){
       return true;
     }
   }
+  initialDeal();
   return false;
 }
 
@@ -390,6 +391,23 @@ std::vector<std::string> BlackjackModel::getDealerCards()
     stringArry.push_back(toString(mcDealerHand.getHand().at(i)));
   }
   return stringArry;
+}
+
+void BlackjackModel::doCPUMoves(){
+  while(!isHuman()){
+    makeMove();
+  }
+}
+
+void BlackjackModel::doCPUBets(){
+  while(!isHuman() && isBetTime()){
+    if(mcPlayers.at(mCurrentPlayerIndex).getBet().getAmount() == -1){
+      makeBet();
+    }
+    else{
+      incrementPlayer();
+    }
+  }
 }
 
 Status BlackjackModel::resultCurrentPlayer()

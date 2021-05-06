@@ -72,6 +72,9 @@ public:
   Status resultCurrentPlayer ();
   
   bool roundDone();
+  
+  void doCPUMoves();
+  void doCPUBets();
 
 private:
   void incrementPlayer();
