@@ -140,7 +140,8 @@ void BlackjackTextUI::playGame()
 
 	bool bKeepPlaying = true;
 	long long betAmount = -1;
-
+	int turns = 0;
+	char move = '-';
 
 	while (bKeepPlaying)
 	{
@@ -155,9 +156,20 @@ void BlackjackTextUI::playGame()
 		printHeader();
 		printGameState();
 
+		// Prints the move options if the human's turn is still going
+		while (move != STAND && mpcPresenter->result() != Status::Bust)
+		{
+			std::cout << "OPTIONS: \n(0) Bet \n(1) Stand \n(2) Draw\n";
+			if (mpcPresenter->canSplit())
+			{
+				std::cout << "(3) Split\n";
+			}
+			std::cout << "Enter your move: ";
+			std::cin >> move;
+		}
 
+
+
+		turns++;
 	}
-
-
-
 }

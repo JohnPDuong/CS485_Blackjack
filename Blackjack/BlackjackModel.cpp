@@ -95,11 +95,6 @@ void BlackjackModel::nextRound() // Julian made this
 
 }
 
-Status BlackjackModel::result() // Julian
-{
-  return Status::Blackjack; // TODO: fix this 
-}
-
 bool BlackjackModel::makeBet(Money cBet){
   return mcPlayers.at(mCurrentPlayerIndex).makeBet(cBet);
 }
@@ -307,4 +302,41 @@ bool BlackjackModel::canSplit()
   //Only the first hand may be split
   return mcPlayers[mCurrentPlayerIndex].getHands().at(0).canSplit() == 
          mcPlayers[mCurrentPlayerIndex].canSplit();
+}
+
+std::vector<std::string> BlackjackModel::getDealerCards()
+{
+  std::vector <std::string> stringArry;
+  
+  for (int i = 0; i < mcDealerHand.getHand().size(); i++)
+  {
+    stringArry.push_back(toString(mcDealerHand.getHand().at(i)));
+  }
+  return stringArry;
+}
+
+Status BlackjackModel::resultCurrentPlayer()
+{
+  Status eStatus;
+  int sum = mcPlayers[mCurrentPlayerIndex].getCurrentHand().getHandValue();
+  int dealerSum = mcDealerHand.getHandValue();
+
+  if (sum == (int) Status::Blackjack)
+  {
+    eStatus = Status::Blackjack;
+  }
+  else if (sum > dealerSum && sum < (int) Status::Blackjack)
+  {
+    eStatus = Status::Win;
+  }
+  else if (sum > (int) Status::Blackjack)
+  {
+    eStatus = Status::Bust;
+  }
+  else
+  {
+    eStatus = Status::Lose;
+  }
+
+  return eStatus;
 }
