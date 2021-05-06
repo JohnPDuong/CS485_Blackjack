@@ -26,8 +26,8 @@ mcDrawButton("Draw", "", 10, 40, 1, { 255,255,255,255 }),
 mcNumPlayersInput("Enter number of Players", "", 10, 50, 1, { 255,255,255,255 }),
 mcEndGameButton("New Game", "", 10, 60, 1, { 255,255,255,255 }),
 mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255}),
-mcPlayerNameInput("Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
-mcPlayerTypeInput("Type", "", 10, 80, 1, { 255, 255, 255, 255 }),
+mcPlayerNameInput("Player 1 Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
+mcPlayerTypeInput("Player 1 Type", "", 10, 80, 1, { 255, 255, 255, 255 }),
 mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
 {
   mpcPresenter = new BlackjackPresenterSDL ((IBlackjackView*)this);
@@ -81,6 +81,9 @@ mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
   mcDrawableWidget.push_back(&mcDrawButton);
   mcDrawableWidget.push_back(&mcEndGameButton);
   mcDrawableWidget.push_back(&mcNextRound);
+  mcDrawableWidget.push_back(&mcPlayerNameInput);
+  mcDrawableWidget.push_back(&mcPlayerTypeInput);
+  mcDrawableWidget.push_back(&mcSetPlayer);
 }
 
 //***************************************************************************
@@ -238,11 +241,12 @@ void BlackjackViewSDL::endGame ()
 
 void BlackjackViewSDL::setPlayer ()
 {
-  if(mPlayersSet < mpcPresenter->getNumPlayers())
+  if (mPlayersSet < mpcPresenter->getNumPlayers ()) {
     mcPlayerNameInput.setLabel ("Player " + std::to_string (mPlayersSet + 1) + " name");
     mcPlayerNameInput.setData ("");
-    mcPlayerTypeInput.setLabel("Player " + std::to_string(mPlayersSet + 1) + " type");
-    mcPlayerTypeInput.setData("");
+    mcPlayerTypeInput.setLabel ("Player " + std::to_string (mPlayersSet + 1) + " type");
+    mcPlayerTypeInput.setData ("");
+  }
 }
 
 void BlackjackViewSDL::setNumPlayers ()
@@ -421,6 +425,9 @@ void BlackjackViewSDL::initGame ()
   mcEndGameButton.setVisible (false);
   mcBetButton.setVisible (false);
   mcNextRound.setVisible (false);
+  mcSetPlayer.setVisible(false);
+  mcPlayerNameInput.setVisible(false);
+  mcPlayerTypeInput.setVisible(false);
   mcNumPlayersInput.setVisible (true);
 }
 
