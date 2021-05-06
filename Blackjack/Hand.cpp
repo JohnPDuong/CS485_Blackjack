@@ -52,7 +52,7 @@ int Hand::getHandValue ()
 
 	for (int i = 0; i < mcCards.size (); i++)
 	{
-		sum += (int) mcCards[i].getValue ();
+		sum += (int) mcCards[i].getInt ();
 	}
 
 	if (sum > (int) Status::Blackjack)
