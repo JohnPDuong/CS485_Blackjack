@@ -14,6 +14,7 @@ Player::Player(std::shared_ptr<IMoveStrategy> pcMoveStrat,
   mpcMoveStrat = pcMoveStrat;
   mName = name;
   mcBank = cBank;
+  mCurrentHand = 0;
 }
   
 void Player::endTurn(){
@@ -126,4 +127,5 @@ void Player::endRound(){
   }
   mcHands.push_back(Hand());
   mcBet = Money(-1, mcBank.getCurrency());
+  mCurrentHand = 0;
 }
