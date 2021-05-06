@@ -64,6 +64,8 @@ public:
   long long getBalance(int index);
   long long getBet();
   long long getBet(int index);
+
+  bool canSplit ();
   
 private:
   

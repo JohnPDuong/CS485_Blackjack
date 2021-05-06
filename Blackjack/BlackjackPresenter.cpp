@@ -97,7 +97,7 @@ void BlackjackPresenter::stand()
 
 void BlackjackPresenter::bet(long long amount)
 {
-	mcModel.makeBet(amount);
+	mcModel.makeBet(Money (amount, Currency::USD));
 }
 
 void BlackjackPresenter::split()
