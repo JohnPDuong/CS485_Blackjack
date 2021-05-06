@@ -14,6 +14,7 @@ class Card
 {
 	public:
 		Card (Suit eSuit, Value eValue);
+		virtual ~Card ();
 
 		bool isFaceUp ();
 		void flip ();

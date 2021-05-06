@@ -18,6 +18,7 @@ class Hand
 {
 	public:
 		Hand ();
+		virtual ~Hand();
 
 		void addCard (Card cCard);
 
