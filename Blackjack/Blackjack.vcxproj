@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="BlackjackModel.h" />
     <ClInclude Include="BlackjackPresenter.h" />
-    <ClInclude Include="BlackjackView.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardCounterAI.h" />
     <ClInclude Include="Currency.h" />
@@ -38,14 +37,12 @@
     <ClInclude Include="IMove.h" />
     <ClInclude Include="IMoveStrategy.h" />
     <ClInclude Include="Money.h" />
-    <ClInclude Include="Move.h" />
     <ClInclude Include="MoveStrategyFactory.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Split.h" />
     <ClInclude Include="Stand.h" />
     <ClInclude Include="Status.h" />
     <ClInclude Include="Suit.h" />
-    <ClInclude Include="TextView.h" />
     <ClInclude Include="Value.h" />
   </ItemGroup>
   <ItemGroup>
