@@ -11,6 +11,7 @@ int main()
 	system("cls");
 	cGame.printWelcome();
 	cGame.onGameStartup();
+	cGame.playGame();
 
 
 	return EXIT_SUCCESS;

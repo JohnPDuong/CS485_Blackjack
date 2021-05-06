@@ -90,6 +90,9 @@ void BlackjackTextUI::printHeader()
 
 void BlackjackTextUI::printGameState()
 {
+	// Print your bank
+	std::cout << "Chips available: " << mpcPresenter->getBalance() << std::endl;
+
 	// Print your cards
 	std::cout << "Your cards: ";
 	for (std::string str : mpcPresenter->getCurrentPlayerHand())
@@ -98,8 +101,22 @@ void BlackjackTextUI::printGameState()
 	}
 	std::cout << std::endl;
 
+	// print opponents cards
+	for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
+	{
+		std::cout << "Opponent " << i + 1 << "cards: ";
+		// TODO: print opponent cards using getOpponentCards in model
+	}
+}
 
-
+void BlackjackTextUI::printPlayerCards()
+{
+	std::cout << "Your cards: ";
+	for (std::string str : mpcPresenter->getCurrentPlayerHand())
+	{
+		std::cout << str << " ";
+	}
+	std::cout << std::endl;
 }
 
 void BlackjackTextUI::onGameStartup()
@@ -118,8 +135,8 @@ void BlackjackTextUI::playGame()
 {
 	const char BET = '0';
 	const char STAND = '1';
-	const char SPLIT = '2';
-	const char DRAW = '3';
+	const char DRAW = '2';
+	const char SPLIT = '3';
 
 	bool bKeepPlaying = true;
 	long long betAmount = -1;
@@ -136,7 +153,7 @@ void BlackjackTextUI::playGame()
 		// Print state of the game and options
 		system("cls");
 		printHeader();
-
+		printGameState();
 
 
 	}

@@ -41,7 +41,6 @@ public:
   void moveDealer();
   void makeMove();
   void nextRound(); // Dear Kitt, I added this for the presenter. Sincerely, Julian
-  Status result(); // p.s. And this.
   
   bool makeBet(Money cBet);
   void stand();
@@ -67,7 +66,9 @@ public:
   long long getBet(int index);
 
   bool canSplit ();
-  
+  std::vector<std::string> getDealerCards();
+  Status resultCurrentPlayer ();
+
 private:
   
   std::string toString(Card cCard); // Julian
