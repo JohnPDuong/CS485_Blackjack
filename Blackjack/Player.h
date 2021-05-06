@@ -23,7 +23,7 @@ class IMove;
 class Player{
 public:
   Player(std::shared_ptr<IMoveStrategy> pcMoveStrat = nullptr,
-                 std::string name = "DEFAULT_NAME", Money cBank = 100000);
+                 std::string name = "DEFAULT_NAME", Money cBank = Money (10000, Currency::USD));
   
   void endTurn();
   void receiveCard(Card cNewCard);
