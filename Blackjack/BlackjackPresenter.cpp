@@ -90,6 +90,11 @@ void BlackjackPresenter::setName(std::string name)
 	mcModel.setPlayerName(name);
 }
 
+void BlackjackPresenter::setPlayerType(std::string stratType, int index)
+{
+	mcModel.setPlayerType(stratType, index);
+}
+
 void BlackjackPresenter::stand()
 {
 	mcModel.stand();

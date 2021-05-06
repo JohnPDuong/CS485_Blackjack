@@ -124,6 +124,13 @@ void BlackjackTextUI::onGameStartup()
 	{
 		std::cin >> numPlayers;
 	} while (numPlayers > MAX || numPlayers < MIN);
+	mpcPresenter->newGame(numPlayers);
+
+	for (int i = 0; i < numPlayers - 1; i++)
+	{
+		mpcPresenter->setPlayerType("Card Counter", i);
+	}
+	mpcPresenter->setPlayerType("Human", numPlayers - 1);
 }
 
 void BlackjackTextUI::playGame()

@@ -26,6 +26,7 @@ public:
 	virtual int getNumPlayers() = 0;
 	virtual std::string getName() = 0;
 	virtual void setName(std::string name) = 0;
+	virtual void setPlayerType(std::string stratType, int index) = 0;
 
 	virtual void stand() = 0;
 	virtual void bet(long long amount) = 0;

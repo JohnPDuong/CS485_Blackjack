@@ -6,7 +6,7 @@
 // Assignment: Blackjack
 // Purpose:    Runs the SDL version of the program
 //***************************************************************************
-#include "vld.h"
+//#include "vld.h"
 #include "BlackjackViewSDL.h"
 
 int main (int argc, char* args[]) {

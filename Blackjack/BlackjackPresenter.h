@@ -33,6 +33,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual int getNumPlayers();
 		virtual std::string getName();
 		virtual void setName(std::string name);
+		virtual void setPlayerType(std::string stratType, int index);
 
 		virtual void stand();
 		virtual void bet(long long amount);
