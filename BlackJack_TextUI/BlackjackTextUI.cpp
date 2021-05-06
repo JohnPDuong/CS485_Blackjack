@@ -181,8 +181,6 @@ void BlackjackTextUI::playGame()
 		} while (!mpcPresenter->bet(betAmount));
 		mpcPresenter->doCPUBets();
 
-		printGameState();
-
 		// Prints the move options if the human's turn is still going
 		while (/*move != STAND &&*/ mpcPresenter->result() != Status::Bust && move != QUIT)
 		{
@@ -227,9 +225,11 @@ void BlackjackTextUI::playGame()
 				bKeepPlaying = STOP_PLAYING;
 				break;
 			}
+      turns++;
 		}
+    
+    
 
 
-		turns++;
 	}
 }
