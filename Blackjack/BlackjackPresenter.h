@@ -28,6 +28,8 @@ class BlackjackPresenter : public IBlackjackPresenter
 		//virtual void addBalance(long long amount) = 0;
 		virtual long long getBalance();
 		virtual std::vector<std::string> getCurrentPlayerHand();
+		virtual std::vector<std::vector<std::string>> getOpponentCards();
+		virtual std::vector<std::string> getDealerCards();
 		virtual int getNumPlayers();
 		virtual std::string getName();
 		virtual void setName(std::string name);
@@ -39,6 +41,8 @@ class BlackjackPresenter : public IBlackjackPresenter
 
 		virtual void makeMove();
 		virtual bool isHuman();
+		virtual bool canSplit();
+
 		virtual void updateView();
 
 	private:

@@ -161,10 +161,3 @@ void BlackjackTextUI::playGame()
 
 
 }
-
-bool BlackjackTextUI::canSplit()
-{
-	bool bCanSplit = true;
-
-	return bCanSplit;
-}

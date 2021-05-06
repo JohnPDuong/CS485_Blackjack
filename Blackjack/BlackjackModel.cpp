@@ -97,7 +97,7 @@ void BlackjackModel::nextRound() // Julian made this
 
 Status BlackjackModel::result() // Julian
 {
-  return Status::Blackjack;
+  return Status::Blackjack; // TODO: fix this 
 }
 
 bool BlackjackModel::makeBet(Money cBet){

@@ -30,7 +30,6 @@ public:
 
   void onGameStartup();
   void playGame(); 
-  bool canSplit();
 
 private:
   IBlackjackPresenter* mpcPresenter;

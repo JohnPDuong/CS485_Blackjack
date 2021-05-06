@@ -62,6 +62,19 @@ std::vector<std::string> BlackjackPresenter::getCurrentPlayerHand()
 	return mcModel.getCurrentPlayerHand();
 }
 
+std::vector<std::vector<std::string>> BlackjackPresenter::getOpponentCards()
+{
+	std::vector<std::vector<std::string>> cards; // TEMPORARY
+
+	//return mcModel.getOpponentCards();
+	return cards; // TEMPORARY
+}
+
+std::vector<std::string> BlackjackPresenter::getDealerCards()
+{
+
+}
+
 int BlackjackPresenter::getNumPlayers()
 {
 	return mcModel.getNumPlayers();
