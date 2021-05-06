@@ -74,7 +74,6 @@ bool BlackjackModel::isHuman(){
 bool BlackjackModel::isHuman(int index){
   return mcPlayers.at(index).isHuman();
 }
-*/
 
 bool BlackjackModel::isBetTime(){
   return true;
@@ -181,6 +180,34 @@ std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
   return cardStrs;
 }
 
+
+std::vector<std::vector<std::string>> BlackjackModel::getOpponentCards(){
+  std::vector<std::vector<std::string>> stringHands(getNumPlayers());
+  std::vector<std::vector<Card>> cCardHands;
+  
+  //get hands
+  for(int i = 0; i < getNumPlayers(); i++){
+    for(int j = 0; j < mcPlayers.at(i).getNumHands(); j++){
+      cCardHands.at(i).insert(cCardHands.at(i).begin(),
+                            mcPlayers.at(i).getHands().at(j).getHand().begin(),
+                            mcPlayers.at(i).getHands().at(j).getHand().end());
+    }
+  }
+  
+  //stringify hands
+  for(int i = 0; i < cCardHands.size(); i++){
+    for(int j = 0; j < cCardHands.at(i).size(); j++){
+      stringHands.at(i).push_back(toString(cCardHands.at(i).at(j)));
+    }
+  }
+  
+  return stringHands;
+}
+
+std::vector<std::string> BlackjackModel::getDealerCards(){
+  std::vector<std::string> stringHand;
+}
+
 std::vector<Card> BlackjackModel::getFaceUpCards(){
   std::vector<Card> cAllFaceUp;
   std::vector<Card> cThisFaceUp;
@@ -201,7 +228,7 @@ std::string BlackjackModel::getName(int index){
 }
 
 int BlackjackModel::getNumPlayers(){
-  return mcPlayers.size();
+  return (int)mcPlayers.size();
 }
 
 long long BlackjackModel::getBalance(){
@@ -286,6 +313,9 @@ std::string BlackjackModel::toString (Card cCard)
     case Value::King:
       cardStr += "K";
       break;
+        
+    case Value::Count:
+      break;
     }
 
     // Adds the suit
@@ -305,6 +335,9 @@ std::string BlackjackModel::toString (Card cCard)
 
     case Suit::Spades:
       cardStr += "S";
+      break;
+        
+    case Suit::Count:
       break;
     }
   }
