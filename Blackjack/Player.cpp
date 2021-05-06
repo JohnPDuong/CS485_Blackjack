@@ -15,6 +15,7 @@ Player::Player(std::shared_ptr<IMoveStrategy> pcMoveStrat,
   mName = name;
   mcBank = cBank;
   mCurrentHand = 0;
+  mcHands = std::vector<Hand>(1);
 }
   
 void Player::endTurn(){
@@ -55,6 +56,8 @@ bool Player::trySplit(){
   {
     mbSplittable = false; // can no longer split after splitting
   }
+  mcHands.push_back(Hand());
+  mcHands.at(++mCurrentHand).addCard(mcHands.at(mCurrentHand - 1).split());
   //Need a split in hand.
   return true;
 }
