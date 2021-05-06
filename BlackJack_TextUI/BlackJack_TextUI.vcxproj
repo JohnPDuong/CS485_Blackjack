@@ -147,9 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlackjackTextUI.cpp" />
-    <ClCompile Include="driver.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="driver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlackjackTextUI.h" />

@@ -316,3 +316,4 @@ void BlackjackModel::incrementPlayer() {
       moveDealer();
       mCurrentPlayerIndex = 0;
   }
+}
