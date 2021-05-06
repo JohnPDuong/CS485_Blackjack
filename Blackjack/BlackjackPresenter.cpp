@@ -225,9 +225,9 @@ std::string BlackjackPresenter::getName()
 //
 // Return:			
 //***************************************************************************
-void BlackjackPresenter::setName(std::string name)
+void BlackjackPresenter::setName(std::string name, int index)
 {
-	mcModel.setPlayerName(name);
+	mcModel.setPlayerName(name, index);
 }
 //***************************************************************************
 // Function:

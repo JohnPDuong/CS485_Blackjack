@@ -35,7 +35,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual std::vector<std::string> getDealerCards() override;
 		virtual int getNumPlayers() override;
 		virtual std::string getName() override;
-		virtual void setName(std::string name);
+		virtual void setName(std::string name, int index) override;
 		virtual void setPlayerType(std::string stratType, int index) override;
 
 		virtual void stand() override;
