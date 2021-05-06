@@ -180,11 +180,13 @@ void BlackjackTextUI::playGame()
 			{
 				std::cout << "(3) Split\n";
 			}
+			std::cout << "(4) Quit\n";
+
 			do
 			{
 				std::cout << "Enter your move: ";
 				std::cin >> move;
-			} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > SPLIT || move < STAND));
+			} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > QUIT || move < STAND));
 
 			// Executes selected move
 			switch (move)
