@@ -210,7 +210,7 @@ long long BlackjackModel::getBet(int index){
   return mcPlayers.at(index).getBet().getAmount();
 }
 
-std::string toString(Card cCard)
+std::string BlackjackModel::toString (Card cCard)
 {
   std::string cardStr = "";
   auto suit = cCard.getSuit();
