@@ -169,9 +169,9 @@ void BlackjackTextUI::playGame()
 			{
 				std::cout << "(3) Split\n";
 			}
-			std::cout << "Enter your move: ";
 			do
 			{
+				std::cout << "Enter your move: ";
 				std::cin >> move;
 			} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > SPLIT || move < STAND));
 
@@ -190,7 +190,6 @@ void BlackjackTextUI::playGame()
 				mpcPresenter->split();
 				break;
 			}
-
 		}
 
 
