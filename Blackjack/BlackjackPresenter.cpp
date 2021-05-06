@@ -57,6 +57,11 @@ long long BlackjackPresenter::getBalance()
 	return mcModel.getBalance();
 }
 
+std::vector<std::string> BlackjackPresenter::getCurrentPlayerHand()
+{
+	return mcModel.getCurrentPlayerHand();
+}
+
 int BlackjackPresenter::getNumPlayers()
 {
 	return mcModel.getNumPlayers();
@@ -95,6 +100,12 @@ void BlackjackPresenter::draw()
 void BlackjackPresenter::makeMove()
 {
 	mcModel.makeMove();
+}
+
+bool BlackjackPresenter::isHuman()
+{
+	// return mcModel.isHuman();
+	return true;
 }
 
 void BlackjackPresenter::updateView()

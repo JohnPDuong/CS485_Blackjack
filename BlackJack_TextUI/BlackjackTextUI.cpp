@@ -88,6 +88,20 @@ void BlackjackTextUI::printHeader()
 	std::cout << "***********************************\n";
 }
 
+void BlackjackTextUI::printGameState()
+{
+	// Print your cards
+	std::cout << "Your cards: ";
+	for (std::string str : mpcPresenter->getCurrentPlayerHand())
+	{
+		std::cout << str << " ";
+	}
+	std::cout << std::endl;
+
+
+
+}
+
 void BlackjackTextUI::onGameStartup()
 {
 	const int MAX = 5, MIN = 1;
@@ -98,12 +112,35 @@ void BlackjackTextUI::onGameStartup()
 	{
 		std::cin >> numPlayers;
 	} while (numPlayers > MAX || numPlayers < MIN);
-
-	std::cout << "Cool\n\n";
-
 }
 
 void BlackjackTextUI::playGame()
 {
+	const char BET = '0';
+	const char STAND = '1';
+	const char SPLIT = '2';
+	const char DRAW = '3';
+
+	bool bKeepPlaying = true;
+	long long betAmount = -1;
+
+
+	while (bKeepPlaying)
+	{
+		// Do CPU Moves
+		while (!mpcPresenter->isHuman())
+		{
+			mpcPresenter->makeMove();
+		}
+
+		// Print state of the game and options
+		system("cls");
+		printHeader();
+
+
+
+	}
+
+
 
 }

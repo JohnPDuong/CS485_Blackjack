@@ -26,6 +26,7 @@ public:
 	virtual Status result();
 	//virtual void addBalance(long long amount) = 0;
 	virtual long long getBalance();
+	virtual std::vector<std::string> getCurrentPlayerHand();
 	virtual int getNumPlayers();
 	virtual std::string getName();
 	virtual void setName(std::string name);
@@ -36,6 +37,7 @@ public:
 	virtual void draw();
 
 	virtual void makeMove();
+	virtual bool isHuman() = 0;
 	virtual void updateView();
 
 private:

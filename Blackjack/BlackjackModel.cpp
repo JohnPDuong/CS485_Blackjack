@@ -159,8 +159,16 @@ std::vector<std::string> BlackjackModel::getTypeList(){
   return MoveStrategyFactory::listStrats();
 }
 
-Hand BlackjackModel::getCurrentPlayerHand(){
-  return mcPlayers.at(mCurrentPlayerIndex).getCurrentHand();
+std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
+  std::vector<std::string> cardStrs;
+  std::vector<Card> cCards = mcPlayers.at(mCurrentPlayerIndex).getCurrentHand().getHand();
+
+  for (Card card : cCards)
+  {
+    cardStrs.push_back(toString(card));
+  }
+
+  return cardStrs;
 }
 
 std::vector<Card> BlackjackModel::getFaceUpCards(){
@@ -214,6 +222,7 @@ std::string toString(Card cCard)
   }
   else
   {
+    // Adds the rank
     switch (rank)
     {
     case Value::Ace:
@@ -254,7 +263,7 @@ std::string toString(Card cCard)
 
     case Value::Ten:
       cardStr += "10";
-      break; /*
+      break; 
 
     case Value::Jack:
       cardStr += "J";
@@ -262,7 +271,11 @@ std::string toString(Card cCard)
 
     case Value::Queen:
       cardStr += "Q";
-      break;*/
+      break;
+
+    case Value::King:
+      cardStr += "K";
+      break;
     }
 
     // Adds the suit
@@ -285,7 +298,6 @@ std::string toString(Card cCard)
       break;
     }
   }
-
 
   return cardStr;
 }

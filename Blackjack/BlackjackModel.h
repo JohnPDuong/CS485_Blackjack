@@ -54,7 +54,7 @@ public:
   
   std::vector<std::string> getTypeList();
   
-  Hand getCurrentPlayerHand();
+  std::vector<std::string> getCurrentPlayerHand();
   std::vector<Card> getFaceUpCards();
   
   std::string getName();
