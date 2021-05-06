@@ -32,11 +32,11 @@
     <ClInclude Include="BlackjackViewSDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CardViewSDL.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerView.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
