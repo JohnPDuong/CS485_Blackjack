@@ -259,6 +259,7 @@ void BlackjackTextUI::printEndRoundScreen(){
     {
       std::cout << card << " ";
     }
+		//std::cout <<
     std::cout << std::endl;
   }
 }
