@@ -102,7 +102,7 @@ std::string BlackjackPresenterSDL::getName ()
 	return mcModel.getName ();
 }
 
-void BlackjackPresenterSDL::setName (std::string name)
+void BlackjackPresenterSDL::setName (std::string name, int index)
 {
 	mcModel.setPlayerName (name);
 }
