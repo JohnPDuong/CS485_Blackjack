@@ -227,6 +227,7 @@ void BlackjackTextUI::playGame()
 				bKeepPlaying = STOP_PLAYING;
 				break;
 			}
+
 		}
 
 
