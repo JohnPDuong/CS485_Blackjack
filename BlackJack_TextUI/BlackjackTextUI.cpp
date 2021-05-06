@@ -11,11 +11,6 @@ BlackjackTextUI::BlackjackTextUI(int numPlayers)
 	mpcPresenter = new BlackjackPresenter(this, numPlayers, 1);
 }
 
-BlackjackPresenter::~BlackjackPresenter()
-{
-	delete mpcView;
-}
-
 void BlackjackTextUI::newGame(int numPlayers)
 {
 	mpcPresenter->newGame(numPlayers);
@@ -133,7 +128,6 @@ void BlackjackTextUI::onGameStartup()
 
 void BlackjackTextUI::playGame()
 {
-	const int BET = 0;
 	const int STAND = 1;
 	const int DRAW = 2;
 	const int SPLIT = 3;
@@ -141,7 +135,7 @@ void BlackjackTextUI::playGame()
 	bool bKeepPlaying = true;
 	long long betAmount = -1;
 	int turns = 0;
-	int move;
+	int move = 0;
 
 	while (bKeepPlaying)
 	{
@@ -154,13 +148,23 @@ void BlackjackTextUI::playGame()
 		// Print state of the game and options
 		system("cls");
 		printHeader();
+
+		// Do betting
+		std::cout << "Current balance: " << mpcPresenter->getBalance();
+		std::cout << "How much would you like to bet? ";
+		do
+		{
+			std::cin >> betAmount;
+		} while (betAmount < 0 || betAmount > mpcPresenter->getBalance());
+		mpcPresenter->bet(betAmount);
+
 		printGameState();
 
 		// Prints the move options if the human's turn is still going
 		while (move != STAND && mpcPresenter->result() != Status::Bust)
 		{
 			move = SPLIT;
-			std::cout << "OPTIONS: \n(0) Bet \n(1) Stand \n(2) Draw\n";
+			std::cout << "OPTIONS: \n(1) Stand \n(2) Draw\n";
 			if (mpcPresenter->canSplit())
 			{
 				std::cout << "(3) Split\n";
@@ -169,20 +173,11 @@ void BlackjackTextUI::playGame()
 			do
 			{
 				std::cin >> move;
-			} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > SPLIT || move < BET));
+			} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > SPLIT || move < STAND));
 
 			// Executes selected move
 			switch (move)
 			{
-			case BET:
-				std::cout << "Bet amount: ";
-				do
-				{
-					std::cin >> betAmount;
-				} while (betAmount < 0 || betAmount > mpcPresenter->getBalance());
-				mpcPresenter->bet(betAmount);
-				break;
-
 			case STAND:
 				mpcPresenter->stand();
 				break;
