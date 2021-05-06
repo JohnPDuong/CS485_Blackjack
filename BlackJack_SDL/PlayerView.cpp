@@ -53,9 +53,9 @@ void PlayerView::draw (SDLApp& app)
 {
   mcNameDisplay.draw(app);
   mcMoneyDisplay.draw(app);
-  for (auto it = mcCards.begin(); it != mcCards.end(); it++)
+  for (std::vector<CardViewSDL>::iterator it = mcCards.begin(); it != mcCards.end(); it++)
     it->draw(app);
-  for (auto it = mcSplitHand.begin(); it != mcCards.end(); it++)
+  for (std::vector<CardViewSDL>::iterator it = mcSplitHand.begin(); it != mcSplitHand.end(); it++)
     it->draw(app);
 }
 

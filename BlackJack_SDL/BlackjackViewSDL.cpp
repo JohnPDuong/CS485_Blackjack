@@ -98,6 +98,9 @@ mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
 BlackjackViewSDL::~BlackjackViewSDL ()
 {
   delete mpcPresenter;
+  for(auto it = mcPlayers.begin(); it != mcPlayers.end(); it++)
+    delete *it;
+  mcPlayers.clear();
 }
 
 //***************************************************************************
@@ -114,16 +117,16 @@ void BlackjackViewSDL::newGame (int numPlayers)
 {
   //create player views
   for (int i = 0; i < numPlayers; i++) {
-    PlayerView cCreated(10, 100 + 10 * i);
-    mcPlayers.push_back(cCreated);
-    mcDrawableWidget.push_back(&cCreated);
+    PlayerView* pcCreated = new PlayerView(10, 100 + 10 * i);
+    mcPlayers.push_back(pcCreated);
+    mcDrawableWidget.push_back((ISDLWidget*)pcCreated);
   }
-  PlayerView cDealer(10, 90);
-  cDealer.makeDealer();
-  mcPlayers.push_back(cDealer);
-  mcDrawableWidget.push_back (&cDealer);
+  PlayerView* pcDealer = new PlayerView(10, 90);
+  pcDealer->makeDealer();
+  mcPlayers.push_back(pcDealer);
+  mcDrawableWidget.push_back (pcDealer);
 
-  mcCurrentPlayer = mcPlayers.begin();
+  mCurrentPlayerIndex = 0;
 
   //initialize game UI
   mcStandButton.setVisible (true);
@@ -147,12 +150,12 @@ void BlackjackViewSDL::newGame (int numPlayers)
 //***************************************************************************
 void BlackjackViewSDL::stand ()
 {
-  mcCurrentPlayer++;
+  mCurrentPlayerIndex++;
 
-  if(mcCurrentPlayer == mcPlayers.end())
+  if(mCurrentPlayerIndex == mpcPresenter->getNumPlayers())
     mcNextRound.setVisible(true);
   else
-    mcCurrentPlayer->showCards();
+    mcPlayers[mCurrentPlayerIndex]->showCards();
 }
 
 
@@ -170,7 +173,7 @@ void BlackjackViewSDL::stand ()
 void BlackjackViewSDL::drawCard (std::string card, bool isFaceUp, 
   bool inMainHand)
 {
-  mcCurrentPlayer->addCard(this, card, isFaceUp, inMainHand);
+  mcPlayers[mCurrentPlayerIndex]->addCard(this, card, isFaceUp, inMainHand);
 }
 
 //***************************************************************************
@@ -184,7 +187,7 @@ void BlackjackViewSDL::drawCard (std::string card, bool isFaceUp,
 //***************************************************************************
 void BlackjackViewSDL::split ()
 {
-  mcCurrentPlayer->splitHand();
+  mcPlayers[mCurrentPlayerIndex]->splitHand();
 }
 
 //***************************************************************************
@@ -199,7 +202,7 @@ void BlackjackViewSDL::split ()
 //***************************************************************************
 void BlackjackViewSDL::bet (long long amount)
 {
-  mcCurrentPlayer->setMoney(std::to_string(amount));
+  mcPlayers[mCurrentPlayerIndex]->setMoney(std::to_string(amount));
 }
 
 //***************************************************************************
@@ -214,10 +217,10 @@ void BlackjackViewSDL::bet (long long amount)
 //***************************************************************************
 void BlackjackViewSDL::nextRound ()
 {
-  mcCurrentPlayer = mcPlayers.begin ();
+  mCurrentPlayerIndex = 0;
 
   for (auto it = mcPlayers.begin (); it != mcPlayers.end (); it++)
-    it->discardHand ();
+    (*it)->discardHand ();
 }
 
 //***************************************************************************
@@ -247,6 +250,8 @@ void BlackjackViewSDL::setPlayer ()
     mcPlayerTypeInput.setLabel ("Player " + std::to_string (mPlayersSet + 1) + " type");
     mcPlayerTypeInput.setData ("");
   }
+  else
+    newGame(mpcPresenter->getNumPlayers());
 }
 
 void BlackjackViewSDL::setNumPlayers ()
