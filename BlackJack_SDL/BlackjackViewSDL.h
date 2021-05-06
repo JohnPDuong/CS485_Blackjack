@@ -1,5 +1,5 @@
 //***************************************************************************
-// File name:  BlackjackView.h
+// File name:  BlackjackViewSDL.h
 // Author:     Erin Melia
 // Date:       4/30/2021
 // Class:      CS485
@@ -19,47 +19,38 @@
 #include "../Blackjack/BlackjackPresenter.h"
 #include "../Blackjack/IBlackjackPresenter.h"
 
+//Should we add a next round button so the player can move on to the next round
 class BlackjackViewSDL : public SDLApp {
   public:
     BlackjackViewSDL();
     ~BlackjackViewSDL();
 
-    //events from presenter
-    void newGame (int); //I don't think this should take an int since we're
-    //setting it in the first screen the player sees?
+    //events from Presenter
+    void newGame (int numPlayers);
     void nextRound ();
     void stand ();
-    void drawCard (std::string card);
+    void drawCard (std::string card, bool isFaceUp, bool inMainHand);
     void split ();
-    //how are we going to do player views for a player that split?
     void bet (long long amount);
-    //would probably be easier to implement if it took the player's new bank
-    //value
-    void setNumPlayers();
-    //void setPlayerType();
-    void createPlayer(std::string name);
-    //what are we going to do when the player busts?
+    void endGame(); //should be called in endGame in the presenter
 
     //events from UI
     void onStand ();
     void onDrawCard ();
     void onSplit ();
     void onBet (long long amount);
+    void onEndGame();
+    void onNextRound();
     void onSetNumPlayers(int number);
-    //void onSetPlayerType(std::string type);
-    void onNewGame();
-    void onCreatePlayer(std::string name, std::string type);
 
-    //events from UI Widgets
-    void onSetNumPlayersWidget(SDLTextWidget* widget);
+    //widget function
     void onBetWidget(SDLTextWidget* widget);
-    void onCreatePlayerWidget(SDLTextWidget* name, SDLTextWidget* type);
+    void onNumPlayersWidget(SDLTextWidget* widget);
 
+    void initGame();
     void render ();
 
   private:
-    void advancePlayer();
-
     IBlackjackPresenter* mpcPresenter;
     //not sure how we're going to make sure the player views are in the same
     //order as the players are in the model
@@ -70,10 +61,8 @@ class BlackjackViewSDL : public SDLApp {
     SDLTextWidget mcSplitButton;
     SDLTextWidget mcDrawButton;
     SDLTextWidget mcNumPlayersInput;
-    SDLTextWidget mcPlayerTypeInput;
-    SDLTextWidget mcNewGame;
-    SDLTextWidget mcNameInput;
-    SDLTextWidget mcCreatePlayer;
+    SDLTextWidget mcEndGameButton;
+    SDLTextWidget mcNextRound;
 
     std::vector<ISDLWidget*> mcDrawableWidget;
 };

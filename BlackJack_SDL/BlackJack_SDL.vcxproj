@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\My Stuff\Code\groupBlackjack\SDLApp2;D:\My Stuff\Code\groupBlackjack\groupBlackjack;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDLApp2;$(SolutionDir)groupBlackjack;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlackjackViewSDL.cpp" />
+    <ClCompile Include="CardViewSDL.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerView.cpp" />
   </ItemGroup>
