@@ -10,12 +10,16 @@
 #include "Draw.h"
 
 bool Draw::execute(Deck& cTableDeck, Player& cPlayer){
-  cPlayer.receiveCard(cTableDeck.draw());
+  Card cTemp = cTableDeck.draw();
+  cTemp.flip();
+  cPlayer.receiveCard(cTemp);
   return true;
 }
 
 bool Draw::execute(Deck& cTableDeck, Hand& cPlayerHand){
-  cPlayerHand.addCard(cTableDeck.draw());
+  Card cTemp = cTableDeck.draw();
+  cTemp.flip();
+  cPlayerHand.addCard(cTemp);
   return true;
 }
 
