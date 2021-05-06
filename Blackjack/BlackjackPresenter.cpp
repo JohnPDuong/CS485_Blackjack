@@ -77,12 +77,19 @@ void BlackjackPresenter::newGame(int players)
 	mcModel.newGame(players);
 	//mpcView->newGame(players);
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 void BlackjackPresenter::newGame()
 {
 	mcModel.newGame();
 }
-
 //***************************************************************************
 // Function:
 //
