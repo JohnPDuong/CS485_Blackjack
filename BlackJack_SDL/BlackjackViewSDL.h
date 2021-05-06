@@ -16,7 +16,7 @@
 #include "ISDLWidget.h"
 #include "PlayerView.h"
 #include "SDLTextWidget.h"
-#include "../Blackjack/BlackjackPresenter.h"
+#include "../Blackjack/BlackjackPresenterSDL.h"
 #include "../Blackjack/IBlackjackPresenter.h"
 
 //Should we add a next round button so the player can move on to the next round
