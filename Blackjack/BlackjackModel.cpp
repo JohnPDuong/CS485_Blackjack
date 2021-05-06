@@ -9,15 +9,6 @@
 
 #include "BlackjackModel.h"
 
-BlackjackModel::BlackjackModel()
-{
-  std::cout << "ctor BlackjackModel";
-  
-  mCurrentPlayerIndex = 0;
-  mbRoundDone = false;
-  //mCurrentPlayerIndex = -1;
-}
-
 BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
   mCurrentPlayerIndex = 0;
   mcPlayers = std::vector<Player>(numPlayers);

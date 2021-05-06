@@ -22,8 +22,7 @@
 
 class BlackjackModel {
 public:
-  BlackjackModel ();
-  BlackjackModel(int numPlayers, int numDecks = 1);
+  BlackjackModel(int numPlayers = 6, int numDecks = 1);
   ~BlackjackModel();
 
   
