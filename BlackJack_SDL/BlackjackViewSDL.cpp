@@ -152,9 +152,10 @@ void BlackjackViewSDL::stand ()
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::drawCard (std::string card, bool isFaceUp)
+void BlackjackViewSDL::drawCard (std::string card, bool isFaceUp, 
+  bool inMainHand)
 {
-  mcCurrentPlayer->addCard(this, card, isFaceUp);
+  mcCurrentPlayer->addCard(this, card, isFaceUp, inMainHand);
 }
 
 //***************************************************************************

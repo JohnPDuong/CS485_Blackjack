@@ -25,8 +25,8 @@ class PlayerView : public ISDLWidget {
 
     void draw(SDLApp& app);
 
-    //TODO: allow user to specify which hand the card should go to
-    void addCard(SDLApp* app, std::string card, bool isFaceUp);
+    void addCard(SDLApp* app, std::string card, bool isFaceUp, 
+      bool inMainHand);
     void discardHand();
     void showCards();
     void splitHand();

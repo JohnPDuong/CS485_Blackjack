@@ -71,7 +71,8 @@ void PlayerView::draw (SDLApp& app)
 //
 // Returned:    None
 //***************************************************************************
-void PlayerView::addCard (SDLApp* app, std::string card, bool isFaceUp)
+void PlayerView::addCard (SDLApp* app, std::string card, bool isFaceUp,
+  bool inMainHand)
 {
   SDLSprite* pFaceUp = new SDLSprite;
   SDLSprite* pFaceDown = new SDLSprite;
@@ -81,7 +82,10 @@ void PlayerView::addCard (SDLApp* app, std::string card, bool isFaceUp)
 
   CardViewSDL cNewCard(pFaceUp, pFaceDown, isFaceUp);
 
-  mcCards.push_back(cNewCard);
+  if(inMainHand)
+    mcCards.push_back(cNewCard);
+  else
+    mcSplitHand.push_back(cNewCard);
 }
 
 //***************************************************************************

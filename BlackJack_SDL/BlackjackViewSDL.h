@@ -29,7 +29,7 @@ class BlackjackViewSDL : public SDLApp {
     void newGame (int numPlayers);
     void nextRound ();
     void stand ();
-    void drawCard (std::string card, bool isFaceUp);
+    void drawCard (std::string card, bool isFaceUp, bool inMainHand);
     void split ();
     void bet (long long amount);
     void endGame(); //should be called in endGame in the presenter
