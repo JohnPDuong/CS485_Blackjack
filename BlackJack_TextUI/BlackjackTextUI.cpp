@@ -147,10 +147,11 @@ void BlackjackTextUI::playGame()
 	while (bKeepPlaying)
 	{
 		// Do CPU Moves
+		/*
 		while (!mpcPresenter->isHuman())
 		{
 			mpcPresenter->makeMove();
-		}
+		}*/
 
 		// Print state of the game and options
 		system("cls");
