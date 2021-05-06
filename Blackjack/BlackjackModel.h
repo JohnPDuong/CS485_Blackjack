@@ -67,7 +67,7 @@ public:
   
 private:
   
-  
+  std::string toString(Card cCard); // Julian
   std::shared_ptr<Deck> mpcDeck;
   std::vector<Player> mcPlayers;
   int mCurrentPlayerIndex;
