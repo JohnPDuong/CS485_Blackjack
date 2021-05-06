@@ -20,5 +20,9 @@ int main() {
     }
   }
   
+  while(!test.isHuman()){
+    test.makeMove();
+  }
+  test.stand();
 	return 0;
 }
