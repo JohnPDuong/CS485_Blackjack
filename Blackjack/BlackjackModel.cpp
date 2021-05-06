@@ -66,16 +66,13 @@ void BlackjackModel::initialDeal(){
   }
 }
 
-/*
 bool BlackjackModel::isHuman(){
   return isHuman(mCurrentPlayerIndex); //INFINITE RECURSION
 }
 
-
 bool BlackjackModel::isHuman(int index){
   return mcPlayers.at(index).isHuman();
 }
-*/
 
 bool BlackjackModel::isBetTime(){
   return true;
@@ -95,6 +92,7 @@ void BlackjackModel::makeMove(){
   mcPlayers.at(mCurrentPlayerIndex).makeMove(cCompMove, getFaceUpCards());
   cCompMove->execute(*mpcDeck,
                      mcPlayers.at(mCurrentPlayerIndex));
+  incrementPlayer();
 }
 
 void BlackjackModel::nextRound() // Julian made this
@@ -118,6 +116,7 @@ void BlackjackModel::stand(){
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
   }
+  incrementPlayer();
   return;
 }
 
@@ -128,6 +127,7 @@ bool BlackjackModel::split(){
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
   }
+  incrementPlayer();
   return bSuccess;
 }
 
@@ -138,6 +138,7 @@ void BlackjackModel::drawCard(){
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
   }
+  incrementPlayer();
   return;
 }
 
@@ -308,3 +309,10 @@ std::string BlackjackModel::toString (Card cCard)
 
   return cardStr;
 }
+
+void BlackjackModel::incrementPlayer() {
+  mCurrentPlayerIndex++;
+  if (mCurrentPlayerIndex >= mcPlayers.size()) {
+      moveDealer();
+      mCurrentPlayerIndex = 0;
+  }
