@@ -8,15 +8,7 @@
 //***************************************************************************
 
 #include "BlackjackModel.h"
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
   mCurrentPlayerIndex = 0;
   mcPlayers = std::vector<Player>(numPlayers);
@@ -24,27 +16,11 @@ BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
   mpcDeck->fillShuffle();
   mbRoundDone = false;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 BlackjackModel::~BlackjackModel(){
   mpcDeck.reset();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::newGame(){
   if(getNumPlayers() == 0){
     return false;
@@ -59,67 +35,27 @@ bool BlackjackModel::newGame(){
   initialDeal();
   return true;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::newGame(int numPlayers){
   mcPlayers = std::vector<Player>(numPlayers);
   return newGame();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::newGame(int numPlayers, int numDecks){
   mpcDeck.reset();
   mpcDeck = std::make_shared<Deck>(numDecks);
   mpcDeck->fillShuffle();
   return newGame(numPlayers);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::isBust(){
   return isBust(mCurrentPlayerIndex);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::isBust(int playerIndex){
   return mcPlayers.at(playerIndex).isFullyBust();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::initialDeal(){
   mpcDeck->shuffle();
   for(int i = 0; i < getNumPlayers(); i++){
@@ -135,39 +71,16 @@ void BlackjackModel::initialDeal(){
   cTemp.flip();
   mcDealerHand.addCard(cTemp);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::isHuman(){
   return isHuman(mCurrentPlayerIndex); //INFINITE RECURSION
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
+
 bool BlackjackModel::isHuman(int index){
   return mcPlayers.at(index).isHuman();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::isBetTime(){
   for(int i = 0; i < getNumPlayers(); i++){
     if(mcPlayers.at(i).getBet().getAmount() == -1){
@@ -176,15 +89,7 @@ bool BlackjackModel::isBetTime(){
   }
   return false;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::moveDealer(){
   std::shared_ptr<IMove> cDealerMove;
   std::vector<Card> cFaceUpCards = getFaceUpCards(); //Dealer doesn't use these
@@ -196,15 +101,7 @@ void BlackjackModel::moveDealer(){
     mbRoundDone = true;
   }
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::makeMove(){
   std::shared_ptr<IMove> cCompMove;
   mcPlayers.at(mCurrentPlayerIndex).makeMove(cCompMove, getFaceUpCards());
@@ -212,15 +109,7 @@ void BlackjackModel::makeMove(){
                      mcPlayers.at(mCurrentPlayerIndex));
   incrementPlayer();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::vector<Status> BlackjackModel::nextRound() // Julian made this
 {
   std::vector<Status> results;
@@ -241,15 +130,7 @@ std::vector<Status> BlackjackModel::nextRound() // Julian made this
   
   return results;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::vector<Status> BlackjackModel::result(){
   std::vector<Status> results;
   
@@ -260,27 +141,11 @@ std::vector<Status> BlackjackModel::result(){
   
   return results;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::makeBet(Money cBet){
   return mcPlayers.at(mCurrentPlayerIndex).makeBet(cBet);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::stand(){
   bool bSuccess = false;
   if(isHuman()){
@@ -291,15 +156,7 @@ void BlackjackModel::stand(){
   }
   return;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::split(){
   bool bSuccess = false;
   if(isHuman()){
@@ -310,15 +167,7 @@ bool BlackjackModel::split(){
   }
   return bSuccess;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::drawCard(){
   bool bSuccess = false;
   if(isHuman()){
@@ -329,51 +178,19 @@ void BlackjackModel::drawCard(){
   }
   return;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::setPlayerName(std::string name){
   setPlayerName(name, mCurrentPlayerIndex);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::setPlayerName(std::string name, int index){
   mcPlayers.at(index).setName(name);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::setPlayerType(std::string stratType){
   setPlayerType(stratType, mCurrentPlayerIndex);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::setPlayerType(std::string stratType, int index){
   MoveStrategyFactory stratMaker;
   std::shared_ptr<IMoveStrategy> moveStrat = stratMaker.makeStrategy(stratType);
@@ -382,27 +199,11 @@ void BlackjackModel::setPlayerType(std::string stratType, int index){
   }
   return;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::vector<std::string> BlackjackModel::getTypeList(){
   return MoveStrategyFactory::listStrats();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
   std::vector<std::string> cardStrs;
   std::vector<Card> cCards = mcPlayers.at(mCurrentPlayerIndex).getCurrentHand().getHand();
@@ -414,15 +215,8 @@ std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
 
   return cardStrs;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
+
 std::vector<std::vector<std::string>> BlackjackModel::getOpponentCards(){
   std::vector<std::vector<std::string>> stringHands(getNumPlayers());
   std::vector<std::vector<Card>> cCardHands;
@@ -445,15 +239,7 @@ std::vector<std::vector<std::string>> BlackjackModel::getOpponentCards(){
   
   return stringHands;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::vector<Card> BlackjackModel::getFaceUpCards(){
   std::vector<Card> cAllFaceUp;
   std::vector<Card> cThisFaceUp;
@@ -464,99 +250,35 @@ std::vector<Card> BlackjackModel::getFaceUpCards(){
   }
   return cAllFaceUp;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::string BlackjackModel::getName(){
   return getName(mCurrentPlayerIndex);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::string BlackjackModel::getName(int index){
   return mcPlayers.at(index).getName();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 int BlackjackModel::getNumPlayers(){
   return (int)mcPlayers.size();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 long long BlackjackModel::getBalance(){
   return getBalance(mCurrentPlayerIndex);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 long long BlackjackModel::getBalance(int index){
   return mcPlayers.at(index).getBank().getAmount();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 long long BlackjackModel::getBet(){
   return getBet(mCurrentPlayerIndex);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 long long BlackjackModel::getBet(int index){
   return mcPlayers.at(index).getBet().getAmount();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::string BlackjackModel::toString (Card cCard)
 {
   std::string cardStr = "";
@@ -654,30 +376,14 @@ std::string BlackjackModel::toString (Card cCard)
 
   return cardStr;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool BlackjackModel::canSplit()
 {
   //Only the first hand may be split
   return mcPlayers[mCurrentPlayerIndex].getHands().at(0).canSplit() && 
          mcPlayers[mCurrentPlayerIndex].canSplit();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::vector<std::string> BlackjackModel::getDealerCards()
 {
   std::vector <std::string> stringArry;
@@ -688,15 +394,6 @@ std::vector<std::string> BlackjackModel::getDealerCards()
   }
   return stringArry;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
 
 void BlackjackModel::doCPUMoves(){
   while(!isHuman()){
@@ -740,42 +437,19 @@ Status BlackjackModel::resultCurrentPlayer()
 
   return eStatus;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 void BlackjackModel::incrementPlayer() {
   mCurrentPlayerIndex = getNextPlayer();
   if (mCurrentPlayerIndex == 0) {
       moveDealer();
   }
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
+
 int BlackjackModel::getNextPlayer(){
   return getNextPlayer(mCurrentPlayerIndex);
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 int BlackjackModel::getNextPlayer(int currentPlayer){
   if(++currentPlayer >= getNumPlayers()){
     return 0;

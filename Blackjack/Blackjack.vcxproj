@@ -51,6 +51,7 @@
   <ItemGroup>
     <ClCompile Include="BlackjackModel.cpp" />
     <ClCompile Include="BlackjackPresenter.cpp" />
+    <ClCompile Include="BlackjackView.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardCounterAI.cpp" />
     <ClCompile Include="CurrencyMismatchException.cpp" />
@@ -65,6 +66,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Split.cpp" />
     <ClCompile Include="Stand.cpp" />
+    <ClCompile Include="TextView.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

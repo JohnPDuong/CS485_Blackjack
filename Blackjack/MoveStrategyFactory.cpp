@@ -8,15 +8,7 @@
 //***************************************************************************
 
 #include "MoveStrategyFactory.h"
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::shared_ptr<IMoveStrategy> MoveStrategyFactory::makeStrategy(std::string stratName){
   if(stratName == "Human"){
     return std::make_shared<HumanMoveStrategy>();
@@ -32,15 +24,7 @@ std::shared_ptr<IMoveStrategy> MoveStrategyFactory::makeStrategy(std::string str
   }
   return nullptr;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 std::vector<std::string> MoveStrategyFactory::listStrats(){
   std::vector<std::string> stratList;
   stratList.push_back("Human");

@@ -8,15 +8,7 @@
 //***************************************************************************
 
 #include "HumanMoveStrategy.h"
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool HumanMoveStrategy::determineMove(Hand& cCurrentHand,
                                       std::shared_ptr<IMove>& pcCurrentMove,
                                       std::vector<Card>& cTableCards){
@@ -24,27 +16,11 @@ bool HumanMoveStrategy::determineMove(Hand& cCurrentHand,
                                       || true);
   //Need some check in hand for if can split to replace that true
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool HumanMoveStrategy::determineBet(Player& player, Money& bet){
   return bet.getAmount() > 0 && bet.getAmount() <= player.getBank().getAmount();
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool HumanMoveStrategy::isHuman(){
   return true;
 }

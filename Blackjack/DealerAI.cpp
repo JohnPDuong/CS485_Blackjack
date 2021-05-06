@@ -8,15 +8,7 @@
 //***************************************************************************
 
 #include "DealerAI.h"
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool DealerAI::determineMove(Hand& cCurrentHand,
                            std::shared_ptr<IMove>& pcCurrentMove,
                            std::vector<Card>& cTableCards){
@@ -28,28 +20,12 @@ bool DealerAI::determineMove(Hand& cCurrentHand,
   }
   return true;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool DealerAI::determineBet(Player& player, Money& bet){
   bet = player.getBank() * 0.2;
   return true;
 }
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
+
 bool DealerAI::isHuman() {
   return true;//IComputerMoveStrategy::isHuman();
 }
