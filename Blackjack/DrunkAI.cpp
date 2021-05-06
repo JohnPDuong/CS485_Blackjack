@@ -17,7 +17,9 @@ DrunkAI::DrunkAI(std::string soberTypeName){
   }
 }
 
-bool DrunkAI::determineMove(Hand &cCurrentHand, std::shared_ptr<IMove> pcCurrentMove, std::vector<Card> &cTableCards)
+bool DrunkAI::determineMove(Hand &cCurrentHand,
+                            std::shared_ptr<IMove>& pcCurrentMove,
+                            std::vector<Card> &cTableCards)
 {
   if(drunkRisk()){
     pcCurrentMove = std::make_shared<Draw>();

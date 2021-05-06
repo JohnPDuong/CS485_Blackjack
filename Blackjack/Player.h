@@ -28,7 +28,7 @@ public:
   void endTurn();
   void receiveCard(Card cNewCard);
   void receiveCard(Card cNewCard, int handNum);
-  bool makeMove(std::shared_ptr<IMove> pcMove, std::vector<Card> tableCards);
+  bool makeMove(std::shared_ptr<IMove>& pcMove, std::vector<Card> tableCards);
   bool makeBet(Money cAmount);
   bool isHuman();
   bool trySplit();

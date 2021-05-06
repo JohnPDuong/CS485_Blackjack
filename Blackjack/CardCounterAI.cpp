@@ -21,7 +21,7 @@ CardCounterAI::CardCounterAI(){
 
 
 bool CardCounterAI::determineMove(Hand& cCurrentHand,
-                                  std::shared_ptr<IMove> pcCurrentMove,
+                                  std::shared_ptr<IMove>& pcCurrentMove,
                                   std::vector<Card>& cTableCards){
   int estimatedNumDecks = 0;
   int numGoodCard = 0;
@@ -55,7 +55,7 @@ bool CardCounterAI::determineMove(Hand& cCurrentHand,
   
   
   //If more helpful cards than bad ones, draw, otherwise don't.
-  if(numGoodCard > numBadCard){
+  if(numGoodCard >= numBadCard){
     pcCurrentMove = std::make_shared<Draw>();
   }
   else{

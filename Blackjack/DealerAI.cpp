@@ -10,7 +10,7 @@
 #include "DealerAI.h"
 
 bool DealerAI::determineMove(Hand& cCurrentHand,
-                           std::shared_ptr<IMove> pcCurrentMove,
+                           std::shared_ptr<IMove>& pcCurrentMove,
                            std::vector<Card>& cTableCards){
   if(cCurrentHand.getHandValue() < 16){
     pcCurrentMove = std::make_shared<Draw>();
