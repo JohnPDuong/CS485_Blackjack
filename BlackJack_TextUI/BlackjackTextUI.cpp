@@ -228,8 +228,37 @@ void BlackjackTextUI::playGame()
       turns++;
 		}
     
-    
-    
+    printEndRoundScreen();
     
 	}
+}
+
+
+void BlackjackTextUI::printEndRoundScreen(){
+  std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
+  std::vector<Status> endStatuses = mpcPresenter->endRound();
+
+  // Print your bank
+  std::cout << "Chips available: " << mpcPresenter->getBalance() << std::endl;
+
+  // Print your cards
+  std::cout << "Your cards: ";
+  for (std::string str : mpcPresenter->getCurrentPlayerHand())
+  {
+    std::cout << str << " ";
+  }
+  std::cout << " Round Result: ";
+  
+  std::cout << std::endl;
+
+  // print opponents cards
+  for (int i = 0; i < mpcPresenter->getNumPlayers() - 1; i++)
+  {
+    std::cout << "Opponent " << i + 1 << " cards: ";
+    for (std::string card : cards[i])
+    {
+      std::cout << card << " ";
+    }
+    std::cout << std::endl;
+  }
 }
