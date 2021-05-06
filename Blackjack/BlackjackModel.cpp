@@ -9,13 +9,14 @@
 
 #include "BlackjackModel.h"
 //***************************************************************************
-// Function:
+// Constructor: BlackjackModel
 //
-// Description: 
+// Description: Initializes member variables
 //
-// Parameters:  
+// Parameters:  numPlayers - number of players
+//              numDecks   - number of decks
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
   mCurrentPlayerIndex = 0;
@@ -25,25 +26,26 @@ BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
   mbRoundDone = false;
 }
 //***************************************************************************
-// Function:
+// Destructor:  BlackjackModel
 //
-// Description: 
+// Description: resets deck
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 BlackjackModel::~BlackjackModel(){
   mpcDeck.reset();
 }
 //***************************************************************************
-// Function:
+// Function:    newGame
 //
-// Description: 
+// Description: Checks to see if a new game can be started, if true, shuffles
+//              deck
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			true if start game, false otherwise
 //***************************************************************************
 bool BlackjackModel::newGame(){
   if(getNumPlayers() == 0){
@@ -60,26 +62,27 @@ bool BlackjackModel::newGame(){
   return true;
 }
 //***************************************************************************
-// Function:
+// Function:    newGame
 //
-// Description: 
+// Description: Creates a new vector with number of players
 //
-// Parameters:  
+// Parameters:  numPlayers - number of players
 //
-// Return:			
+// Return:			function call to newGame
 //***************************************************************************
 bool BlackjackModel::newGame(int numPlayers){
   mcPlayers = std::vector<Player>(numPlayers);
   return newGame();
 }
 //***************************************************************************
-// Function:
+// Function:    newGame
 //
-// Description: 
+// Description: starts a new game with new player and new decks
 //
-// Parameters:  
+// Parameters:  numPlayers - number of players
+//              numDecks   - number of decks
 //
-// Return:			
+// Return:			function call to new game
 //***************************************************************************
 bool BlackjackModel::newGame(int numPlayers, int numDecks){
   mpcDeck.reset();
@@ -88,37 +91,37 @@ bool BlackjackModel::newGame(int numPlayers, int numDecks){
   return newGame(numPlayers);
 }
 //***************************************************************************
-// Function:
+// Function:    isBust
 //
-// Description: 
+// Description: Checks to see if player is bust
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			True if bust, false otherwise
 //***************************************************************************
 bool BlackjackModel::isBust(){
   return isBust(mCurrentPlayerIndex);
 }
 //***************************************************************************
-// Function:
+// Function:    isBust
 //
-// Description: 
+// Description: checks to see if player is bust at index
 //
-// Parameters:  
+// Parameters:  playerIndex - the player index
 //
-// Return:			
+// Return:			true if bust, false otherwise
 //***************************************************************************
 bool BlackjackModel::isBust(int playerIndex){
   return mcPlayers.at(playerIndex).isFullyBust();
 }
 //***************************************************************************
-// Function:
+// Function:    initialDeal
 //
-// Description: 
+// Description: deals out cards
 //
-// Parameters:  
+// Parameters:  none
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 void BlackjackModel::initialDeal(){
   mpcDeck->shuffle();
@@ -136,37 +139,37 @@ void BlackjackModel::initialDeal(){
   mcDealerHand.addCard(cTemp);
 }
 //***************************************************************************
-// Function:
+// Function:    isHuman
 //
-// Description: 
+// Description: Checks to see if player is human
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			true if human, false otherwise
 //***************************************************************************
 bool BlackjackModel::isHuman(){
-  return isHuman(mCurrentPlayerIndex); //INFINITE RECURSION
+  return isHuman(mCurrentPlayerIndex);
 }
 //***************************************************************************
-// Function:
+// Function:    isHuman
 //
-// Description: 
+// Description: checks to see if player is human
 //
-// Parameters:  
+// Parameters:  index - the index in the player array
 //
-// Return:			
+// Return:			true if human, false otherwise
 //***************************************************************************
 bool BlackjackModel::isHuman(int index){
   return mcPlayers.at(index).isHuman();
 }
 //***************************************************************************
-// Function:
+// Function:    isBetTime
 //
-// Description: 
+// Description: Checks to see if players are still betting
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			True if still betting, false otherwise
 //***************************************************************************
 bool BlackjackModel::isBetTime(){
   for(int i = 0; i < getNumPlayers(); i++){
@@ -177,7 +180,7 @@ bool BlackjackModel::isBetTime(){
   return false;
 }
 //***************************************************************************
-// Function:
+// Function:    moveDealer
 //
 // Description: 
 //

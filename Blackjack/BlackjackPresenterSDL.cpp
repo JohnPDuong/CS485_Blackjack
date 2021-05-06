@@ -53,6 +53,15 @@ void BlackjackPresenterSDL::endGame ()
 	// Do we need this?
 }
 
+void BlackjackPresenterSDL::endRound()
+{
+}
+
+bool BlackjackPresenterSDL::roundOngoing()
+{
+	return false;
+}
+
 Status BlackjackPresenterSDL::result ()
 {
 	return mcModel.resultCurrentPlayer ();
