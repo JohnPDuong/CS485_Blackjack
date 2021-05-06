@@ -57,7 +57,8 @@ bool Player::trySplit(){
     mbSplittable = false; // can no longer split after splitting
   }
   mcHands.push_back(Hand());
-  mcHands.at(++mCurrentHand).addCard(mcHands.at(mCurrentHand - 1).split());
+  ++mCurrentHand;
+  mcHands.at(mCurrentHand).addCard(mcHands.at(mCurrentHand - 1).split());
   //Need a split in hand.
   return true;
 }

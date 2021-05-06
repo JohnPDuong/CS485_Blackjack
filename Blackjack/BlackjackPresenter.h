@@ -21,6 +21,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual ~BlackjackPresenter();
 
 		virtual void newGame(int players);
+		virtual void newGame();
 
 		virtual void nextRound();
 		virtual void endGame();
@@ -36,15 +37,18 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual void setPlayerType(std::string stratType, int index);
 
 		virtual void stand();
-		virtual void bet(long long amount);
+		virtual bool bet(long long amount);
 		virtual void split();
 		virtual void draw();
 
 		virtual void makeMove();
 		virtual bool isHuman();
 		virtual bool canSplit();
+		virtual bool isBetTime();
 
 		virtual void updateView();
+		virtual void doCPUMoves();
+		virtual void doCPUBets();
 
 	private:
 		BlackjackModel mcModel;

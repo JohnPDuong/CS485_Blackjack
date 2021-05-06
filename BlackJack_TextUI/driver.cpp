@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {	
+	/*
 	BlackjackModel cModel;
 
 	cModel.newGame(3); for (int i = 0; i < 3 - 1; i++)
@@ -19,16 +20,15 @@ int main()
 	{
 		cModel.makeMove();
 	}
-	cout << "moces done";
+	cout << "moces done";*/
 
-	/*
 	BlackjackTextUI cGame;
 	
 	system("cls");
 	cGame.printWelcome();
 	cGame.onGameStartup();
 	cGame.playGame();
-	*/
+
 
 	return EXIT_SUCCESS;
 }

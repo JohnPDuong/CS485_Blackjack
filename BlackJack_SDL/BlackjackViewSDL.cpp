@@ -23,7 +23,7 @@ mcBetButton("Bet", "", 10, 10, 1, { 255,255,255,255 }),
 mcStandButton("Stand", "", 10, 20, 1, { 255,255,255,255 }),
 mcSplitButton("Split", "", 10, 30, 1, { 255,255,255,255 }),
 mcDrawButton("Draw", "", 10, 40, 1, { 255,255,255,255 }),
-mcNumPlayersInput("Enter number of Players:", "", 10, 50, 1, { 255,255,255,255 }),
+mcNumPlayersInput("Enter number of Players", "", 10, 50, 1, { 255,255,255,255 }),
 mcEndGameButton("New Game", "", 10, 60, 1, { 255,255,255,255 }),
 mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255})
 {
