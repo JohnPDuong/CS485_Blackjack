@@ -58,7 +58,6 @@
     <ClCompile Include="DrunkAI.cpp" />
     <ClCompile Include="Hand.cpp" />
     <ClCompile Include="HumanMoveStrategy.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Money.cpp" />
     <ClCompile Include="MoveStrategyFactory.cpp" />
     <ClCompile Include="Player.cpp" />

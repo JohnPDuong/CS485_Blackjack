@@ -7,6 +7,17 @@
 // Purpose:    Runs the SDL version of the program
 //***************************************************************************
 #include "vld.h"
-int main () {
+#include "BlackjackViewSDL.h"
+
+int main (int argc, char* args[]) {
+  BlackjackViewSDL cDisplay;
+  
+  cDisplay.createWindow("Blackjack");
+
+  cDisplay.setWindowBackgroundColor({0, 0, 0, 255});
+
+  cDisplay.gameLoop();
+
+  cDisplay.cleanup();
   return 0;
 }
