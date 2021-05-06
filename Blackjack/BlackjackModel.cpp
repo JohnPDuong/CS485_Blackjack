@@ -698,6 +698,11 @@ std::vector<std::string> BlackjackModel::getDealerCards()
   }
   return stringArry;
 }
+
+bool BlackjackModel::roundDone(){
+  return mbRoundDone;
+}
+
 //***************************************************************************
 // Function:
 //

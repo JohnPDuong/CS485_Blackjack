@@ -37,7 +37,8 @@ bool CardCounterAI::determineMove(Hand& cCurrentHand,
     //it's probably ok to miss it.)
     int j = 0;
     for(int i = 0; i < cTableCards.size();){
-      if(!isEqual(cTableCards.at(i), mcCardsSeenThisRound.at(j))){
+      if(j >= mcCardsSeenThisRound.size() ||
+         !isEqual(cTableCards.at(i), mcCardsSeenThisRound.at(j))){
         mTotalCardsFoundOfEachType[unhashSuit(cTableCards.at(i).getSuit())][unhashValue(cTableCards.at(i).getValue())]++;
         j--;
       }

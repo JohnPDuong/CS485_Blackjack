@@ -25,7 +25,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 
 		virtual void nextRound() override;
 		virtual void endGame() override;
-    virtual void endRound() override;
+    virtual std::vector<Status> endRound() override;
     virtual bool roundOngoing() override;
 		virtual Status result() override;
 		//virtual void addBalance(long long amount) = 0;
