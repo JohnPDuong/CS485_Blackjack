@@ -11,6 +11,15 @@
 #include "Draw.h"
 #include "Stand.h"
 
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 CardCounterAI::CardCounterAI(){
   for(int i = 0; i < 13; i++){
     for(int j = 0; j < 4; j++){
@@ -18,8 +27,15 @@ CardCounterAI::CardCounterAI(){
     }
   }
 }
-
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool CardCounterAI::determineMove(Hand& cCurrentHand,
                                   std::shared_ptr<IMove>& pcCurrentMove,
                                   std::vector<Card>& cTableCards){
@@ -64,7 +80,15 @@ bool CardCounterAI::determineMove(Hand& cCurrentHand,
   
   return true;
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool CardCounterAI::determineBet(Player& player, Money& bet){
   int numGood = 0;
   int numBad = 0;
@@ -76,16 +100,40 @@ bool CardCounterAI::determineBet(Player& player, Money& bet){
                 player.getBank().getAmount()/100);
   return true;
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool CardCounterAI::isHuman() {
   return false; //IComputerMoveStrategy::isHuman();
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool CardCounterAI::isEqual(Card &cCard1, Card &cCard2){
   return cCard1.getSuit() == cCard2.getSuit()
          && cCard1.getValue() == cCard2.getValue();
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 void CardCounterAI::evalCards(int &numGoodCards, int &numBadCards,
                               int estimatedNumDecks, int refVal){
   for(int i = 0; i < 13; i++){
@@ -112,7 +160,15 @@ void CardCounterAI::evalCards(int &numGoodCards, int &numBadCards,
     }
   }
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 int CardCounterAI::unhashSuit(Suit inputSuit){
   switch(inputSuit){
     case Suit::Clubs:
@@ -127,7 +183,15 @@ int CardCounterAI::unhashSuit(Suit inputSuit){
       return -1; //This should never happen.
   }
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 int CardCounterAI::unhashValue(Value inputValue){
   switch(inputValue){
     case Value::Ace:
@@ -160,7 +224,15 @@ int CardCounterAI::unhashValue(Value inputValue){
       return -1; //This should never happen.
   }
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 int CardCounterAI::estimateNumDecks(){
   int estimatedNumDecks = 0;
   for(int i = 0; i < 13; i++){

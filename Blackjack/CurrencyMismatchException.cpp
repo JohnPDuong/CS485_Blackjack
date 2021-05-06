@@ -26,7 +26,6 @@ CurrencyMismatchException::CurrencyMismatchException()
 
   mpszMessage = new char[errMessage.size() + 1];
 
-#ifdef _WIN32
   //the *_s functions are a windows only implementation. Microsoft claims some
   //standard functions are insecure to shackle you to their OS. You can get
   //this preprocessor macro method should make the code portable but you can
@@ -35,9 +34,6 @@ CurrencyMismatchException::CurrencyMismatchException()
   //>> _CRT_SECURE_NO_WARNINGS
   strncpy_s(mpszMessage, errMessage.size() + 1, errMessage.c_str(),
     errMessage.size() + 1);
-#else
-  strncpy(mpszMessage, errMessage.c_str(), errMessage.size() + 1);
-#endif
 }
 //****************************************************************************
 // Constructor: CurrencyMismatchException
@@ -57,12 +53,7 @@ CurrencyMismatchException::CurrencyMismatchException
   {
     size = (int)strlen(rcOther.mpszMessage) + 1;
     mpszMessage = new char[size];
-
-#ifdef _WIN32
     strncpy_s(mpszMessage, size, rcOther.mpszMessage, size);
-#else
-    strncpy(mpszMessage, rcOther.mpszMessage, size);
-#endif
   }
 }
 //****************************************************************************

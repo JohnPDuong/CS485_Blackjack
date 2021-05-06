@@ -8,7 +8,15 @@
 //***************************************************************************
 
 #include "DrunkAI.h"
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 DrunkAI::DrunkAI(std::string soberTypeName){
   MoveStrategyFactory cStratFact;
   mpcSoberStrat = cStratFact.makeStrategy(soberTypeName);
@@ -16,7 +24,15 @@ DrunkAI::DrunkAI(std::string soberTypeName){
     mpcSoberStrat = cStratFact.makeStrategy("Card Counter");
   }
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool DrunkAI::determineMove(Hand &cCurrentHand,
                             std::shared_ptr<IMove>& pcCurrentMove,
                             std::vector<Card> &cTableCards)
@@ -29,7 +45,15 @@ bool DrunkAI::determineMove(Hand &cCurrentHand,
     return mpcSoberStrat->determineMove(cCurrentHand, pcCurrentMove, cTableCards);
   }
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool DrunkAI::determineBet(Player &player, Money &bet)
 {
   numShots++;
@@ -41,12 +65,28 @@ bool DrunkAI::determineBet(Player &player, Money &bet)
     return mpcSoberStrat->determineBet(player, bet);
   }
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool DrunkAI::isHuman()
 {
     return false;
 }
-
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
 bool DrunkAI::drunkRisk(){
   return rand() % 100 < numShots;
 }
