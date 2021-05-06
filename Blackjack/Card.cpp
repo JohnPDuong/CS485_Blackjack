@@ -29,6 +29,18 @@ Card::Card (Suit eSuit, Value eValue)
 	mbIsGlobalFaceUp = FACE_DOWN;
 }
 //***************************************************************************
+// Destructor:  Card
+//
+// Description: None
+//
+// Parameters:  None
+//
+// Return:			None
+//***************************************************************************
+Card::~Card()
+{
+}
+//***************************************************************************
 // Function:		isFaceUp
 //
 // Description: Returns true if card is face up, false otherwise
