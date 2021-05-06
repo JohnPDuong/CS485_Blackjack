@@ -19,3 +19,5 @@ public:
   virtual bool determineBet(Player& player, Money& bet) = 0;
   virtual bool isHuman() = 0;
 };
+
+//bool IComputerMoveStrategy::isHuman() { return false; }

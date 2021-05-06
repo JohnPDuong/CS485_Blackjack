@@ -34,8 +34,8 @@ public:
   bool isBust();
   bool isBust(int playerIndex);
   void initialDeal();
-  //bool isHuman();
-  //bool isHuman(int index);
+  bool isHuman();
+  bool isHuman(int index);
   bool isBetTime();
   
   void moveDealer();
@@ -67,6 +67,7 @@ public:
   long long getBet(int index);
   
 private:
+  void incrementPlayer();
   
   
   std::shared_ptr<Deck> mpcDeck;
