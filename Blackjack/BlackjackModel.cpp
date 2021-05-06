@@ -435,12 +435,15 @@ std::vector<std::vector<std::string>> BlackjackModel::getOpponentCards(){
   std::vector<std::vector<Card>> cCardHands;
   
   //get hands
-  for(int i = getNextPlayer(mCurrentPlayerIndex); i != mCurrentPlayerIndex; i = getNextPlayer(i)){
+  for(int i = getNextPlayer(mCurrentPlayerIndex); i != mCurrentPlayerIndex;
+      i = getNextPlayer(i)){
+    std::vector<Card> cThisPlayerCards;
     for(int j = 0; j < mcPlayers.at(i).getNumHands(); j++){
-      cCardHands.at(i).insert(cCardHands.at(i).begin(),
-                            mcPlayers.at(i).getHands().at(j).getHand().begin(),
-                            mcPlayers.at(i).getHands().at(j).getHand().end());
+      std::vector<Card> cCurrentHand = mcPlayers.at(i).getHands().at(j).getHand();
+      cThisPlayerCards.insert(cThisPlayerCards.end(), cCurrentHand.begin(),
+                              cCurrentHand.end());
     }
+    cCardHands.push_back(cThisPlayerCards);
   }
   
   //stringify hands
