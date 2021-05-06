@@ -30,13 +30,19 @@ bool BlackjackModel::newGame(){
       return false;
     }
   }
+  mpcDeck->fillShuffle();
   return true;
 }
 
-bool BlackjackModel::newGame(int numDecks){
+bool BlackjackModel::newGame(int numPlayers){
+  mcPlayers = std::vector<Player>(numPlayers);
+  return newGame();
+}
+
+bool BlackjackModel::newGame(int numPlayers, int numDecks){
   mpcDeck.reset();
   mpcDeck = std::make_shared<Deck>(numDecks);
-  return newGame();
+  return newGame(numPlayers);
 }
 
 bool BlackjackModel::isBust(){
@@ -62,13 +68,14 @@ void BlackjackModel::initialDeal(){
 
 /*
 bool BlackjackModel::isHuman(){
-  return true; //isHuman(mCurrentPlayerIndex); INFINITE RECURSION
-}*/
+  return isHuman(mCurrentPlayerIndex); //INFINITE RECURSION
+}
 
-/*
+
 bool BlackjackModel::isHuman(int index){
   return mcPlayers.at(index).isHuman();
-}*/
+}
+*/
 
 bool BlackjackModel::isBetTime(){
   return true;
