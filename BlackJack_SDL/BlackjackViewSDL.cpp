@@ -27,7 +27,7 @@ mcNumPlayersInput("Enter number of Players (1-5)", "", 10, 50, 1, { 255,255,255,
 mcEndGameButton("New Game", "", 10, 60, 1, { 255,255,255,255 }),
 mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255})
 {
-  mpcPresenter = new BlackjackPresenter();
+  mpcPresenter = new BlackjackPresenter((IBlackjackView*)this);
   loadFont ("c:/Windows/Fonts/Cour.ttf", 20);
 
   //set event handlers
@@ -321,6 +321,9 @@ void BlackjackViewSDL::onNextRound ()
 void BlackjackViewSDL::onSetNumPlayers (int number)
 {
   mpcPresenter->newGame(number);
+  for(int i = 0; i < number - 1; i++)
+    mpcPresenter->setPlayerType("Card counter", i);
+  mpcPresenter->setPlayerType("Human", number - 1);
 }
 
 //***************************************************************************

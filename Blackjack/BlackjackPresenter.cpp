@@ -35,6 +35,7 @@ BlackjackPresenter::~BlackjackPresenter()
 void BlackjackPresenter::newGame(int players)
 {
 	mcModel.newGame(players);
+	//mpcView->newGame(players);
 }
 
 void BlackjackPresenter::nextRound()
