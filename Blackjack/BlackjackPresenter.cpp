@@ -49,7 +49,7 @@ void BlackjackPresenter::endGame()
 
 Status BlackjackPresenter::result()
 {
-	return mcModel.result();
+	return mcModel.resultCurrentPlayer();
 }
 
 long long BlackjackPresenter::getBalance()
@@ -72,10 +72,7 @@ std::vector<std::vector<std::string>> BlackjackPresenter::getOpponentCards()
 
 std::vector<std::string> BlackjackPresenter::getDealerCards()
 {
-	std::vector<std::string> cards; // TEMPORARY
-
-	// return mcModel.getDealerCards();
-	return cards;// TEMPORARY
+	return mcModel.getDealerCards();
 }
 
 int BlackjackPresenter::getNumPlayers()
