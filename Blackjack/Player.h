@@ -51,7 +51,6 @@ public:
   
 private:
   void clearHands();
-  
   std::string mName;
   std::vector<Hand> mcHands;
   Money mcBank;
