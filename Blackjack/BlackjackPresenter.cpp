@@ -101,9 +101,9 @@ void BlackjackPresenter::stand()
 	mcModel.stand();
 }
 
-void BlackjackPresenter::bet(long long amount)
+bool BlackjackPresenter::bet(long long amount)
 {
-	mcModel.makeBet(Money (amount, Currency::USD));
+	return mcModel.makeBet(Money (amount, Currency::USD));
 }
 
 void BlackjackPresenter::split()
@@ -131,7 +131,22 @@ bool BlackjackPresenter::canSplit()
 	return mcModel.canSplit();
 }
 
+bool BlackjackPresenter::isBetTime()
+{
+	return mcModel.isBetTime();
+}
+
 void BlackjackPresenter::updateView()
 {
 	mpcView->render();
+}
+
+void BlackjackPresenter::doCPUMoves()
+{
+	mcModel.doCPUMoves();
+}
+
+void BlackjackPresenter::doCPUBets()
+{
+	mcModel.doCPUBets();
 }

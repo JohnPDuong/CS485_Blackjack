@@ -29,14 +29,17 @@ public:
 	virtual void setPlayerType(std::string stratType, int index) = 0;
 
 	virtual void stand() = 0;
-	virtual void bet(long long amount) = 0;
+	virtual bool bet(long long amount) = 0;
 	virtual void split() = 0;
 	virtual void draw() = 0;
 
 	virtual void makeMove() = 0;
 	virtual bool isHuman() = 0;
 	virtual bool canSplit() = 0;
+	virtual bool isBetTime() = 0;
 
 	virtual void updateView() = 0;
+	virtual void doCPUMoves() = 0;
+	virtual void doCPUBets() = 0;
 
 };

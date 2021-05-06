@@ -155,19 +155,23 @@ void BlackjackTextUI::playGame()
 		{
 			mpcPresenter->makeMove();
 		}*/
+		mpcPresenter->doCPUMoves();
 
 		// Print state of the game and options
 		system("cls");
 		printHeader();
 
 		// Do betting
+		mpcPresenter->doCPUBets();
 		std::cout << "Current balance: " << mpcPresenter->getBalance();
 		std::cout << "\nHow much would you like to bet? ";
 		do
 		{
+			//mpcPresenter->doCPUBets();
 			std::cin >> betAmount;
-		} while (betAmount < 0 || betAmount > mpcPresenter->getBalance());
-		mpcPresenter->bet(betAmount);
+
+		} while (!mpcPresenter->bet(betAmount));
+		mpcPresenter->doCPUBets();
 
 		printGameState();
 
