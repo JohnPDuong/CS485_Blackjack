@@ -13,6 +13,7 @@ BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
   mCurrentPlayerIndex = 0;
   mcPlayers = std::vector<Player>(numPlayers);
   mpcDeck = std::make_shared<Deck>(numDecks);
+  mpcDeck->fillShuffle();
   mbRoundDone = false;
 }
 
@@ -42,6 +43,7 @@ bool BlackjackModel::newGame(int numPlayers){
 bool BlackjackModel::newGame(int numPlayers, int numDecks){
   mpcDeck.reset();
   mpcDeck = std::make_shared<Deck>(numDecks);
+  mpcDeck->fillShuffle();
   return newGame(numPlayers);
 }
 

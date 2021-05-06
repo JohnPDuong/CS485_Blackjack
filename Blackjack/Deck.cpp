@@ -63,7 +63,7 @@ void Deck::shuffle ()
 //***************************************************************************
 void Deck::fillShuffle()
 {
-	for (int i = 0; i < macCards.size (); i++)
+	while(macCards.size() > 0)
 	{
 		macCards.pop_back ();
 	}
