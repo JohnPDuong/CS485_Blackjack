@@ -21,7 +21,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual ~BlackjackPresenter();
 
 		virtual void newGame(int players);
-		virtual void newGame();
+		virtual void newGame() override;
 
 		virtual void nextRound();
 		virtual void endGame();
