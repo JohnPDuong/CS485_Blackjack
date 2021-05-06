@@ -20,7 +20,7 @@ class CurrencyMismatchException : public std::exception
 
 	CurrencyMismatchException &operator= (CurrencyMismatchException cOther);
 
-	virtual const char *what() const override;
+	virtual const char *what() const noexcept override;
 
 
 	private:

@@ -10,6 +10,7 @@
 
 class IBlackjackView {
   public:
+    virtual ~IBlackjackView() {};
     virtual void newGame(int) = 0;
     virtual void nextRound() = 0;
     virtual void stand() = 0;
