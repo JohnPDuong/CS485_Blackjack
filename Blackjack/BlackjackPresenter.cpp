@@ -118,7 +118,7 @@ void BlackjackPresenter::endGame()
 }
 
 std::vector<Status> BlackjackPresenter::endRound(){
-  return mcModel.result();
+  return mcModel.nextRound();
 }
 
 bool BlackjackPresenter::roundOngoing(){
