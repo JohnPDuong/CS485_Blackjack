@@ -142,6 +142,29 @@ std::vector<Card> Hand::getFaceUpCards ()
 	return cRetVal;
 }
 //***************************************************************************
+// Function:		getFaceDownCards
+//
+// Description: Returns a vector of face down cards in hand
+//
+// Parameters:  None
+//
+// Return:			a vector of face down cards in hand
+//***************************************************************************
+std::vector<Card> Hand::getFaceDownCards()
+{
+	std::vector<Card> cRetVal;
+
+	for (int i = 0; i < mcCards.size(); i++)
+	{
+		if (!mcCards[i].isFaceUp())
+		{
+			cRetVal.push_back(mcCards[i]);
+		}
+	}
+
+	return cRetVal;
+}
+//***************************************************************************
 // Function:		getHand
 //
 // Description: returns the hand

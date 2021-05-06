@@ -26,6 +26,7 @@ class Hand
 		int getFaceDownValue ();
 
 		std::vector<Card> getFaceUpCards ();
+		std::vector<Card> getFaceDownCards();
 		std::vector<Card> getHand ();
 
 		bool canSplit ();
