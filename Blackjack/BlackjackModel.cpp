@@ -32,6 +32,7 @@ bool BlackjackModel::newGame(){
   }
   mbRoundDone = false;
   mpcDeck->fillShuffle();
+  initialDeal();
   return true;
 }
 
@@ -86,7 +87,6 @@ bool BlackjackModel::isBetTime(){
       return true;
     }
   }
-  initialDeal();
   return false;
 }
 
@@ -125,6 +125,8 @@ std::vector<Status> BlackjackModel::nextRound() // Julian made this
   }
   mbRoundDone = false;
   mbBetReady = true;
+  
+  initialDeal();
   
   return results;
 }
