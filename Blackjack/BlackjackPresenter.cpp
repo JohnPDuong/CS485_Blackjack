@@ -72,10 +72,7 @@ std::vector<std::vector<std::string>> BlackjackPresenter::getOpponentCards()
 
 std::vector<std::string> BlackjackPresenter::getDealerCards()
 {
-	std::vector<std::string> cards; // TEMPORARY
-
-	// return mcModel.getDealerCards();
-	return cards;// TEMPORARY
+	return mcModel.getDealerCards();
 }
 
 int BlackjackPresenter::getNumPlayers()
