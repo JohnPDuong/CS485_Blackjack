@@ -166,8 +166,16 @@ std::vector<std::string> BlackjackModel::getTypeList(){
   return MoveStrategyFactory::listStrats();
 }
 
-Hand BlackjackModel::getCurrentPlayerHand(){
-  return mcPlayers.at(mCurrentPlayerIndex).getCurrentHand();
+std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
+  std::vector<std::string> cardStrs;
+  std::vector<Card> cCards = mcPlayers.at(mCurrentPlayerIndex).getCurrentHand().getHand();
+
+  for (Card card : cCards)
+  {
+    cardStrs.push_back(toString(card));
+  }
+
+  return cardStrs;
 }
 
 std::vector<Card> BlackjackModel::getFaceUpCards(){
@@ -207,4 +215,103 @@ long long BlackjackModel::getBet(){
 
 long long BlackjackModel::getBet(int index){
   return mcPlayers.at(index).getBet().getAmount();
+}
+
+std::string BlackjackModel::toString (Card cCard)
+{
+  std::string cardStr = "";
+  auto suit = cCard.getSuit();
+  auto rank = cCard.getValue();
+
+  if (!cCard.isFaceUp())
+  {
+    cardStr = "--";
+  }
+  else
+  {
+    // Adds the rank
+    switch (rank)
+    {
+    case Value::Ace:
+      cardStr += "A";
+      break;
+
+    case Value::Two:
+      cardStr += "2";
+      break;
+
+    case Value::Three:
+      cardStr += "3";
+      break;
+
+    case Value::Four:
+      cardStr += "4";
+      break;
+
+    case Value::Five:
+      cardStr += "5";
+      break;
+
+    case Value::Six:
+      cardStr += "6";
+      break;
+
+    case Value::Seven:
+      cardStr += "7";
+      break;
+
+    case Value::Eight:
+      cardStr += "8";
+      break;
+
+    case Value::Nine:
+      cardStr += "9";
+      break;
+
+    case Value::Ten:
+      cardStr += "10";
+      break; 
+
+    case Value::Jack:
+      cardStr += "J";
+      break;
+
+    case Value::Queen:
+      cardStr += "Q";
+      break;
+
+    case Value::King:
+      cardStr += "K";
+      break;
+    }
+
+    // Adds the suit
+    switch (suit)
+    {
+    case Suit::Clubs:
+      cardStr += "C";
+      break;
+
+    case Suit::Diamonds:
+      cardStr += "D";
+      break;
+
+    case Suit::Hearts:
+      cardStr += "H";
+      break;
+
+    case Suit::Spades:
+      cardStr += "S";
+      break;
+    }
+  }
+
+  return cardStr;
+}
+
+bool BlackjackModel::canSplit()
+{
+  //Only the first hand may be split
+  return mcPlayers[mCurrentPlayerIndex].getHands().at(0).canSplit() == 
+         mcPlayers[mCurrentPlayerIndex].canSplit();
 }

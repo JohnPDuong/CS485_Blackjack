@@ -26,7 +26,11 @@ class Hand
 		int getFaceDownValue ();
 
 		std::vector<Card> getFaceUpCards ();
+		std::vector<Card> getFaceDownCards();
 		std::vector<Card> getHand ();
+
+		bool canSplit ();
+		Card split ();
 
 	private:
 		std::vector<Card> mcCards;

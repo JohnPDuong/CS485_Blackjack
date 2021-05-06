@@ -55,7 +55,7 @@ public:
   
   std::vector<std::string> getTypeList();
   
-  Hand getCurrentPlayerHand();
+  std::vector<std::string> getCurrentPlayerHand();
   std::vector<Card> getFaceUpCards();
   
   std::string getName();
@@ -65,10 +65,12 @@ public:
   long long getBalance(int index);
   long long getBet();
   long long getBet(int index);
+
+  bool canSplit ();
   
 private:
   
-  
+  std::string toString(Card cCard); // Julian
   std::shared_ptr<Deck> mpcDeck;
   std::vector<Player> mcPlayers;
   int mCurrentPlayerIndex;

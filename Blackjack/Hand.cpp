@@ -52,7 +52,7 @@ int Hand::getHandValue ()
 
 	for (int i = 0; i < mcCards.size (); i++)
 	{
-		sum += (int) mcCards[i].getValue ();
+		sum += (int) mcCards[i].getInt ();
 	}
 
 	if (sum > (int) Status::Blackjack)
@@ -142,6 +142,29 @@ std::vector<Card> Hand::getFaceUpCards ()
 	return cRetVal;
 }
 //***************************************************************************
+// Function:		getFaceDownCards
+//
+// Description: Returns a vector of face down cards in hand
+//
+// Parameters:  None
+//
+// Return:			a vector of face down cards in hand
+//***************************************************************************
+std::vector<Card> Hand::getFaceDownCards()
+{
+	std::vector<Card> cRetVal;
+
+	for (int i = 0; i < mcCards.size(); i++)
+	{
+		if (!mcCards[i].isFaceUp())
+		{
+			cRetVal.push_back(mcCards[i]);
+		}
+	}
+
+	return cRetVal;
+}
+//***************************************************************************
 // Function:		getHand
 //
 // Description: returns the hand
@@ -153,4 +176,35 @@ std::vector<Card> Hand::getFaceUpCards ()
 std::vector<Card> Hand::getHand ()
 {
 	return mcCards;
+}
+//***************************************************************************
+// Function:		canSplit
+//
+// Description: Checks to see if the two cards in hand have the same
+//							denomination
+//
+// Parameters:  None
+//
+// Return:			True if same card denomination, false otherwise
+//***************************************************************************
+bool Hand::canSplit()
+{
+	return mcCards[0].getValue() == mcCards[1].getValue();
+}
+//***************************************************************************
+// Function:		split
+//
+// Description: Returns the second card in hand
+//
+// Parameters:  None
+//
+// Return:			Card object
+//***************************************************************************
+Card Hand::split()
+{
+	Card cCard = mcCards[1];
+
+	mcCards.pop_back();
+
+	return cCard;
 }

@@ -25,6 +25,7 @@ public:
   // TextUI specific functions
   void printWelcome();
   void printHeader();
+  void printGameState();
   void onGameStartup();
   void playGame(); 
 

@@ -21,6 +21,7 @@ class Card
 		Suit getSuit ();
 		Value getValue ();
 
+		int getInt ();
 	private:
 		Suit meSuit;
 		Value meValue;
