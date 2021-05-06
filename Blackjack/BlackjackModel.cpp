@@ -377,7 +377,7 @@ std::string BlackjackModel::toString (Card cCard)
 bool BlackjackModel::canSplit()
 {
   //Only the first hand may be split
-  return mcPlayers[mCurrentPlayerIndex].getHands().at(0).canSplit() == 
+  return mcPlayers[mCurrentPlayerIndex].getHands().at(0).canSplit() && 
          mcPlayers[mCurrentPlayerIndex].canSplit();
 }
 

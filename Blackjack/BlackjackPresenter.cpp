@@ -123,8 +123,7 @@ void BlackjackPresenter::makeMove()
 
 bool BlackjackPresenter::isHuman()
 {
-	// return mcModel.isHuman();
-	return true;
+	return mcModel.isHuman();
 }
 
 bool BlackjackPresenter::canSplit()

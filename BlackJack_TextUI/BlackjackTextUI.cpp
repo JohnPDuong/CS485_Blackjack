@@ -158,7 +158,7 @@ void BlackjackTextUI::playGame()
 
 		// Do betting
 		std::cout << "Current balance: " << mpcPresenter->getBalance();
-		std::cout << "How much would you like to bet? ";
+		std::cout << "\nHow much would you like to bet? ";
 		do
 		{
 			std::cin >> betAmount;
