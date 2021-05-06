@@ -25,7 +25,10 @@ mcSplitButton("Split", "", 10, 30, 1, { 255,255,255,255 }),
 mcDrawButton("Draw", "", 10, 40, 1, { 255,255,255,255 }),
 mcNumPlayersInput("Enter number of Players", "", 10, 50, 1, { 255,255,255,255 }),
 mcEndGameButton("New Game", "", 10, 60, 1, { 255,255,255,255 }),
-mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255})
+mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255}),
+mcPlayerNameInput("Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
+mcPlayerTypeInput("Type", "", 10, 80, 1, { 255, 255, 255, 255 }),
+mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
 {
   mpcPresenter = new BlackjackPresenterSDL ((IBlackjackView*)this);
   loadFont ("c:/Windows/Fonts/Cour.ttf", 20);
@@ -47,6 +50,9 @@ mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255})
     (std::bind(&BlackjackViewSDL::onEndGame, this));
   mcNextRound.registerClickEventHandler
     (std::bind(&BlackjackViewSDL::onNextRound, this));
+  mcSetPlayer.registerClickEventHandler 
+    (std::bind
+    (&BlackjackViewSDL::onSetPlayerWidget, this, &mcPlayerNameInput, &mcPlayerTypeInput));
 
   //set non-editable text objects
   mcStandButton.setEditable(false);
@@ -54,16 +60,20 @@ mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255})
   mcDrawButton.setEditable(false);
   mcEndGameButton.setEditable(false);
   mcNextRound.setEditable(false);
+  mcSetPlayer.setEditable(false);
 
   enableTextInput();
 
   registerTextWidget((ISDLWidgetTextable*)&mcBetButton);
   registerTextWidget((ISDLWidgetTextable*)&mcNumPlayersInput);
+  registerTextWidget((ISDLWidgetTextable*)&mcPlayerNameInput);
+  registerTextWidget((ISDLWidgetTextable*)&mcPlayerTypeInput);
   registerClickableWidget((ISDLWidgetClickable*)&mcStandButton);
   registerClickableWidget((ISDLWidgetClickable*)&mcSplitButton);
   registerClickableWidget((ISDLWidgetClickable*)&mcDrawButton);
   registerClickableWidget((ISDLWidgetClickable*)&mcEndGameButton);
   registerClickableWidget((ISDLWidgetClickable*)&mcNextRound);
+  registerClickableWidget((ISDLWidgetClickable*)&mcSetPlayer);
 
   mcDrawableWidget.push_back(&mcBetButton);
   mcDrawableWidget.push_back(&mcNumPlayersInput);
@@ -119,6 +129,8 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcEndGameButton.setVisible (true);
   mcBetButton.setVisible (true);
   mcNumPlayersInput.setVisible(false);
+  mcPlayerNameInput.setVisible(false);
+  mcPlayerTypeInput.setVisible(false);
 }
 
 //***************************************************************************
@@ -224,6 +236,23 @@ void BlackjackViewSDL::endGame ()
   mcNumPlayersInput.setVisible (true);
 }
 
+void BlackjackViewSDL::setPlayer ()
+{
+  if(mPlayersSet < mpcPresenter->getNumPlayers())
+    mcPlayerNameInput.setLabel ("Player " + std::to_string (mPlayersSet + 1) + " name");
+    mcPlayerNameInput.setData ("");
+    mcPlayerTypeInput.setLabel("Player " + std::to_string(mPlayersSet + 1) + " type");
+    mcPlayerTypeInput.setData("");
+}
+
+void BlackjackViewSDL::setNumPlayers ()
+{
+  mcNumPlayersInput.setVisible(false);
+  mcPlayerNameInput.setVisible(true);
+  mcPlayerTypeInput.setVisible(true);
+  mcSetPlayer.setVisible(true);
+}
+
 //***************************************************************************
 // Function:    onStand
 //
@@ -321,9 +350,15 @@ void BlackjackViewSDL::onNextRound ()
 void BlackjackViewSDL::onSetNumPlayers (int number)
 {
   mpcPresenter->newGame(number);
-  for(int i = 0; i < number - 1; i++)
-    mpcPresenter->setPlayerType("Card counter", i);
-  mpcPresenter->setPlayerType("Human", number - 1);
+  setNumPlayers();
+}
+
+void BlackjackViewSDL::onSetPlayer (std::string name, std::string type)
+{
+  mpcPresenter->setName(name, mPlayersSet);
+  mpcPresenter->setPlayerType(type, mPlayersSet);
+  mPlayersSet++;
+  setPlayer();
 }
 
 //***************************************************************************
@@ -356,6 +391,15 @@ void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
   if (number <= 5 || number >= 1)
   {
     onSetNumPlayers(number);
+  }
+}
+
+void BlackjackViewSDL::onSetPlayerWidget (SDLTextWidget* name, SDLTextWidget* type)
+{
+  if (name->getData () != "" && (type->getData () == "Card Counter" || 
+    type->getData () == "Human"))
+  {
+    onSetPlayer(name->getData(), type->getData());
   }
 }
 

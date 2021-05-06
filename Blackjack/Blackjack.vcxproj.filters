@@ -93,6 +93,15 @@
     <ClInclude Include="BlackjackPresenterSDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BlackjackView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlackjackModel.cpp">
@@ -147,6 +156,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlackjackPresenterSDL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackjackView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
