@@ -41,9 +41,6 @@ public:
   void moveDealer();
   void makeMove();
   void nextRound(); // Dear Kitt, I added this for the presenter. Sincerely, Julian
-  Status result(); // p.s. And this.
-  
-  
   
   bool makeBet(Money cBet);
   void stand();
@@ -59,7 +56,6 @@ public:
   
   std::vector<std::string> getCurrentPlayerHand();
   std::vector<std::vector<std::string>> getOpponentCards();
-  std::vector<std::string> getDealerCards();
   
   std::vector<Card> getFaceUpCards();
   
@@ -72,7 +68,9 @@ public:
   long long getBet(int index);
 
   bool canSplit ();
-  
+  std::vector<std::string> getDealerCards();
+  Status resultCurrentPlayer ();
+
 private:
   void incrementPlayer();
   

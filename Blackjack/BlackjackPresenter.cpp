@@ -62,6 +62,22 @@ std::vector<std::string> BlackjackPresenter::getCurrentPlayerHand()
 	return mcModel.getCurrentPlayerHand();
 }
 
+std::vector<std::vector<std::string>> BlackjackPresenter::getOpponentCards()
+{
+	std::vector<std::vector<std::string>> cards; // TEMPORARY
+
+	//return mcModel.getOpponentCards();
+	return cards; // TEMPORARY
+}
+
+std::vector<std::string> BlackjackPresenter::getDealerCards()
+{
+	std::vector<std::string> cards; // TEMPORARY
+
+	// return mcModel.getDealerCards();
+	return cards;// TEMPORARY
+}
+
 int BlackjackPresenter::getNumPlayers()
 {
 	return mcModel.getNumPlayers();
@@ -106,6 +122,11 @@ bool BlackjackPresenter::isHuman()
 {
 	// return mcModel.isHuman();
 	return true;
+}
+
+bool BlackjackPresenter::canSplit()
+{
+	return mcModel.canSplit();
 }
 
 void BlackjackPresenter::updateView()
