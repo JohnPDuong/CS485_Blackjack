@@ -80,21 +80,52 @@ Value Card::getValue ()
 {
 	return meValue;
 }
-int Card::getInt()
-{
-
-	return 0;
-}
 //***************************************************************************
-// Function:		getValue
+// Function:		getInt
 //
 // Description: return value of card
 //
 // Parameters:  None
 //
-// Return:			enum value of card
+// Return:			int value of card
 //***************************************************************************
-Value Card::getValue()
+int Card::getInt()
 {
-	return meValue;
+	int retVal;
+
+	switch (meValue)
+	{
+		case Value::Ace:
+			retVal = 11;
+			break;
+		case Value::Two:
+			retVal = 2;
+			break;
+		case Value::Three:
+			retVal = 3;
+			break;
+		case Value::Four:
+			retVal = 4;
+			break;
+		case Value::Five:
+			retVal = 5;
+			break;
+		case Value::Six:
+			retVal = 6;
+			break;
+		case Value::Seven:
+			retVal = 7;
+			break;
+		case Value::Eight:
+			retVal = 8;
+			break;
+		case Value::Nine:
+			retVal = 9;
+			break;
+		default: //10, Jack, Queen, King all have same value
+			retVal = 10;
+			break;
+	}
+
+	return retVal;
 }
