@@ -351,7 +351,12 @@ void BlackjackViewSDL::onBetWidget (SDLTextWidget* widget)
 //***************************************************************************
 void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
 {
-  onSetNumPlayers(stoi(widget->getData()));
+  int number = stoi (widget->getData());
+
+  if (number <= 5 || number >= 1)
+  {
+    onSetNumPlayers(number);
+  }
 }
 
 //***************************************************************************
