@@ -131,6 +131,8 @@ void BlackjackTextUI::onGameStartup()
 		mpcPresenter->setPlayerType("Card Counter", i);
 	}
 	mpcPresenter->setPlayerType("Human", numPlayers - 1);
+
+	mpcPresenter->newGame();
 }
 
 void BlackjackTextUI::playGame()

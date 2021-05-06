@@ -14,6 +14,7 @@
 class IBlackjackPresenter {
 public:
 	virtual void newGame(int players) = 0;
+	virtual void newGame() = 0;
 
 	virtual void nextRound() = 0;
 	virtual void endGame() = 0;
