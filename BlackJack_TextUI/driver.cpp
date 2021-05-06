@@ -13,9 +13,13 @@ int main()
 		cModel.setPlayerType("Card Counter", i);
 	}
 	cModel.setPlayerType("Human", 3 - 1);
-	cout << "GOogd";
+	cout << "cool";
 
-	cModel.isHuman();
+	while (!cModel.isHuman())
+	{
+		cModel.makeMove();
+	}
+	cout << "moces done";
 
 	/*
 	BlackjackTextUI cGame;
