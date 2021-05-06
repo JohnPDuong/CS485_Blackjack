@@ -70,9 +70,11 @@ bool BlackjackModel::isHuman(){
   return isHuman(mCurrentPlayerIndex); //INFINITE RECURSION
 }
 
+
 bool BlackjackModel::isHuman(int index){
   return mcPlayers.at(index).isHuman();
 }
+*/
 
 bool BlackjackModel::isBetTime(){
   return true;
@@ -308,6 +310,13 @@ std::string BlackjackModel::toString (Card cCard)
   }
 
   return cardStr;
+}
+
+bool BlackjackModel::canSplit()
+{
+  //Only the first hand may be split
+  return mcPlayers[mCurrentPlayerIndex].getHands().at(0).canSplit() == 
+         mcPlayers[mCurrentPlayerIndex].canSplit();
 }
 
 void BlackjackModel::incrementPlayer() {

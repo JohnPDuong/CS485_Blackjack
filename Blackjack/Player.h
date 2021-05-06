@@ -46,6 +46,8 @@ public:
   
   bool isFullyBust();
   bool readyToStart();
+
+  bool canSplit ();
   
 private:
   void clearHands();
@@ -55,5 +57,6 @@ private:
   Money mcBank;
   Money mcBet;
   int mCurrentHand;
+  bool mbSplittable;
   std::shared_ptr<IMoveStrategy> mpcMoveStrat;
 };

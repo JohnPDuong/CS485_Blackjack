@@ -31,22 +31,22 @@ Money::Money ()
 //
 // Returns:			None
 //****************************************************************************
-Money::Money (long long amount)
+Money::Money (long long amount, Currency type)
 {
 	mAmount = amount;
 }
 //****************************************************************************
 // Copy Constructor: Currency
 // 
-// Description:			 Copies rcCurrency to this Currency object
+// Description:			 Copies rcMoney to this Currency object
 //
-// Paramaters:			 rcCurrency - reference to class object Currency
+// Paramaters:			 rcMoney - reference to class object Currency
 //
 // Returns:					 None
 //****************************************************************************
-Money::Money (const Money &rcCurrency)
+Money::Money (const Money &rcMoney)
 {
-	mAmount = rcCurrency.mAmount;
+	mAmount = rcMoney.mAmount;
 }
 //****************************************************************************
 // Destructor:	~Currency
@@ -63,15 +63,15 @@ Money::~Money ()
 //****************************************************************************
 // Function:		operator=
 // 
-// Description: Assigns rcCurrency.mAmount to this mAmount
+// Description: Assigns rcMoney.mAmount to this mAmount
 //
-// Paramaters:	rcCurrency - reference to class object Currency
+// Paramaters:	rcMoney - reference to class object Currency
 //
 // Returns:			this object
 //****************************************************************************
-Money &Money::operator= (const Money &rcCurrency)
+Money &Money::operator= (const Money &rcMoney)
 {
-	mAmount = rcCurrency.mAmount;
+	mAmount = rcMoney.mAmount;
 
 	return *this;
 }
@@ -115,100 +115,252 @@ void Money::operator= (long long amount)
 	mAmount = amount;
 }
 //****************************************************************************
+// Function:		getCurrency
+// 
+// Description: Returns meCurrency
+//
+// Paramaters:	None
+//
+// Returns:			meCurrency
+//****************************************************************************
+Currency Money::getCurrency ()
+{
+	return meCurrency;
+}
+//****************************************************************************
+// Function:		strToType
+// 
+// Description: Converts a string to currency type and returns the type
+//
+// Paramaters:	type - the currency type
+//
+// Returns:			Currency type enum
+//****************************************************************************
+Currency Money::strToType (std::string type)
+{
+	Currency eType = static_cast<Currency> (-1);
+
+	if (type == "USD")
+	{
+		eType = Currency::USD;
+	}
+	else if (type == "GBP")
+	{
+		eType = Currency::GBP;
+	}
+	else if (type == "EUR")
+	{
+		eType = Currency::EUR;
+	}
+	else if (type == "YEN")
+	{
+		eType = Currency::YEN;
+	}
+	else
+	{
+		std::cerr << "ERROR IN Currency::strToType ()\n";
+	}
+
+	return eType;
+}
+//****************************************************************************
+// Function:		typeToStr
+// 
+// Description: Converts currency type enum to string
+//
+// Paramaters:	eType - class enum type
+//
+// Returns:			string of currency type
+//****************************************************************************
+std::string Money::typeToStr (Currency eType)
+{
+	std::string type;
+
+	switch (eType)
+	{
+		case Currency::USD:
+			type = "USD";
+			break;
+		case Currency::GBP:
+			type = "GBP";
+			break;
+		case Currency::EUR:
+			type = "EUR";
+			break;
+		case Currency::YEN:
+			type = "YEN";
+			break;
+		default:
+			std::cerr << "ERROR IN Currency::typeToStr ()\n";
+	}
+
+	return type;
+}
+//****************************************************************************
 // Function:		operator*
 // 
-// Description: Multiplies rcCurrency.mAmount by amount
+// Description: Multiplies rcMoney.mAmount by amount
 //
-// Paramaters:	rcCurrency - reference to class object Currency
+// Paramaters:	rcMoney		 - reference to class object Currency
 //							amount		 - the amount
 //
 // Returns:			new Currency object
 //****************************************************************************
-Money operator* (const Money &rcCurrency, double fAmount)
+Money operator* (const Money &rcMoney, double fAmount)
 {
-	return Money (rcCurrency.mAmount * fAmount);
+	return Money (rcMoney.mAmount * fAmount, rcMoney.meCurrency);
 }
 //****************************************************************************
 // Function:		operator+
 // 
-// Description: Add rcCurrency.mAmount and rcOtherCurrency.mAmount
+// Description: Add rcMoney.mAmount and rcOtherMoney.mAmount
 //
-// Paramaters:	rcCurrency		  - reference to class object Currency
-//							rcOtherCurrency - reference to other class object Currency
+// Paramaters:	rcMoney			 - reference to class object Currency
+//							rcOtherMoney - reference to other class object Currency
 //
 // Returns:			new Currency object
 //****************************************************************************
-Money operator+ (const Money &rcCurrency, const Money &rcOtherCurrency)
+Money operator+ (const Money &rcMoney, const Money &rcOtherMoney)
 {
-	return Money (rcCurrency.mAmount * rcOtherCurrency.mAmount);
+	try
+	{
+		rcMoney.throwMismatchException (rcOtherMoney);
+	}
+	catch (const std::exception &rcException)
+	{
+		std::cout << rcException.what () << std::endl;
+	}
+
+	return Money (rcMoney.mAmount + rcOtherMoney.mAmount, rcMoney.meCurrency);
 }
 //****************************************************************************
 // Function:		operator-
 // 
-// Description: Subtract rcCurrency.mAmount and rcOtherCurrency.mAmount
+// Description: Subtract rcMoney.mAmount and rcOtherMoney.mAmount
 //
-// Paramaters:	rcCurrency			- reference to class object Currency
-//							rcOtherCurrency - reference to other class object Currency
+// Paramaters:	rcMoney			 - reference to class object Currency
+//							rcOtherMoney - reference to other class object Currency
 //
 // Returns:			new Currency object
 //****************************************************************************
-Money operator- (const Money &rcCurrency, const Money &rcOtherCurrency)
+Money operator- (const Money &rcMoney, const Money &rcOtherMoney)
 {
-	return Money (rcCurrency.mAmount - rcOtherCurrency.mAmount);
+	try
+	{
+		rcMoney.throwMismatchException (rcOtherMoney);
+	}
+	catch (const std::exception &rcException)
+	{
+		std::cout << rcException.what () << std::endl;
+	}
+
+	return Money (rcMoney.mAmount - rcOtherMoney.mAmount, rcMoney.meCurrency);
 }
 //****************************************************************************
 // Function:		operator+=
 // 
-// Description: Add rcCurrency.mAmount and rcOtherCurrency.mAmount
+// Description: Add rcMoney.mAmount and rcOtherMoney.mAmount
 //
-// Paramaters:	rcCurrency		  - reference to class object Currency
-//							rcOtherCurrency - reference to other class object Currency
+// Paramaters:	rcMoney		   - reference to class object Currency
+//							rcOtherMoney - reference to other class object Currency
 //
 // Returns:			new Currency object
 //****************************************************************************
-Money operator+= (const Money &rcCurrency, const Money &rcOtherCurrency)
+Money operator+= (const Money &rcMoney, const Money &rcOtherMoney)
 {
-	return Money (rcCurrency.mAmount + rcOtherCurrency.mAmount);
+	try
+	{
+		rcMoney.throwMismatchException (rcOtherMoney);
+	}
+	catch (const std::exception &rcException)
+	{
+		std::cout << rcException.what () << std::endl;
+	}
+
+	return Money (rcMoney.mAmount + rcOtherMoney.mAmount, rcMoney.meCurrency);
 }
 //****************************************************************************
 // Function:		operator-=
 // 
-// Description: Subtract rcCurrency.mAmount and rcOtherCurrency.mAmount
+// Description: Subtract rcMoney.mAmount and rcOtherMoney.mAmount
 //
-// Paramaters:	rcCurrency			- reference to class object Currency
-//							rcOtherCurrency - reference to other class object Currency
+// Paramaters:	rcMoney			 - reference to class object Currency
+//							rcOtherMoney - reference to other class object Currency
 //
 // Returns:			new Currency object
 //****************************************************************************
-Money operator-= (const Money &rcCurrency, const Money &rcOtherCurrency)
+Money operator-= (const Money &rcMoney, const Money &rcOtherMoney)
 {
-	return Money (rcCurrency.mAmount - rcOtherCurrency.mAmount);
+	try
+	{
+		rcMoney.throwMismatchException (rcOtherMoney);
+	}
+	catch (const std::exception &rcException)
+	{
+		std::cout << rcException.what () << std::endl;
+	}
+
+	return Money (rcMoney.mAmount - rcOtherMoney.mAmount, rcMoney.meCurrency);
 }
 //****************************************************************************
 // Function:		operator<
 // 
-// Description: Compares rcCurrency and rcOtherCurrency
+// Description: Compares rcMoney and rcOtherMoney
 //
-// Paramaters:	rcCurrency			- reference to class Currency object
-//							rcOtherCurrency - reference to other class Currency object
+// Paramaters:	rcMoney			 - reference to class Currency object
+//							rcOtherMoney - reference to other class Currency object
 //
 // Returns:			true if cOtherCurrency, false otherwise
 //****************************************************************************
-bool operator< (const Money &rcCurrency, const Money &rcOtherCurrency)
+bool operator< (const Money &rcMoney, const Money &rcOtherMoney)
 {
-	return rcCurrency.mAmount < rcOtherCurrency.mAmount;
+	try
+	{
+		rcMoney.throwMismatchException (rcOtherMoney);
+	}
+	catch (const std::exception &rcException)
+	{
+		std::cout << rcException.what () << std::endl;
+	}
+
+	return rcMoney.mAmount < rcOtherMoney.mAmount;
 }
 //****************************************************************************
 // Function:		operator>
 // 
-// Description: Compares rcCurrency and rcOtherCurrency
+// Description: Compares rcMoney and rcOtherMoney
 //
-// Paramaters:	rcCurrency			- reference to class Currency object
-//							rcOtherCurrency - reference to other class Currency object
+// Paramaters:	rcMoney			 - reference to class Currency object
+//							rcOtherMoney - reference to other class Currency object
 //
 // Returns:			true if cOtherCurrency, false otherwise
 //****************************************************************************
-bool operator> (const Money &rcCurrency, const Money &rcOtherCurrency)
+bool operator> (const Money &rcMoney, const Money &rcOtherMoney)
 {
-	return rcCurrency.mAmount > rcOtherCurrency.mAmount;
+	try
+	{
+		rcMoney.throwMismatchException (rcOtherMoney);
+	}
+	catch (const std::exception &rcException)
+	{
+		std::cout << rcException.what () << std::endl;
+	}
+
+	return rcMoney.mAmount > rcOtherMoney.mAmount;
+}
+//****************************************************************************
+// Function:		throwMismatchException
+// 
+// Description: throws a currency mismatch error if currencies don't match
+//
+// Paramaters:	rcMoney - reference to class Money object
+//
+// Returns:			None
+//****************************************************************************
+void Money::throwMismatchException (const Money &rcMoney) const
+{
+	if (rcMoney.meCurrency != meCurrency)
+	{
+		throw CurrencyMismatchException ();
+	}
 }
