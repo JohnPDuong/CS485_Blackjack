@@ -409,7 +409,14 @@ std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
 
   for (Card card : cCards)
   {
-    cardStrs.push_back(toString(card));
+    if(!card.isFaceUp()){
+      card.flip();
+      cardStrs.push_back(toString(card));
+      card.flip();
+    }
+    else{
+      cardStrs.push_back(toString(card));
+    }
   }
 
   return cardStrs;
