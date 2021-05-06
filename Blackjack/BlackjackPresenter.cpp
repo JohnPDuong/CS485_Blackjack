@@ -159,10 +159,7 @@ std::vector<std::string> BlackjackPresenter::getCurrentPlayerHand()
 //***************************************************************************
 std::vector<std::vector<std::string>> BlackjackPresenter::getOpponentCards()
 {
-	std::vector<std::vector<std::string>> cards; // TEMPORARY
-
-	//return mcModel.getOpponentCards();
-	return cards; // TEMPORARY
+	return mcModel.getOpponentCards();
 }
 //***************************************************************************
 // Function:

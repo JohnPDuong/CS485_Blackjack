@@ -85,6 +85,8 @@ void BlackjackTextUI::printHeader()
 
 void BlackjackTextUI::printGameState()
 {
+	std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
+
 	// Print your bank
 	std::cout << "Chips available: " << mpcPresenter->getBalance() << std::endl;
 
@@ -100,7 +102,11 @@ void BlackjackTextUI::printGameState()
 	for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
 	{
 		std::cout << "Opponent " << i + 1 << "cards: ";
-		// TODO: print opponent cards using getOpponentCards in model
+		for (std::string card : cards[i])
+		{
+			std::cout << card << " ";
+		}
+		std::cout << std::endl;
 	}
 }
 
