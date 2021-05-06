@@ -47,33 +47,12 @@ bool CardCounterAI::determineMove(Hand& cCurrentHand,
   }
   mcCardsSeenThisRound = cTableCards;
   
-  
   estimatedNumDecks = estimateNumDecks();
+  evalCards(numGoodCard, numBadCard, estimatedNumDecks,
+            21 - cCurrentHand.getHandValue());
   //Estimate the number of cards that are good and the number that are bad
   //(will cause bust) assuming estimated num decks is correct.
-  for(int i = 0; i < 13; i++){
-    if(i <= 21 - cCurrentHand.getHandValue() && i <= unhashValue(Value::Ten)){
-      numGoodCard += estimatedNumDecks -
-                  (mTotalCardsFoundOfEachType[0][i]
-                  + mTotalCardsFoundOfEachType[1][i]
-                  + mTotalCardsFoundOfEachType[2][i]
-                  + mTotalCardsFoundOfEachType[3][i]);
-    }
-    else if(unhashValue(Value::Ten) <= 21 - cCurrentHand.getHandValue()){
-      numGoodCard += estimatedNumDecks -
-                  (mTotalCardsFoundOfEachType[0][i]
-                  + mTotalCardsFoundOfEachType[1][i]
-                  + mTotalCardsFoundOfEachType[2][i]
-                  + mTotalCardsFoundOfEachType[3][i]);
-    }
-    else{
-      numBadCard += estimatedNumDecks -
-                  (mTotalCardsFoundOfEachType[0][i]
-                  + mTotalCardsFoundOfEachType[1][i]
-                  + mTotalCardsFoundOfEachType[2][i]
-                  + mTotalCardsFoundOfEachType[3][i]);
-    }
-  }
+  
   
   //If more helpful cards than bad ones, draw, otherwise don't.
   if(numGoodCard > numBadCard){
@@ -87,7 +66,14 @@ bool CardCounterAI::determineMove(Hand& cCurrentHand,
 }
 
 bool CardCounterAI::determineBet(Player& player, Money& bet){
-  bet.setAmount(player.getBank().getAmount()/5);
+  int numGood = 0;
+  int numBad = 0;
+  int numDecks = estimateNumDecks();
+  
+  evalCards(numGood, numBad, numDecks);
+  
+  bet.setAmount(((numGood-numBad)/(double)numDecks) *
+                player.getBank().getAmount()/100);
   return true;
 }
 
@@ -98,6 +84,32 @@ bool CardCounterAI::isHuman() {
 bool CardCounterAI::isEqual(Card &cCard1, Card &cCard2){
   return cCard1.getSuit() == cCard2.getSuit()
          && cCard1.getValue() == cCard2.getValue();
+}
+
+void CardCounterAI::evalCards(int &numGoodCards, int &numBadCards, int estimatedNumDecks, int refVal){
+  for(int i = 0; i < 13; i++){
+    if(i <= refVal && i <= unhashValue(Value::Ten)){
+      numGoodCards += estimatedNumDecks -
+                  (mTotalCardsFoundOfEachType[0][i]
+                  + mTotalCardsFoundOfEachType[1][i]
+                  + mTotalCardsFoundOfEachType[2][i]
+                  + mTotalCardsFoundOfEachType[3][i]);
+    }
+    else if(unhashValue(Value::Ten) <= refVal){
+      numGoodCards += estimatedNumDecks -
+                  (mTotalCardsFoundOfEachType[0][i]
+                  + mTotalCardsFoundOfEachType[1][i]
+                  + mTotalCardsFoundOfEachType[2][i]
+                  + mTotalCardsFoundOfEachType[3][i]);
+    }
+    else{
+      numBadCards += estimatedNumDecks -
+                  (mTotalCardsFoundOfEachType[0][i]
+                  + mTotalCardsFoundOfEachType[1][i]
+                  + mTotalCardsFoundOfEachType[2][i]
+                  + mTotalCardsFoundOfEachType[3][i]);
+    }
+  }
 }
 
 int CardCounterAI::unhashSuit(Suit inputSuit){

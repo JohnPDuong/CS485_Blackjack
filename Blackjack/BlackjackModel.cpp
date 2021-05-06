@@ -13,11 +13,14 @@ BlackjackModel::BlackjackModel()
 {
   std::cout << "ctor BlackjackModel";
   mCurrentPlayerIndex = 0;
+  mbRoundDone = false;
 }
 
 BlackjackModel::BlackjackModel(int numPlayers, int numDecks){
+  mCurrentPlayerIndex = 0;
   mcPlayers = std::vector<Player>(numPlayers);
   mpcDeck = std::make_shared<Deck>(numDecks);
+  mbRoundDone = false;
 }
 
 BlackjackModel::~BlackjackModel(){
@@ -30,6 +33,7 @@ bool BlackjackModel::newGame(){
       return false;
     }
   }
+  mbRoundDone = false;
   mpcDeck->fillShuffle();
   return true;
 }
@@ -54,16 +58,19 @@ bool BlackjackModel::isBust(int playerIndex){
 }
 
 void BlackjackModel::initialDeal(){
-  
   mpcDeck->shuffle();
   for(int i = 0; i < getNumPlayers(); i++){
     mcPlayers.at(i).receiveCard(mpcDeck->draw());
   }
+  mcDealerHand.addCard(mpcDeck->draw());
+  Card cTemp = mpcDeck->draw();
   for(int i = 0; i < getNumPlayers(); i++){
-    Card cTemp = mpcDeck->draw();
     cTemp.flip();
     mcPlayers.at(i).receiveCard(cTemp);
+    cTemp = mpcDeck->draw();
   }
+  cTemp.flip();
+  mcDealerHand.addCard(cTemp);
 }
 
 bool BlackjackModel::isHuman(){
@@ -76,7 +83,12 @@ bool BlackjackModel::isHuman(int index){
 }
 
 bool BlackjackModel::isBetTime(){
-  return true;
+  for(int i = 0; i < getNumPlayers(); i++){
+    if(mcPlayers.at(i).getBet().getAmount() == -1){
+      return true;
+    }
+  }
+  return false;
 }
 
 void BlackjackModel::moveDealer(){
@@ -86,6 +98,9 @@ void BlackjackModel::moveDealer(){
   //about run time minor efficiency opportunity here.
   mcDealerBrain.determineMove(mcDealerHand, cDealerMove, cFaceUpCards);
   cDealerMove->execute(*mpcDeck, mcDealerHand);
+  if(cDealerMove->moveName() == "Stand"){
+    mbRoundDone = true;
+  }
 }
 
 void BlackjackModel::makeMove(){
@@ -96,9 +111,26 @@ void BlackjackModel::makeMove(){
   incrementPlayer();
 }
 
-void BlackjackModel::nextRound() // Julian made this
+std::vector<Status> BlackjackModel::nextRound() // Julian made this
 {
-
+  std::vector<Status> results;
+  
+  if(!mbRoundDone){
+    return results;
+  }
+  
+  for(int i = 0; i < getNumPlayers(); i++){
+    results.push_back(resultCurrentPlayer());
+    incrementPlayer();
+  }
+  
+  for(int i = 0; i < getNumPlayers(); i++){
+    mcPlayers.at(i).endRound();
+  }
+  mbRoundDone = false;
+  mbBetReady = true;
+  
+  return results;
 }
 
 bool BlackjackModel::makeBet(Money cBet){
@@ -107,34 +139,34 @@ bool BlackjackModel::makeBet(Money cBet){
 
 void BlackjackModel::stand(){
   bool bSuccess = false;
-  if(true){
+  if(isHuman()){
     std::shared_ptr<IMove> pcMove = std::make_shared<Stand>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
+    incrementPlayer();
   }
-  incrementPlayer();
   return;
 }
 
 bool BlackjackModel::split(){
   bool bSuccess = false;
-  if(true){
+  if(isHuman()){
     std::shared_ptr<IMove> pcMove = std::make_shared<Split>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
+    incrementPlayer();
   }
-  incrementPlayer();
   return bSuccess;
 }
 
 void BlackjackModel::drawCard(){
   bool bSuccess = false;
-  if(true){
+  if(isHuman()){
     std::shared_ptr<IMove> pcMove = std::make_shared<Draw>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
+    incrementPlayer();
   }
-  incrementPlayer();
   return;
 }
 
@@ -181,7 +213,7 @@ std::vector<std::vector<std::string>> BlackjackModel::getOpponentCards(){
   std::vector<std::vector<Card>> cCardHands;
   
   //get hands
-  for(int i = 0; i < getNumPlayers(); i++){
+  for(int i = getNextPlayer(mCurrentPlayerIndex); i != mCurrentPlayerIndex; i = getNextPlayer(i)){
     for(int j = 0; j < mcPlayers.at(i).getNumHands(); j++){
       cCardHands.at(i).insert(cCardHands.at(i).begin(),
                             mcPlayers.at(i).getHands().at(j).getHand().begin(),
@@ -381,9 +413,22 @@ Status BlackjackModel::resultCurrentPlayer()
 }
 
 void BlackjackModel::incrementPlayer() {
-  mCurrentPlayerIndex++;
-  if (mCurrentPlayerIndex >= mcPlayers.size()) {
+  mCurrentPlayerIndex = getNextPlayer();
+  if (mCurrentPlayerIndex == 0) {
       moveDealer();
-      mCurrentPlayerIndex = 0;
+  }
+}
+
+
+int BlackjackModel::getNextPlayer(){
+  return getNextPlayer(mCurrentPlayerIndex);
+}
+
+int BlackjackModel::getNextPlayer(int currentPlayer){
+  if(++currentPlayer >= getNumPlayers()){
+    return 0;
+  }
+  else{
+    return currentPlayer;
   }
 }

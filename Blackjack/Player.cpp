@@ -50,7 +50,7 @@ bool Player::isHuman(){
 }
 
 bool Player::trySplit(){
-  if (canSplit)
+  if (canSplit())
   {
     mbSplittable = false; // can no longer split after splitting
   }
@@ -120,8 +120,10 @@ bool Player::canSplit()
     return mbSplittable;
 }
 
-void Player::clearHands(){
+void Player::endRound(){
   for(int i = 0; i < getNumHands(); i++){
-    //clear hand;
+    mcHands.pop_back();
   }
+  mcHands.push_back(Hand());
+  mcBet = Money(-1, mcBank.getCurrency());
 }

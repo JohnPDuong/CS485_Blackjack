@@ -8,6 +8,7 @@
 //****************************************************************************
 #include "CurrencyMismatchException.h"
 #include <iostream>
+#include <cstring>
 
 //****************************************************************************
 // Constructor: CurrencyMismatchException
@@ -96,7 +97,7 @@ CurrencyMismatchException
 //
 // Returns:			Error message
 //****************************************************************************
-const char *CurrencyMismatchException::what() const
+const char *CurrencyMismatchException::what() const noexcept
 {
   return mpszMessage;
 }
