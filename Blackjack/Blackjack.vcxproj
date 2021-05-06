@@ -58,9 +58,7 @@
     <ClCompile Include="DealerAI.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="Draw.cpp" />
-    <ClCompile Include="driver.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="driver.cpp" />
     <ClCompile Include="DrunkAI.cpp" />
     <ClCompile Include="Hand.cpp" />
     <ClCompile Include="HumanMoveStrategy.cpp" />
