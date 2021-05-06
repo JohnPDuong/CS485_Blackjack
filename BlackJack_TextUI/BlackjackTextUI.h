@@ -22,13 +22,15 @@ public:
 
   virtual void render();
 
-  // TextUI specific functions
+  // TextUI specific functions for Julian
   void printWelcome();
   void printHeader();
   void printGameState();
+  void printPlayerCards();
+
   void onGameStartup();
   void playGame(); 
-
+  bool canSplit();
 
 private:
   IBlackjackPresenter* mpcPresenter;
