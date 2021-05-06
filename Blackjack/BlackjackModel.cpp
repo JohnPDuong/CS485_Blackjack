@@ -119,16 +119,24 @@ std::vector<Status> BlackjackModel::nextRound() // Julian made this
     return results;
   }
   
-  for(int i = 0; i < getNumPlayers(); i++){
-    results.push_back(resultCurrentPlayer());
-    incrementPlayer();
-  }
+  results = result();
   
   for(int i = 0; i < getNumPlayers(); i++){
     mcPlayers.at(i).endRound();
   }
   mbRoundDone = false;
   mbBetReady = true;
+  
+  return results;
+}
+
+std::vector<Status> BlackjackModel::result(){
+  std::vector<Status> results;
+  
+  for(int i = 0; i < getNumPlayers(); i++){
+    results.push_back(resultCurrentPlayer());
+    mCurrentPlayerIndex = getNextPlayer();
+  }
   
   return results;
 }

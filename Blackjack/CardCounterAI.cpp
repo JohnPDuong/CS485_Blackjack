@@ -31,10 +31,10 @@ bool CardCounterAI::determineMove(Hand& cCurrentHand,
   if(mcCardsSeenThisRound.size() != 0){
   
     //Iterate through faceup cards and add any new ones to the count.
-    //(Best method possible with our current setup. Will mess up if two
-    //identical cards are in a row (can't identify the new one). We currently
-    //can't tell apart face/10s because enum has same value. Slightly inaccurate
-    //Because does not count current player's face down cards.
+    //(Best method possible with our current setup. May mess up if two
+    //identical cards are in a row (can't identify the new one?). It might
+    //catch the second though and be good enough. Small enough edgecase that
+    //it's probably ok to miss it.)
     int j = 0;
     for(int i = 0; i < cTableCards.size();){
       if(!isEqual(cTableCards.at(i), mcCardsSeenThisRound.at(j))){
@@ -86,7 +86,8 @@ bool CardCounterAI::isEqual(Card &cCard1, Card &cCard2){
          && cCard1.getValue() == cCard2.getValue();
 }
 
-void CardCounterAI::evalCards(int &numGoodCards, int &numBadCards, int estimatedNumDecks, int refVal){
+void CardCounterAI::evalCards(int &numGoodCards, int &numBadCards,
+                              int estimatedNumDecks, int refVal){
   for(int i = 0; i < 13; i++){
     if(i <= refVal && i <= unhashValue(Value::Ten)){
       numGoodCards += estimatedNumDecks -
@@ -149,15 +150,12 @@ int CardCounterAI::unhashValue(Value inputValue){
       return 8;
     case Value::Ten:
       return 9;
-      //Commented out because repeat vals
-      /*
     case Value::Jack:
       return 10;
     case Value::Queen:
       return 11;
     case Value::King:
       return 12;
-      */
     case Value::Count:
       return -1; //This should never happen.
   }
@@ -167,10 +165,7 @@ int CardCounterAI::estimateNumDecks(){
   int estimatedNumDecks = 0;
   for(int i = 0; i < 13; i++){
     for(int j = 0; j < 4; j++){
-      //Extra line of the if because can't tell face/10s apart.
-      if(mTotalCardsFoundOfEachType[j][i] > estimatedNumDecks &&
-         (Value::Ten != Value::Jack || mTotalCardsFoundOfEachType[j][i]/4
-          > estimatedNumDecks)){
+      if(mTotalCardsFoundOfEachType[j][i] > estimatedNumDecks){
         estimatedNumDecks = mTotalCardsFoundOfEachType[j][i];
       }
     }

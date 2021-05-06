@@ -41,6 +41,7 @@ public:
   void moveDealer();
   void makeMove();
   std::vector<Status> nextRound(); // Dear Kitt, I added this for the presenter. Sincerely, Julian
+  std::vector<Status> result();
   
   bool makeBet(Money cBet = Money());
   void stand();
