@@ -218,13 +218,13 @@ void BlackjackModel::makeMove(){
 //***************************************************************************
 // Function:    nextRound
 //
-// Description: 
+// Description: Adds a status of all players to vector and returns it
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			vector of Status enums
 //***************************************************************************
-std::vector<Status> BlackjackModel::nextRound() // Julian made this
+std::vector<Status> BlackjackModel::nextRound()
 {
   std::vector<Status> results;
   
@@ -245,13 +245,13 @@ std::vector<Status> BlackjackModel::nextRound() // Julian made this
   return results;
 }
 //***************************************************************************
-// Function:
+// Function:    result
 //
-// Description: 
+// Description: Adds a status of all players to vector and returns it
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			vector of Status enums		
 //***************************************************************************
 std::vector<Status> BlackjackModel::result(){
   std::vector<Status> results;
@@ -264,13 +264,13 @@ std::vector<Status> BlackjackModel::result(){
   return results;
 }
 //***************************************************************************
-// Function:
+// Function:    makeBet
 //
-// Description: 
+// Description: Takes a bet from the player
 //
-// Parameters:  
+// Parameters:  cBet - a money object with the amount
 //
-// Return:			
+// Return:			true if bet is made, false otherwise
 //***************************************************************************
 bool BlackjackModel::makeBet(Money cBet){
   return mcPlayers.at(mCurrentPlayerIndex).makeBet(cBet);
