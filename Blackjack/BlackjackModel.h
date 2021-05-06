@@ -28,7 +28,8 @@ public:
 
   
   bool newGame();
-  bool newGame(int numDecks);
+  bool newGame(int numPlayers);
+  bool newGame(int numPlayers, int numDecks);
   
   bool isBust();
   bool isBust(int playerIndex);
