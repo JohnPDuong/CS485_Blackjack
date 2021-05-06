@@ -49,7 +49,7 @@ void BlackjackPresenter::endGame()
 
 Status BlackjackPresenter::result()
 {
-	return mcModel.result();
+	return mcModel.resultCurrentPlayer();
 }
 
 long long BlackjackPresenter::getBalance()
