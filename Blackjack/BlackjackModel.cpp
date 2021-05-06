@@ -21,6 +21,9 @@ BlackjackModel::~BlackjackModel(){
 }
 
 bool BlackjackModel::newGame(){
+  if(getNumPlayers() == 0){
+    return false;
+  }
   for(int i = 0; i < getNumPlayers(); i++){
     if(!mcPlayers.at(i).readyToStart()){
       return false;
