@@ -25,6 +25,8 @@ public:
 
 	virtual void nextRound ();
 	virtual void endGame ();
+	virtual std::vector<Status> endRound();
+	virtual bool roundOngoing();
 	virtual Status result ();
 	//virtual void addBalance(long long amount) = 0;
 	virtual long long getBalance ();

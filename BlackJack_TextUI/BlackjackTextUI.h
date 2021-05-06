@@ -32,5 +32,6 @@ public:
   void playGame(); 
 
 private:
+  virtual void printEndScreen();
   IBlackjackPresenter* mpcPresenter;
 };

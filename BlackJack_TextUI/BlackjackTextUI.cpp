@@ -181,10 +181,8 @@ void BlackjackTextUI::playGame()
 		} while (!mpcPresenter->bet(betAmount));
 		mpcPresenter->doCPUBets();
 
-		printGameState();
-
 		// Prints the move options if the human's turn is still going
-		while (/*move != STAND &&*/ mpcPresenter->result() != Status::Bust && move != QUIT)
+		while (/*move != STAND &&*/ mpcPresenter->roundOngoing() && move != QUIT)
 		{
 			mpcPresenter->doCPUMoves();
 
@@ -192,16 +190,16 @@ void BlackjackTextUI::playGame()
 			printHeader();
 			printGameState();
 
-			move = SPLIT;
-			std::cout << "OPTIONS: \n(1) Stand \n(2) Draw\n";
-			if (mpcPresenter->canSplit())
-			{
-				std::cout << "(3) Split\n";
-			}
-			std::cout << "(4) Quit\n";
+      if (move != STAND)
+      {
+        move = SPLIT;
+        std::cout << "OPTIONS: \n(1) Stand \n(2) Draw\n";
+        if (mpcPresenter->canSplit())
+        {
+          std::cout << "(3) Split\n";
+        }
+        std::cout << "(4) Quit\n";
 
-			if (move != STAND)
-			{
 				do
 				{
 					std::cout << "Enter your move: ";
@@ -227,10 +225,11 @@ void BlackjackTextUI::playGame()
 				bKeepPlaying = STOP_PLAYING;
 				break;
 			}
-
+      turns++;
 		}
-
-
-		turns++;
+    
+    
+    
+    
 	}
 }
