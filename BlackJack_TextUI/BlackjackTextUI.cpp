@@ -353,6 +353,7 @@ void BlackjackTextUI::playGame()
 	const std::vector<std::string> EMPTY_HAND;
 
 	bool bKeepPlaying = true;
+  bool bDidSplit = false;
 	long long betAmount = -1;
 	int turns = 0;
 	int move;
@@ -386,7 +387,6 @@ void BlackjackTextUI::playGame()
 			// Prints the move options if the human's turn is still going
 			while (/*move != STAND &&*/ mpcPresenter->roundOngoing() && move != QUIT)
 			{
-				mpcPresenter->doCPUMoves();
         system("cls");
         printHeader();
         printGameState();
@@ -435,6 +435,9 @@ void BlackjackTextUI::playGame()
 					bKeepPlaying = STOP_PLAYING;
 					break;
 				}
+        if(bDidSplit){
+          move = SPLIT;
+        }
         
 				turns++;
 			}

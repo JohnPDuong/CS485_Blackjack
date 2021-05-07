@@ -89,6 +89,8 @@ public:
   int getCurrentPlayer ();
   bool doneWithTurn();
 
+  std::string toStrMoney(long long amount);
+
 private:
   void incrementPlayer();
   int getNextPlayer();

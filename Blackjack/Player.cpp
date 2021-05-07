@@ -151,8 +151,7 @@ bool Player::trySplit(){
     mbSplittable = false; // can no longer split after splitting
   }
   mcHands.push_back(Hand());
-  ++mCurrentHand;
-  mcHands.at(mCurrentHand).addCard(mcHands.at(mCurrentHand - 1).split());
+  mcHands.at(mCurrentHand + 1).addCard(mcHands.at(mCurrentHand).split());
   //Need a split in hand.
   return true;
 }
@@ -175,6 +174,7 @@ void Player::clearHand()
   }
   
   mcHands = std::vector<Hand>(1);
+  mCurrentHand = 0;
 }
 
 //***************************************************************************
@@ -388,14 +388,14 @@ void Player::endRound(int dealerVal){
 
     if (sum == (int) Status::Blackjack)
     {
-      mcBank = mcBank + mcBet * 1.5;
+      mcBank.setAmount(mcBank.getAmount() + mcBet.getAmount() * 1.5);
     }
     else if ((sum > dealerVal || dealerVal > (int)Status::Blackjack) && sum < (int) Status::Blackjack)
     {
-      mcBank = mcBank + mcBet;
+      mcBank.setAmount (mcBank.getAmount() + mcBet.getAmount());
     }
     else{
-      mcBank = mcBank - mcBet;
+      mcBank.setAmount (mcBank.getAmount() - mcBet.getAmount());
     }
   }
   
