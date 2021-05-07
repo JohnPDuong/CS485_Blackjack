@@ -86,6 +86,7 @@ void BlackjackTextUI::printHeader()
 void BlackjackTextUI::printGameState()
 {
 	std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
+	std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
 	std::cout << std::endl;
 
 	// print opponents cards
@@ -100,6 +101,14 @@ void BlackjackTextUI::printGameState()
 	}
 	std::cout << std::endl;
 
+	// Print Dealer cards
+	std::cout << "Dealer cards: ";
+	for (std::string card : dealerCards)
+	{
+		std::cout << card << " ";
+	}
+	std::cout << std::endl << std::endl;
+
 	// Print your bank
 	std::cout << "Chips available: " << mpcPresenter->getBalance() << std::endl;
 }
@@ -111,7 +120,7 @@ void BlackjackTextUI::printPlayerCards()
 	{
 		std::cout << str << " ";
 	}
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 }
 
 void BlackjackTextUI::onGameStartup()
@@ -152,13 +161,6 @@ void BlackjackTextUI::playGame()
 	while (bKeepPlaying)
 	{
 		move = -1;
-		// Do CPU Moves
-		/*
-		while (!mpcPresenter->isHuman())
-		{
-			mpcPresenter->makeMove();
-		}*/
-		//mpcPresenter->doCPUMoves();
 
 		// Print state of the game and options
 		system("cls");
@@ -191,7 +193,7 @@ void BlackjackTextUI::playGame()
 			{
 				std::cout << str << " ";
 			}
-			std::cout << std::endl;
+			std::cout << std::endl << std::endl;
 			
 			// Sets the move to stand automatically if bust
 			if (Status::Bust == mpcPresenter->result())
@@ -250,24 +252,26 @@ void BlackjackTextUI::printEndRoundScreen(){
 	std::vector<std::string> hand = mpcPresenter->getCurrentPlayerHand();
   std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
 	int numPlayers = mpcPresenter->getNumPlayers();
+	std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
 
   std::vector<Status> endStatuses = mpcPresenter->endRound();
 
 	long long balance = mpcPresenter->getBalance();
 
+	system("cls");
+	printHeader();
+	std::cout << "\nRound results:\n\n";
 
   // Print your bank
-  std::cout << "Chips available: " << balance << std::endl;
+  std::cout << "Chips: " << balance << std::endl;
 
   // Print your cards
   std::cout << "Your cards: ";
   for (std::string str : hand)
   {
     std::cout << str << " ";
-  }
-  std::cout << std::endl << "Round Result: ";
-  
-  std::cout << std::endl;
+  }  
+  std::cout << std::endl << std::endl;
 
   // print opponents cards
   for (int i = 0; i < numPlayers - 1; i++)
@@ -277,11 +281,18 @@ void BlackjackTextUI::printEndRoundScreen(){
     {
       std::cout << card << " ";
     }
-		//std::cout <<
     std::cout << std::endl;
   }
+	std::cout << std::endl;
 
-	std::cout << "Enter anything to continue: ";
+	// Print Dealer cards
+	std::cout << "Dealer cards: ";
+	for (std::string card : dealerCards)
+	{
+		std::cout << card << " ";
+	}
+	std::cout << std::endl;
+
+	std::cout << "\nEnter literally anything to continue: ";
 	std::cin >> something;
-
 }
