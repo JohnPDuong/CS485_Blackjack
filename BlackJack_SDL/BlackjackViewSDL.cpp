@@ -63,6 +63,7 @@ mcConfirmBets("Confirm Bets", "", 10, 10, 1, {255, 255, 255, 255})
   mcEndGameButton.setEditable(false);
   mcNextRound.setEditable(false);
   mcSetPlayer.setEditable(false);
+  mcConfirmBets.setVisible(false);
 
   enableTextInput();
 
@@ -77,6 +78,7 @@ mcConfirmBets("Confirm Bets", "", 10, 10, 1, {255, 255, 255, 255})
   registerClickableWidget((ISDLWidgetClickable*)&mcEndGameButton);
   registerClickableWidget((ISDLWidgetClickable*)&mcNextRound);
   registerClickableWidget((ISDLWidgetClickable*)&mcSetPlayer);
+  registerClickableWidget((ISDLWidgetClickable*)&mcConfirmBets);
 
   mcDrawableWidget.push_back(&mcBetButton);
   mcDrawableWidget.push_back(&mcNumPlayersInput);
@@ -89,6 +91,7 @@ mcConfirmBets("Confirm Bets", "", 10, 10, 1, {255, 255, 255, 255})
   mcDrawableWidget.push_back(&mcSetPlayer);
   mcDrawableWidget.push_back(&mcSplitButton);
   mcDrawableWidget.push_back(&mcPlayerBalanceInput);
+  mcDrawableWidget.push_back(&mcConfirmBets);
 }
 
 //***************************************************************************
@@ -148,6 +151,8 @@ void BlackjackViewSDL::newGame (int numPlayers)
     (&BlackjackViewSDL::doNothing, this));
 
   mpcPresenter->newGame();
+
+  betScreen();
 }
 
 //***************************************************************************
@@ -277,6 +282,7 @@ void BlackjackViewSDL::betScreen ()
   mcConfirmBets.registerClickEventHandler
     (std::bind
     (&BlackjackViewSDL::onConfirnBets, this));
+  mcConfirmBets.setVisible(true);
 }
 
 //***************************************************************************
