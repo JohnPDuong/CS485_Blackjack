@@ -321,6 +321,10 @@ bool BlackjackPresenter::isHuman()
 {
 	return mcModel.isHuman();
 }
+bool BlackjackPresenter::isHuman(int index)
+{
+	return mcModel.isHuman(index);
+}
 //***************************************************************************
 // Function:
 //
