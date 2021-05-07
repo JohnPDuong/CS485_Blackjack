@@ -33,12 +33,15 @@ class PlayerView : public ISDLWidget {
 
     void setName(std::string name) { mcNameDisplay.setData(name); };
     void setMoney(std::string amount) { mcMoneyDisplay.setData(amount); };
+    void setBetDisplay(std::string amount) { mcBetDisplay.setData(amount); };
+    void setBetVisible(bool visible) { mcBetDisplay.setVisible(visible); };
 
     void makeDealer() { setName("Dealer"); mcMoneyDisplay.setVisible(false); };
 
   private:
     SDLTextWidget mcNameDisplay;
     SDLTextWidget mcMoneyDisplay;
+    SDLTextWidget mcBetDisplay;
     std::vector<CardViewSDL> mcCards;
     std::vector<CardViewSDL> mcSplitHand;
     int mX, mY; // need to store these so we can spawn cards in the right place

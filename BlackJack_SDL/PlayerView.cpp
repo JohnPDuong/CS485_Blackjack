@@ -52,7 +52,12 @@ PlayerView::~PlayerView ()
 void PlayerView::draw (SDLApp& app)
 {
   mcNameDisplay.draw(app);
-  mcMoneyDisplay.draw(app);
+  if (mcMoneyDisplay.isVisible ()) {
+    mcMoneyDisplay.draw (app);
+  }
+  if (mcBetDisplay.isVisible ()) {
+    mcBetDisplay.draw (app);
+  }
   for (std::vector<CardViewSDL>::iterator it = mcCards.begin(); it != mcCards.end(); it++)
     it->draw(app);
   for (std::vector<CardViewSDL>::iterator it = mcSplitHand.begin(); it != mcSplitHand.end(); it++)
