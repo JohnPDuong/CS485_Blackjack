@@ -12,6 +12,15 @@
 #include "Stand.h"
 #include "Split.h"
 
+//***************************************************************************
+// Constructor: CardCounterAI
+//
+// Description: Initializes member variables
+//
+// Parameters:  None
+//
+// Return:			None
+//***************************************************************************
 CardCounterAI::CardCounterAI(){
   for(int i = 0; i < 13; i++){
     for(int j = 0; j < 4; j++){
@@ -20,7 +29,18 @@ CardCounterAI::CardCounterAI(){
   }
 }
 
-
+//***************************************************************************
+// Function:    determineMove
+//
+// Description: determines what move the AI should make
+//
+// Parameters:  cCurrentHand  - the AI's current hand
+//              pcCurrentMove - the move object that is being generated
+//              cTableCards   - the cards on the table
+//
+// Return:			true if the AI was able to successfully determine a move,
+//              otherwise false
+//***************************************************************************
 bool CardCounterAI::determineMove(Hand& cCurrentHand,
                                   std::shared_ptr<IMove>& pcCurrentMove,
                                   std::vector<Card>& cTableCards){
@@ -72,6 +92,16 @@ bool CardCounterAI::determineMove(Hand& cCurrentHand,
   return true;
 }
 
+//***************************************************************************
+// Function:    determineBet
+//
+// Description: determines how much money the AI should bet
+//
+// Parameters:  player - the player whose move strategy this is
+//              bet    - the bet that will be set
+//
+// Return:			true
+//***************************************************************************
 bool CardCounterAI::determineBet(Player& player, Money& bet){
   int numGood = 0;
   int numBad = 0;
@@ -84,15 +114,46 @@ bool CardCounterAI::determineBet(Player& player, Money& bet){
   return true;
 }
 
+//***************************************************************************
+// Function:    isHuman
+//
+// Description: determines whether the player is human
+//
+// Parameters:  None
+//
+// Return:			false
+//***************************************************************************
 bool CardCounterAI::isHuman() {
   return false; //IComputerMoveStrategy::isHuman();
 }
 
+//***************************************************************************
+// Function:    isEqual
+//
+// Description: determines if two cards are equal
+//
+// Parameters:  cCard1 - the first card
+//              cCard2 - the second card
+//
+// Return:			true if the cards are the same, otherwise false
+//***************************************************************************
 bool CardCounterAI::isEqual(Card &cCard1, Card &cCard2){
   return cCard1.getSuit() == cCard2.getSuit()
          && cCard1.getValue() == cCard2.getValue();
 }
 
+//***************************************************************************
+// Function:    evalCards
+//
+// Description: determines the ratio of good cards to bad cards
+//
+// Parameters:  numGoodCards      - the number of good cards
+//              numBadCards       - the number of bad cards
+//              estimatedNumDecks - the number of decks the AI thinks there are
+//              refVal            - the maximum value of a good card
+//
+// Return:			None
+//***************************************************************************
 void CardCounterAI::evalCards(int &numGoodCards, int &numBadCards,
                               int estimatedNumDecks, int refVal){
   for(int i = 0; i < 13; i++){
@@ -120,6 +181,15 @@ void CardCounterAI::evalCards(int &numGoodCards, int &numBadCards,
   }
 }
 
+//***************************************************************************
+// Function:    unhashSuit
+//
+// Description: turns the suit into an index for an array
+//
+// Parameters:  inputSuit - the suit to be unhashed
+//
+// Return:			the unhashed suit
+//***************************************************************************
 int CardCounterAI::unhashSuit(Suit inputSuit){
   switch(inputSuit){
     case Suit::Clubs:
@@ -135,6 +205,15 @@ int CardCounterAI::unhashSuit(Suit inputSuit){
   }
 }
 
+//***************************************************************************
+// Function:    unhashValue
+//
+// Description: turns the valuye into an index for an array
+//
+// Parameters:  inputValue - the value to be unhashed
+//
+// Return:			the unhashed value
+//***************************************************************************
 int CardCounterAI::unhashValue(Value inputValue){
   switch(inputValue){
     case Value::Ace:
@@ -168,6 +247,15 @@ int CardCounterAI::unhashValue(Value inputValue){
   }
 }
 
+//***************************************************************************
+// Function:    estimateNumDecks
+//
+// Description: estimates the number of decks
+//
+// Parameters:  None
+//
+// Return:			the approximate number of decks
+//***************************************************************************
 int CardCounterAI::estimateNumDecks(){
   int estimatedNumDecks = 1;
   for(int i = 0; i < 13; i++){
