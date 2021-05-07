@@ -320,9 +320,11 @@ void BlackjackViewSDL::onStand ()
 //***************************************************************************
 void BlackjackViewSDL::onDrawCard ()
 {
-  if (Status::Bust == mpcPresenter->result())
+  if (Status::Bust != mpcPresenter->result())
   {
     mpcPresenter->draw();
+    std::vector<std::string> cards = mpcPresenter->getCurrentPlayerHand();
+    mcPlayers.at(mpcPresenter->getCurrentPlayer())->addCard(this, cards.at(cards.size()-1), true, true);
   }
 
   if (Status::Bust == mpcPresenter->result())

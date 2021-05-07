@@ -39,7 +39,7 @@ class PlayerView : public ISDLWidget {
 
     std::string getBet() { return mcBetDisplay.getData(); };
 
-    void makeDealer() { setName("Dealer"); mcMoneyDisplay.setVisible(false); };
+    void makeDealer() { setName("Dealer"); mcBetDisplay.setVisible(false); mcMoneyDisplay.setVisible(false); };
 
   private:
     SDLTextWidget mcNameDisplay;
