@@ -33,6 +33,7 @@ public:
 	virtual std::vector<std::string> getCurrentPlayerHand ();
 	virtual std::vector<std::vector<std::string>> getOpponentCards ();
 	virtual std::vector<std::string> getDealerCards ();
+	virtual std::vector<std::string> getAllCurrentPlayerHands();
 	virtual int getNumPlayers ();
 	virtual std::string getName ();
 	virtual void setName (std::string name, int index) override;

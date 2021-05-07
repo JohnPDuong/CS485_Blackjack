@@ -92,6 +92,11 @@ std::vector<std::string> BlackjackPresenterSDL::getDealerCards ()
 	return mcModel.getDealerCards ();
 }
 
+std::vector<std::string> BlackjackPresenterSDL::getAllCurrentPlayerHands()
+{
+	return mcModel.getAllCurrentPlayerHands();
+}
+
 int BlackjackPresenterSDL::getNumPlayers ()
 {
 	return mcModel.getNumPlayers ();
