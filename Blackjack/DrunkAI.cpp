@@ -9,6 +9,15 @@
 
 #include "DrunkAI.h"
 
+//***************************************************************************
+// Constructor: DrunkAI
+//
+// Description: Initializes member variables
+//
+// Parameters:  soberTypeName - the name type of soberness
+//
+// Return:			None
+//***************************************************************************
 DrunkAI::DrunkAI(std::string soberTypeName){
   MoveStrategyFactory cStratFact;
   mpcSoberStrat = cStratFact.makeStrategy(soberTypeName);
@@ -17,6 +26,17 @@ DrunkAI::DrunkAI(std::string soberTypeName){
   }
 }
 
+//***************************************************************************
+// Function:    determineMove
+//
+// Description: cCurrentHand  - the hand
+//              pcCurrentMove - the Current move
+//              cTableCards   - the visible cards to everyone
+//
+// Parameters:  None
+//
+// Return:			if it decides on a move
+//***************************************************************************
 bool DrunkAI::determineMove(Hand &cCurrentHand,
                             std::shared_ptr<IMove>& pcCurrentMove,
                             std::vector<Card> &cTableCards)
@@ -30,6 +50,16 @@ bool DrunkAI::determineMove(Hand &cCurrentHand,
   }
 }
 
+//***************************************************************************
+// Function:    determineBet
+//
+// Description: player - the player
+//              bet    - the amount to bet
+//
+// Parameters:  None
+//
+// Return:			true if a bet was decided on
+//***************************************************************************
 bool DrunkAI::determineBet(Player &player, Money &bet)
 {
   numShots++;
@@ -42,11 +72,29 @@ bool DrunkAI::determineBet(Player &player, Money &bet)
   }
 }
 
+//***************************************************************************
+// Function:    isHuman
+//
+// Description: returns if this is a human (false)
+//
+// Parameters:  None
+//
+// Return:			False - this an AI
+//***************************************************************************
 bool DrunkAI::isHuman()
 {
     return false;
 }
 
+//***************************************************************************
+// Function:    drunkRisk
+//
+// Description: determines if the AI is risky
+//
+// Parameters:  None
+//
+// Return:			True if risky
+//***************************************************************************
 bool DrunkAI::drunkRisk(){
   return rand() % 100 < numShots;
 }
