@@ -39,6 +39,7 @@ public:
 	virtual void setPlayerType (std::string stratType, int index);
 
 	virtual std::string getName(int index);
+	virtual long long getBalance(int index);
 
 	virtual void stand ();
 	virtual bool bet (long long amount);

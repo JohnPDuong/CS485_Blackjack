@@ -69,9 +69,9 @@ BlackjackPresenter::~BlackjackPresenter()
 //
 // Description: calls new game
 //
-// Parameters:  
+// Parameters:  players - number of players
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 void BlackjackPresenter::newGame(int players)
 {
@@ -79,33 +79,33 @@ void BlackjackPresenter::newGame(int players)
 	//mpcView->newGame(players);
 }
 //***************************************************************************
-// Function:
+// Function:		newGame
 //
-// Description: 
+// Description: calls new game
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 void BlackjackPresenter::newGame()
 {
 	mcModel.newGame();
 }
 //***************************************************************************
-// Function:
+// Function:		nextRound
 //
-// Description: 
+// Description: calls next round
 //
-// Parameters:  
+// Parameters:  none
 //
-// Return:			
+// Return:			none
 //***************************************************************************
 void BlackjackPresenter::nextRound()
 {
 	mcModel.nextRound();
 }
 //***************************************************************************
-// Function:
+// Function:		end
 //
 // Description: 
 //
@@ -398,4 +398,9 @@ void BlackjackPresenter::doCPUBets()
 std::string BlackjackPresenter::getName(int index)
 {
 	return mcModel.getName(index);
+}
+
+long long BlackjackPresenter::getBalance(int index)
+{
+	return mcModel.getBalance(index);
 }

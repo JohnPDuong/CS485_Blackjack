@@ -117,6 +117,11 @@ std::string BlackjackPresenterSDL::getName(int index)
 	return mcModel.getName(index);
 }
 
+long long BlackjackPresenterSDL::getBalance(int index)
+{
+	return mcModel.getBalance(index);
+}
+
 void BlackjackPresenterSDL::stand ()
 {
 	mcModel.stand ();
