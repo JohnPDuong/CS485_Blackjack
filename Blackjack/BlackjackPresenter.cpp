@@ -408,3 +408,8 @@ long long BlackjackPresenter::getBalance(int index)
 {
 	return mcModel.getBalance(index);
 }
+
+void BlackjackPresenter::setBalance(long long amount, int index)
+{
+	mcModel.setPlayerBalance (amount, index);
+}

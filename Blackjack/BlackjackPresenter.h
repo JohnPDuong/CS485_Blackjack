@@ -38,8 +38,9 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual void setName(std::string name, int index) override;
 		virtual void setPlayerType(std::string stratType, int index) override;
 
-		virtual std::string getName(int index);
-		virtual long long getBalance(int index);
+		virtual std::string getName(int index) override;
+		virtual long long getBalance(int index) override;
+		virtual void setBalance(long long amount, int index) override;
 
 		virtual void stand() override;
 		virtual bool bet(long long amount) override;
@@ -55,7 +56,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual void doCPUMoves() override;
 		virtual void doCPUBets() override;
 
-		virtual int getCurrentPlayer();
+		virtual int getCurrentPlayer() override;
 
 	private:
 		BlackjackModel mcModel;

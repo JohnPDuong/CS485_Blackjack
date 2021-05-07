@@ -43,6 +43,8 @@ public:
 
 	virtual void stand ();
 	virtual bool bet (long long amount);
+	virtual void setBalance(long long amount, int index);
+
 	virtual void split ();
 	virtual void draw ();
 

@@ -14,12 +14,21 @@ Player::Player(std::shared_ptr<IMoveStrategy> pcMoveStrat,
   mpcMoveStrat = pcMoveStrat;
   mName = name;
   mcBank = cBank;
+  mcBet = -1;
   mCurrentHand = 0;
   mcHands = std::vector<Hand>(1);
 }
   
+bool Player::doneWithTurn(){
+  return mCurrentHand == 0;
+}
+
 void Player::endTurn(){
   mbSplittable = true;
+  mCurrentHand++;
+  if(mCurrentHand >= getNumHands()){
+    mCurrentHand = 0;
+  }
 }
 
 void Player::receiveCard(Card cNewCard){
@@ -106,6 +115,10 @@ void Player::setName(std::string name){
   mName = name;
 }
 
+void Player::setBalance(Money newBalance){
+  mcBank = newBalance;
+}
+
 bool Player::isFullyBust(){
   for(int i = 0; i < getNumHands(); i++){
     if(mcHands[i].getHandValue() <= 21){
@@ -125,7 +138,23 @@ bool Player::canSplit()
     return mbSplittable;
 }
 
-void Player::endRound(){
+void Player::endRound(int dealerVal){
+  for(int i = 0; i < getNumHands(); i++){
+    int sum = mcHands[i].getHandValue();
+
+    if (sum == (int) Status::Blackjack)
+    {
+      mcBank = mcBank + mcBet * 1.5;
+    }
+    else if ((sum > dealerVal || dealerVal > (int)Status::Blackjack) && sum < (int) Status::Blackjack)
+    {
+      mcBank = mcBank + mcBet;
+    }
+    else{
+      mcBank = mcBank - mcBet;
+    }
+  }
+  
   for(int i = 0; i < getNumHands(); i++){
     mcHands.pop_back();
   }
