@@ -88,6 +88,8 @@ void PlayerView::addCard (SDLApp* app, std::string card, bool isFaceUp,
 
   pFaceUp->loadSprite(app, "Sprites\\" + card + ".png", 10, 15);
   pFaceDown->loadSprite(app, "grey_back.png", 10, 15);
+  pFaceUp->setScale (0.1);
+  pFaceDown->setScale (0.1);
 
   CardViewSDL *pcNewCard = new CardViewSDL(pFaceUp, pFaceDown, isFaceUp);
 
