@@ -337,10 +337,6 @@ void BlackjackViewSDL::updateCards()
   std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
   int currInd = mpcPresenter->getCurrentPlayer();
 
-  for (int i = 0; i < mcPlayers.size(); i++)
-  {
-    mcPlayers.at(i)->discardHand();
-  }
 
   for (int i = 0; i < currCards.size(); i++)
   {
@@ -382,6 +378,14 @@ void BlackjackViewSDL::toggleButtonsOn()
   mcSplitButton.setEditable(true);
   mcStandButton.setVisible(true);
   mcStandButton.setEditable(true);
+}
+
+void BlackjackViewSDL::discardHands()
+{
+  for (int i = 0; i < mcPlayers.size(); i++)
+  {
+    mcPlayers.at(i)->discardHand();
+  }
 }
 
 //***************************************************************************
@@ -451,11 +455,13 @@ void BlackjackViewSDL::onNextRound ()
 
   mpcPresenter->nextRound();
 
+  discardHands();
+
   for (int i = 0; i < mcPlayers.size(); i++)
   {
-    mcPlayers.at(i)->setVisible(false);
+    mcPlayers.at(i)->setBetVisible(true);
   }
-
+ 
   toggleButtonsOff();
 
   betScreen();
@@ -493,6 +499,8 @@ void BlackjackViewSDL::onConfirmBets ()
   mpcPresenter->doCPUMoves();
 
   toggleButtonsOn();
+
+  discardHands();
 
   mcEndGameButton.setVisible(true);
   mcConfirmBets.setVisible(false);

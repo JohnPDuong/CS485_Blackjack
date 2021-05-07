@@ -56,6 +56,8 @@ class BlackjackViewSDL : public SDLApp {
     void toggleButtonsOff ();
     void toggleButtonsOn ();
 
+    void discardHands ();
+
     void initGame();
     void render ();
 
