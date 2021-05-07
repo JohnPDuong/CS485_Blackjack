@@ -122,6 +122,16 @@ long long BlackjackPresenterSDL::getBalance(int index)
 	return mcModel.getBalance(index);
 }
 
+void BlackjackPresenterSDL::setBet(long long amount, int index)
+{
+	mcModel.setPlayerBet(amount, index);
+}
+
+long long BlackjackPresenterSDL::getBet(int index)
+{
+	return mcModel.getPlayerBet(index);
+}
+
 void BlackjackPresenterSDL::stand ()
 {
 	mcModel.stand ();

@@ -402,6 +402,14 @@ void BlackjackModel::setPlayerBalance(long long Balance){
 void BlackjackModel::setPlayerBalance(long long Balance, int index){
   mcPlayers[index].setBalance(Money(Balance, Currency::USD));
 }
+void BlackjackModel::setPlayerBet(long long amount, int index)
+{
+  mcPlayers.at(index).makeBet (Money (amount, Currency::USD));
+}
+long long BlackjackModel::getPlayerBet(int index)
+{
+  return mcPlayers.at(index).getBet().getAmount();
+}
 //***************************************************************************
 // Function:    getTypeList
 //
