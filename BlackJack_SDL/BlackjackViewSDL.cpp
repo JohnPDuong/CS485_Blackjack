@@ -123,6 +123,7 @@ void BlackjackViewSDL::newGame (int numPlayers)
     mcPlayers.push_back(pcCreated);
     mcDrawableWidget.push_back((ISDLWidget*)pcCreated);
   }
+
   PlayerView* pcDealer = new PlayerView(10, 50);
   pcDealer->makeDealer();
   mcPlayers.push_back(pcDealer);
