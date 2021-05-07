@@ -138,6 +138,21 @@ bool Player::canSplit()
 }
 
 void Player::endRound(int dealerVal){
+  for(int i = 0; i < getNumHands(); i++){
+    int sum = mcHands[i].getHandValue();
+
+    if (sum == (int) Status::Blackjack)
+    {
+      mcBank = mcBank + mcBet * 1.5;
+    }
+    else if (sum > dealerVal && sum < (int) Status::Blackjack)
+    {
+      mcBank = mcBank + mcBet;
+    }
+    else{
+      mcBank = mcBank - mcBet;
+    }
+  }
   
   for(int i = 0; i < getNumHands(); i++){
     mcHands.pop_back();
@@ -145,17 +160,4 @@ void Player::endRound(int dealerVal){
   mcHands.push_back(Hand());
   mcBet = Money(-1, mcBank.getCurrency());
   mCurrentHand = 0;
-  int sum = getCurrentHand().getHandValue();
-
-  if (sum == (int) Status::Blackjack)
-  {
-    mcBank = mcBank + mcBet * 1.5;
-  }
-  else if (sum > dealerVal && sum < (int) Status::Blackjack)
-  {
-    mcBank = mcBank + mcBet;
-  }
-  else{
-    mcBank = mcBank - mcBet;
-  }
 }
