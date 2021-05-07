@@ -74,5 +74,4 @@ class BlackjackViewSDL : public SDLApp {
     std::vector<ISDLWidget*> mcDrawableWidget;
 
     int mPlayersSet = 0;
-    bool bBetEdittable = false;
 };

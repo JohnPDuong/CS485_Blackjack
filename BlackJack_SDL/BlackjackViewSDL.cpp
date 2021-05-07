@@ -293,7 +293,15 @@ void BlackjackViewSDL::onStand ()
 //***************************************************************************
 void BlackjackViewSDL::onDrawCard ()
 {
-  mpcPresenter->draw();
+  if (true /*!mpcPresenter->isBust()*/)
+  {
+    mpcPresenter->draw();
+  }
+
+  if (true /*mpcPresenter->isBust()*/)
+  {
+    mpcPresenter->stand();
+  }
 }
 
 //***************************************************************************
@@ -307,7 +315,14 @@ void BlackjackViewSDL::onDrawCard ()
 //***************************************************************************
 void BlackjackViewSDL::onSplit ()
 {
-  mpcPresenter->split();
+  if (mpcPresenter->canSplit())
+  {
+    mpcPresenter->split();
+  }
+  else
+  {
+    mcSplitButton.setVisible (false);
+  }
 }
 
 //***************************************************************************
@@ -395,6 +410,8 @@ void BlackjackViewSDL::onBetWidget (SDLTextWidget* widget)
     if ((std::any_of(str.begin(), str.end(), std::isdigit)))
     {
       onBet(stoll(str));
+
+      mcBetButton.setEditable (false);
     }
   }
 }
