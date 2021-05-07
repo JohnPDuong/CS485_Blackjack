@@ -80,6 +80,7 @@ class BlackjackViewSDL : public SDLApp {
     SDLTextWidget mcPlayerBalanceInput;
     SDLTextWidget mcSetPlayer;
     SDLTextWidget mcConfirmBets;
+    SDLTextWidget mcLoseMessage;
 
     std::vector<ISDLWidget*> mcDrawableWidget;
 

@@ -14,7 +14,7 @@ int main (int argc, char* args[]) {
   
   cDisplay.createWindow("Blackjack");
 
-  cDisplay.setWindowBackgroundColor({0, 0, 0, 255});
+  cDisplay.setWindowBackgroundColor({0, 128, 0, 255});
 
   cDisplay.gameLoop();
 

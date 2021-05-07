@@ -30,7 +30,8 @@ mcPlayerNameInput("Player 1 Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
 mcPlayerTypeInput("Player 1 Type", "", 10, 140, 1, { 255, 255, 255, 255 }),
 mcSetPlayer("Set Player", "", 10, 200, 1, {255, 255, 255, 255}),
 mcPlayerBalanceInput("Player 1 Balance", "", 10, 110, 1, {255, 255, 255, 255}),
-mcConfirmBets("Confirm Bets", "", 10, 10, 1, {255, 255, 255, 255})
+mcConfirmBets("Confirm Bets", "", 10, 10, 1, {255, 255, 255, 255}),
+mcLoseMessage("You lose", "", 10, 400, 1, {255, 0, 0, 255})
 {
   mpcPresenter = new BlackjackPresenterSDL ((IBlackjackView*)this);
   loadFont ("c:/Windows/Fonts/Cour.ttf", 20);
@@ -63,7 +64,10 @@ mcConfirmBets("Confirm Bets", "", 10, 10, 1, {255, 255, 255, 255})
   mcEndGameButton.setEditable(false);
   mcNextRound.setEditable(false);
   mcSetPlayer.setEditable(false);
+  mcConfirmBets.setEditable(false);
   mcConfirmBets.setVisible(false);
+  mcLoseMessage.setEditable(false);
+  mcLoseMessage.setVisible(false);
 
   enableTextInput();
 
@@ -92,6 +96,7 @@ mcConfirmBets("Confirm Bets", "", 10, 10, 1, {255, 255, 255, 255})
   mcDrawableWidget.push_back(&mcSplitButton);
   mcDrawableWidget.push_back(&mcPlayerBalanceInput);
   mcDrawableWidget.push_back(&mcConfirmBets);
+  mcDrawableWidget.push_back(&mcLoseMessage);
 }
 
 //***************************************************************************
