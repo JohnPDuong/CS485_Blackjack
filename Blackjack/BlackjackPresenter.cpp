@@ -386,6 +386,10 @@ void BlackjackPresenter::doCPUBets()
 {
 	mcModel.doCPUBets();
 }
+int BlackjackPresenter::getCurrentPlayer()
+{
+	return mcModel.getCurrentPlayer();
+}
 //***************************************************************************
 // Function:
 //

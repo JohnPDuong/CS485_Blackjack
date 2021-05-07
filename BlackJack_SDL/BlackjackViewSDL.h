@@ -59,7 +59,6 @@ class BlackjackViewSDL : public SDLApp {
     //not sure how we're going to make sure the player views are in the same
     //order as the players are in the model
     std::vector<PlayerView*> mcPlayers;
-    int mCurrentPlayerIndex = -1;
     SDLTextWidget mcStandButton;
     SDLTextWidget mcBetButton;
     SDLTextWidget mcSplitButton;

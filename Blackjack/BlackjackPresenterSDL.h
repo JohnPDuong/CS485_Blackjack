@@ -55,6 +55,8 @@ public:
 	virtual void doCPUMoves();
 	virtual void doCPUBets();
 
+	virtual int getCurrentPlayer();
+
 private:
 	BlackjackModel mcModel;
 	IBlackjackView* mpcView;

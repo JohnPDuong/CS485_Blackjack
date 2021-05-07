@@ -48,4 +48,5 @@ public:
 	virtual void doCPUMoves() = 0;
 	virtual void doCPUBets() = 0;
 
+	virtual int getCurrentPlayer () = 0;
 };
