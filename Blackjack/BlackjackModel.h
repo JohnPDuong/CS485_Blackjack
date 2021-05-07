@@ -81,7 +81,6 @@ public:
   bool hasLost();
   bool hasLost(int index);
   bool roundDone();
-  bool lastUnder();
   
   void doCPUMoves();
   void doCPUBets();
