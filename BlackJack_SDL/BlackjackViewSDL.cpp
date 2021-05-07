@@ -588,29 +588,59 @@ void BlackjackViewSDL::onSetPlayer (std::string name, std::string type,
 //***************************************************************************
 void BlackjackViewSDL::onConfirmBets ()
 {
-  int count = -1;
+  bool bGoodBets = true;
+  std::string str;
+  int size;
 
-  mpcPresenter->doCPUBets();
-  mpcPresenter->doCPUMoves();
+  for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
+  {
+    str = mcPlayers.at(i)->getBet();
+    size = str.size();
 
-  toggleButtonsOn();
+    if (size != 0)
+    {
+      if (std::any_of(str.begin(), str.end(), std::isdigit))
+      {
+        
+        mpcPresenter->setBet(stoll(str), i);
+      }
+      else
+      {
+        bGoodBets = false;
+      }
+    }
+    else
+    {
+      bGoodBets = false;
+    }
+  }
 
-  discardHands();
+  if (bGoodBets)
+  {
+    int count = -1;
 
-  mcEndGameButton.setVisible(true);
-  mcConfirmBets.setVisible(false);
-  mcConfirmBets.registerClickEventHandler
+    mpcPresenter->doCPUBets();
+    mpcPresenter->doCPUMoves();
+
+    toggleButtonsOn();
+
+    discardHands();
+
+    mcEndGameButton.setVisible(true);
+    mcConfirmBets.setVisible(false);
+    mcConfirmBets.registerClickEventHandler
     (std::bind
     (&BlackjackViewSDL::doNothing, this));
 
-  updateCards();
+    updateCards();
 
-  if (Status::Bust == mpcPresenter->result() || Status::Blackjack == mpcPresenter->result())
-  {
-    onStand();
+    if (Status::Bust == mpcPresenter->result() || Status::Blackjack == mpcPresenter->result())
+    {
+      onStand();
+    }
+
+    mpcPresenter->doCPUMoves();
   }
-
-  mpcPresenter->doCPUMoves();
 }
 //***************************************************************************
 // Function:    onBetWidget
