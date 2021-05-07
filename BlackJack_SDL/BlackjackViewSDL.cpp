@@ -283,6 +283,13 @@ void BlackjackViewSDL::betScreen ()
     (std::bind
     (&BlackjackViewSDL::onConfirnBets, this));
   mcConfirmBets.setVisible(true);
+
+  mpcPresenter->doCPUBets();
+  for (int i = 0; i < mcPlayers.size (); i++) {
+    if (!mpcPresenter->isHuman (i)) {
+      mcPlayers[i]->setCPUBet(mpcPresenter->getBet(i));
+    }
+  }
 }
 
 //***************************************************************************
