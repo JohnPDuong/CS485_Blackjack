@@ -539,7 +539,7 @@ void BlackjackViewSDL::onNextRound ()
 
   mpcPresenter->nextRound();
 
-  if (mpcPresenter->getBalance() != 0)
+  if (mpcPresenter->getBalance() > 0)
   {
     discardHands();
 
@@ -555,18 +555,20 @@ void BlackjackViewSDL::onNextRound ()
 
     betScreen();
   }
+  else
+  {
+    mcLoseMessage.setVisible(true);
 
-  mcLoseMessage.setVisible(true);
-
-  mcStandButton.setEditable(false);
-  mcSplitButton.setEditable(false);
-  mcDrawButton.setEditable(false);
-  mcEndGameButton.setEditable(false);
-  mcNextRound.setEditable(false);
-  mcSetPlayer.setEditable(false);
-  mcConfirmBets.setEditable(false);
-  mcConfirmBets.setVisible(false);
-  mcLoseMessage.setEditable(false);
+    mcStandButton.setEditable(false);
+    mcSplitButton.setEditable(false);
+    mcDrawButton.setEditable(false);
+    mcEndGameButton.setEditable(false);
+    mcNextRound.setEditable(false);
+    mcSetPlayer.setEditable(false);
+    mcConfirmBets.setEditable(false);
+    mcConfirmBets.setVisible(false);
+    mcLoseMessage.setEditable(false);
+  }
 }
 
 //***************************************************************************
@@ -666,8 +668,6 @@ void BlackjackViewSDL::onConfirmBets ()
       mcPlayers.at(i)->setBetEditable(false);
     }
 
-    discardHands();
-
     mcEndGameButton.setVisible(true);
     mcConfirmBets.setVisible(false);
     mcConfirmBets.registerClickEventHandler
@@ -675,11 +675,6 @@ void BlackjackViewSDL::onConfirmBets ()
     (&BlackjackViewSDL::doNothing, this));
 
     updateCards();
-
-    if (Status::Bust == mpcPresenter->result() || Status::Blackjack == mpcPresenter->result())
-    {
-      onStand();
-    }
 
     mpcPresenter->doCPUMoves();
   }
