@@ -447,7 +447,7 @@ void BlackjackViewSDL::onConfirmBets ()
   //MASTER FOR LOOP OF YOUR MOM
   for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
   {
-    for (int j = 0; j < allCards.size(); i++)
+    for (int j = 0; j < allCards.at(i).size(); j++)
     {
       mcPlayers.at(i)->addCard(this, allCards.at(i).at(j), true, true);
     }
@@ -457,6 +457,8 @@ void BlackjackViewSDL::onConfirmBets ()
   {
     mcPlayers.at(mcPlayers.size() - 1)->addCard (this, dealerCards.at(i), true, true);
   }
+
+  mpcPresenter->doCPUMoves();
 }
 //***************************************************************************
 // Function:    onBetWidget
