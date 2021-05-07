@@ -44,8 +44,8 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual long long getBalance(int index) override;
 		virtual void setBalance(long long amount, int index) override;
 
-		virtual void setBet(long long amount, int index);
-		virtual long long getBet(int index);
+		virtual void setBet(long long amount, int index) override;
+		virtual long long getBet(int index) override;
 
 		virtual void stand() override;
 		virtual bool bet(long long amount) override;
