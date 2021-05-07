@@ -578,7 +578,7 @@ std::string BlackjackModel::toString (Card cCard)
   auto suit = cCard.getSuit();
   auto rank = cCard.getValue();
 
-  if (!cCard.isFaceUp())
+  if (!cCard.isFaceUp() && !mbRoundDone)
   {
     cardStr = "--";
   }
