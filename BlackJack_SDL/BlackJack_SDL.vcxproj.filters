@@ -211,7 +211,7 @@
     <Image Include="Sprites\red_back.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Sprites\yellow_back.png">
+    <Image Include="Sprites\--.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

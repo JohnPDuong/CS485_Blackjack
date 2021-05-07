@@ -458,7 +458,7 @@ void BlackjackViewSDL::onConfirmBets ()
 
   for (int i = 0; i < dealerCards.size(); i++)
   {
-    mcPlayers.at(mcPlayers.size() - 1)->addCard (this, cards.at(i), true, true);
+    mcPlayers.at(mcPlayers.size() - 1)->addCard (this, dealerCards.at(i), true, true);
   }
 }
 

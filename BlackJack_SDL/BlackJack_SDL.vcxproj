@@ -215,7 +215,7 @@
     <Image Include="Sprites\QH.png" />
     <Image Include="Sprites\QS.png" />
     <Image Include="Sprites\red_back.png" />
-    <Image Include="Sprites\yellow_back.png" />
+    <Image Include="Sprites\--.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
