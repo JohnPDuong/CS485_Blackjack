@@ -364,6 +364,26 @@ void BlackjackViewSDL::updateCards()
   }
 }
 
+void BlackjackViewSDL::toggleButtonsOff()
+{
+  mcDrawButton.setVisible(false);
+  mcDrawButton.setEditable(false);
+  mcSplitButton.setVisible(false);
+  mcSplitButton.setEditable (false);
+  mcStandButton.setVisible(false);
+  mcStandButton.setEditable (false);
+}
+
+void BlackjackViewSDL::toggleButtonsOn()
+{
+  mcDrawButton.setVisible(true);
+  mcDrawButton.setEditable(true);
+  mcSplitButton.setVisible(true);
+  mcSplitButton.setEditable(true);
+  mcStandButton.setVisible(true);
+  mcStandButton.setEditable(true);
+}
+
 //***************************************************************************
 // Function:    onSplit
 //
@@ -431,6 +451,13 @@ void BlackjackViewSDL::onNextRound ()
 
   mpcPresenter->nextRound();
 
+  for (int i = 0; i < mcPlayers.size(); i++)
+  {
+    mcPlayers.at(i)->setVisible(false);
+  }
+
+  toggleButtonsOff();
+
   betScreen();
 }
 
@@ -465,9 +492,8 @@ void BlackjackViewSDL::onConfirmBets ()
   mpcPresenter->doCPUBets();
   mpcPresenter->doCPUMoves();
 
-  mcStandButton.setVisible (true);
-  mcSplitButton.setVisible (true);
-  mcDrawButton.setVisible (true);
+  toggleButtonsOn();
+
   mcEndGameButton.setVisible(true);
   mcConfirmBets.setVisible(false);
   mcConfirmBets.registerClickEventHandler
