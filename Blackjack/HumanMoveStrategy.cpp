@@ -13,7 +13,7 @@ bool HumanMoveStrategy::determineMove(Hand& cCurrentHand,
                                       std::shared_ptr<IMove>& pcCurrentMove,
                                       std::vector<Card>& cTableCards){
   return pcCurrentMove != nullptr && (pcCurrentMove->moveName() != "Split"
-                                      || true);
+                                      || cCurrentHand.canSplit());
   //Need some check in hand for if can split to replace that true
 }
 

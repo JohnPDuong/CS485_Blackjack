@@ -10,6 +10,7 @@
 #include "CardCounterAI.h"
 #include "Draw.h"
 #include "Stand.h"
+#include "Split.h"
 
 CardCounterAI::CardCounterAI(){
   for(int i = 0; i < 13; i++){
@@ -23,6 +24,11 @@ CardCounterAI::CardCounterAI(){
 bool CardCounterAI::determineMove(Hand& cCurrentHand,
                                   std::shared_ptr<IMove>& pcCurrentMove,
                                   std::vector<Card>& cTableCards){
+  if(cCurrentHand.canSplit()){
+    pcCurrentMove = std::make_shared<Split>();
+    return true;
+  }
+  
   int estimatedNumDecks = 0;
   int numGoodCard = 0;
   int numBadCard = 0;

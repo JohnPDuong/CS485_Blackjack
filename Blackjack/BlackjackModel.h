@@ -76,6 +76,8 @@ public:
   Status resultCurrentPlayer ();
   Status resultPlayer (int index);
   
+  std::vector<std::string> getAllCurrentPlayerHands();
+  
   bool hasLost();
   bool hasLost(int index);
   bool roundDone();

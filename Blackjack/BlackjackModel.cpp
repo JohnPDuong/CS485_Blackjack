@@ -284,6 +284,32 @@ bool BlackjackModel::hasLost(int index){
   return mcPlayers.at(index).hasLost();
 }
 
+std::vector<std::string> BlackjackModel::getAllCurrentPlayerHands(){
+  std::vector<std::string> cardStrs;
+  for(int i = 0; i < mcPlayers.at(mCurrentPlayerIndex).getNumHands(); i++){
+    std::vector<Card> cCards =
+                mcPlayers.at(mCurrentPlayerIndex).getHands().at(i).getHand();
+    
+    if(i > 0){
+      cardStrs.push_back("|");
+    }
+    
+    for (Card card : cCards)
+    {
+      if(!card.isFaceUp()){
+        card.flip();
+        cardStrs.push_back(toString(card));
+        card.flip();
+      }
+      else{
+        cardStrs.push_back(toString(card));
+      }
+    }
+  }
+
+  return cardStrs;
+}
+
 //***************************************************************************
 // Function:    makeBet
 //

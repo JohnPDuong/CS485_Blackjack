@@ -191,6 +191,11 @@ std::vector<std::string> BlackjackPresenter::getDealerCards()
 {
 	return mcModel.getDealerCards();
 }
+
+std::vector<std::string> BlackjackPresenter::getAllCurrentPlayerHands(){
+  return mcModel.getAllCurrentPlayerHands();
+}
+
 //***************************************************************************
 // Function:
 //

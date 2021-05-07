@@ -26,6 +26,7 @@ public:
 	virtual std::vector<std::string> getCurrentPlayerHand() = 0;
 	virtual std::vector<std::vector<std::string>> getOpponentCards() = 0;
 	virtual std::vector<std::string> getDealerCards() = 0;
+  virtual std::vector<std::string> getAllCurrentPlayerHands() = 0;
 	virtual int getNumPlayers() = 0;
 	virtual std::string getName() = 0;
 	virtual void setName(std::string name, int index) = 0;
