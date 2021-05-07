@@ -40,6 +40,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 
 		virtual std::string getName(int index);
 		virtual long long getBalance(int index);
+		virtual void setBalance(long long amount, int index);
 
 		virtual void stand() override;
 		virtual bool bet(long long amount) override;
