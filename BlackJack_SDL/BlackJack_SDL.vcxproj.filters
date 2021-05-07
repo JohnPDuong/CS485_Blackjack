@@ -39,4 +39,180 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprites\2C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\2D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\2H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\2S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\3C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\3D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\3H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\3S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\4C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\4D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\4H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\4S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\5C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\5D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\5H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\5S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\6C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\6D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\6H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\6S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\7C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\7D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\7H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\7S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\8C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\8D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\8H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\8S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\9C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\9D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\9H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\9S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\10C.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\10D.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\10H.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\10S.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\AC.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\AD.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\AH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\AS.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\blue_back.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\gray_back.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\green_back.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\JC.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\JD.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\JH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\JS.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\KC.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\KD.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\KH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\KS.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\purple_back.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\QC.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\QD.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\QH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\QS.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\red_back.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\yellow_back.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
