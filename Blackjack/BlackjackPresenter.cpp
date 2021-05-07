@@ -413,3 +413,13 @@ void BlackjackPresenter::setBalance(long long amount, int index)
 {
 	mcModel.setPlayerBalance (amount, index);
 }
+
+void BlackjackPresenter::setBet(long long amount, int index)
+{
+	mcModel.setPlayerBet(amount, index);
+}
+
+long long BlackjackPresenter::getBet(int index)
+{
+	return mcModel.getPlayerBet(index);
+}

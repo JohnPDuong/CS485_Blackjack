@@ -293,6 +293,5 @@ void BlackjackTextUI::printEndRoundScreen(){
 	}
 	std::cout << std::endl;
 
-	std::cout << "\nEnter literally anything to continue: ";
-	std::cin >> something;
+	system("PAUSE");
 }
