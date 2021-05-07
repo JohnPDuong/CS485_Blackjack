@@ -31,6 +31,8 @@ public:
 	virtual void setName(std::string name, int index) = 0;
 	virtual void setPlayerType(std::string stratType, int index) = 0;
 
+	virtual std::string getName(int index) = 0;
+
 	virtual void stand() = 0;
 	virtual bool bet(long long amount) = 0;
 	virtual void split() = 0;

@@ -112,6 +112,11 @@ void BlackjackPresenterSDL::setPlayerType (std::string stratType, int index)
 	mcModel.setPlayerType (stratType, index);
 }
 
+std::string BlackjackPresenterSDL::getName(int index)
+{
+	return mcModel.getName(index);
+}
+
 void BlackjackPresenterSDL::stand ()
 {
 	mcModel.stand ();
@@ -169,3 +174,4 @@ void BlackjackPresenterSDL::doCPUBets()
 {
 	mcModel.doCPUBets();
 }
+

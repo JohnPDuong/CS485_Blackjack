@@ -38,6 +38,8 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual void setName(std::string name, int index) override;
 		virtual void setPlayerType(std::string stratType, int index) override;
 
+		virtual std::string getName(int index);
+
 		virtual void stand() override;
 		virtual bool bet(long long amount) override;
 		virtual void split() override;

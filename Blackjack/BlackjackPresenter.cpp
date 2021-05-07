@@ -11,39 +11,40 @@
 #include "Status.h"
 
 //***************************************************************************
-// Function:
+// Function:		BlackjackPresenter
 //
-// Description: 
+// Description: None
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 BlackjackPresenter::BlackjackPresenter()
 {
-	std::cout << "ctor" << std::endl;
 }
 //***************************************************************************
-// Function:
+// Function:		BlackjackPresenter
 //
-// Description: 
+// Description: Assigns pcView to mpcView
 //
-// Parameters:  
+// Parameters:  pcView - pointer to view
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 BlackjackPresenter::BlackjackPresenter(IBlackjackView* pcView)
 {
 	mpcView = pcView;
 }
 //***************************************************************************
-// Function:
+// Function:		BlackjackPresenter
 //
-// Description: 
+// Description: Assigns pcView to mpcView and passes in parameters for model
 //
-// Parameters:  
+// Parameters:  pcView		 - pointer to view
+//							numPlayers - number of players
+//							numDecks	 - number of decks
 //
-// Return:			
+// Return:			None		
 //***************************************************************************
 BlackjackPresenter::BlackjackPresenter(IBlackjackView* pcView, int numPlayers, int numDecks)
 	: mcModel (numPlayers, numDecks)
@@ -51,22 +52,22 @@ BlackjackPresenter::BlackjackPresenter(IBlackjackView* pcView, int numPlayers, i
 	mpcView = pcView;
 }
 //***************************************************************************
-// Function:
+// Function:		BlackjackPresenter
 //
-// Description: 
+// Description: Deletes the view
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			None
 //***************************************************************************
 BlackjackPresenter::~BlackjackPresenter()
 {
 	delete mpcView;
 }
 //***************************************************************************
-// Function:
+// Function:		newGame
 //
-// Description: 
+// Description: calls new game
 //
 // Parameters:  
 //
@@ -384,4 +385,17 @@ void BlackjackPresenter::doCPUMoves()
 void BlackjackPresenter::doCPUBets()
 {
 	mcModel.doCPUBets();
+}
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
+std::string BlackjackPresenter::getName(int index)
+{
+	return mcModel.getName(index);
 }
