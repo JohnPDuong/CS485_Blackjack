@@ -139,6 +139,8 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcPlayerNameInput.setVisible(false);
   mcPlayerTypeInput.setVisible(false);
   mcSetPlayer.setVisible(false);
+  mcSetPlayer.registerClickEventHandler(std::bind
+    (&BlackjackViewSDL::doNothing, this));
 
   nextRound();
 }
