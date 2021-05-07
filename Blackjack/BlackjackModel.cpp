@@ -247,7 +247,7 @@ std::vector<Status> BlackjackModel::nextRound()
   mbRoundDone = false;
   mbBetReady = true;
 
-  mpcDeck.get()->fillShuffle();
+    mpcDeck.get()->fillShuffle();
   
   initialDeal();
   
@@ -266,8 +266,7 @@ std::vector<Status> BlackjackModel::result(){
   std::vector<Status> results;
   
   for(int i = 0; i < getNumPlayers(); i++){
-    results.push_back(resultCurrentPlayer());
-    mCurrentPlayerIndex = getNextPlayer();
+    results.push_back(resultPlayer(i));
   }
   
   return results;
@@ -394,6 +393,15 @@ void BlackjackModel::setPlayerType(std::string stratType, int index){
   }
   return;
 }
+
+
+void BlackjackModel::setPlayerBalance(long long Balance){
+  setPlayerBalance(Balance, mCurrentPlayerIndex);
+}
+
+void BlackjackModel::setPlayerBalance(long long Balance, int index){
+  mcPlayers[index].setBalance(Money(Balance, Currency::USD));
+}
 //***************************************************************************
 // Function:    getTypeList
 //
@@ -451,6 +459,9 @@ std::vector<std::vector<std::string>> BlackjackModel::getOpponentCards(){
       i = getNextPlayer(i)){
     std::vector<Card> cThisPlayerCards;
     for(int j = 0; j < mcPlayers.at(i).getNumHands(); j++){
+      if(j > 0){
+        cThisPlayerCards.push_back(Card(Suit::Count, Value::Count));
+      }
       std::vector<Card> cCurrentHand = mcPlayers.at(i).getHands().at(j).getHand();
       cThisPlayerCards.insert(cThisPlayerCards.end(), cCurrentHand.begin(),
                               cCurrentHand.end());
@@ -762,10 +773,7 @@ void BlackjackModel::doCPUBets(){
     }
   }
 }
-int BlackjackModel::getCurrentPlayer()
-{
-  return mCurrentPlayerIndex;
-}
+
 //***************************************************************************
 // Function:    resultCurrentPlayer
 //
@@ -773,12 +781,30 @@ int BlackjackModel::getCurrentPlayer()
 //
 // Parameters:  None
 //
-// Return:			return the status of the player
+// Return:      return the status of the player
 //***************************************************************************
-Status BlackjackModel::resultCurrentPlayer()
+int BlackjackModel::getCurrentPlayer()
+{
+  return mCurrentPlayerIndex;
+}
+
+Status BlackjackModel::resultCurrentPlayer(){
+  return resultPlayer(mCurrentPlayerIndex);
+}
+
+//***************************************************************************
+// Function:    resultPlayer
+//
+// Description: checks the result of the current player to see their status
+//
+// Parameters:  index - index of the player to return
+//
+// Return:      return the status of the player
+//***************************************************************************
+Status BlackjackModel::resultPlayer(int index)
 {
   Status eStatus;
-  int sum = mcPlayers[mCurrentPlayerIndex].getCurrentHand().getHandValue();
+  int sum = mcPlayers[index].getCurrentHand().getHandValue();
   int dealerSum = mcDealerHand.getHandValue();
 
   if (sum == (int) Status::Blackjack)
@@ -810,9 +836,12 @@ Status BlackjackModel::resultCurrentPlayer()
 // Return:			None
 //***************************************************************************
 void BlackjackModel::incrementPlayer() {
-  mCurrentPlayerIndex = getNextPlayer();
-  if (mCurrentPlayerIndex == 0) {
-      moveDealer();
+  mcPlayers[mCurrentPlayerIndex].endTurn();
+  if(mcPlayers[mCurrentPlayerIndex].doneWithTurn()){
+    mCurrentPlayerIndex = getNextPlayer();
+    if (mCurrentPlayerIndex == 0) {
+        moveDealer();
+    }
   }
 }
 //***************************************************************************
@@ -844,3 +873,7 @@ int BlackjackModel::getNextPlayer(int currentPlayer){
     return currentPlayer;
   }
 }
+
+  bool BlackjackModel::doneWithTurn(){
+    return mcPlayers[mCurrentPlayerIndex].doneWithTurn();
+  }

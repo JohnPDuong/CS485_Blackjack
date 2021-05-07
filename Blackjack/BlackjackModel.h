@@ -51,6 +51,8 @@ public:
   void setPlayerName(std::string name, int index);
   void setPlayerType(std::string stratType);
   void setPlayerType(std::string stratType, int index);
+  void setPlayerBalance(long long Balance);
+  void setPlayerBalance(long long Balance, int index);
   
   std::vector<std::string> getTypeList();
   
@@ -70,6 +72,7 @@ public:
   bool canSplit ();
   std::vector<std::string> getDealerCards();
   Status resultCurrentPlayer ();
+  Status resultPlayer (int index);
   
   bool roundDone();
   bool lastUnder();
@@ -78,6 +81,7 @@ public:
   void doCPUBets();
 
   int getCurrentPlayer ();
+  bool doneWithTurn();
 
 private:
   void incrementPlayer();
