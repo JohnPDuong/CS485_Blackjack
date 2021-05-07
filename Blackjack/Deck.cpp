@@ -46,8 +46,8 @@ Deck::Deck (int numDecks)
 //***************************************************************************
 void Deck::shuffle ()
 {
-	unsigned int seed = (unsigned int)std::chrono::system_clock::
-											now ().time_since_epoch ().count ();
+  unsigned int seed = 4;//(unsigned int)std::chrono::system_clock::
+											//now ().time_since_epoch ().count ();
 
 	std::shuffle (macCards.begin (), macCards.end (), 
 								std::default_random_engine (seed));
