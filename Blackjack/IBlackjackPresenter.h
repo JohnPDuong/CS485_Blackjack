@@ -43,7 +43,6 @@ public:
 	virtual bool isHuman() = 0;
 	virtual bool canSplit() = 0;
 	virtual bool isBetTime() = 0;
-	virtual bool lastUnder() = 0;
 
 	virtual void updateView() = 0;
 	virtual void doCPUMoves() = 0;
