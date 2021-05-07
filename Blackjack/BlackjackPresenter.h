@@ -52,6 +52,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 
 		virtual void makeMove() override;
 		virtual bool isHuman() override;
+		virtual bool isHuman(int index) override;
 		virtual bool canSplit() override;
 		virtual bool isBetTime() override;
 
