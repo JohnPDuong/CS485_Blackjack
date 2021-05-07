@@ -85,31 +85,23 @@ void BlackjackTextUI::printHeader()
 
 void BlackjackTextUI::printGameState()
 {
-	std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
+	std::vector<std::vector<std::string>> cards = mpcPresenter->getAllCards();
 	std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
 	std::cout << std::endl;
 
 	// print opponents cards
-	for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
-	{
+  for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
+  {
     if(i != mpcPresenter->getCurrentPlayer()){
       std::cout << mpcPresenter->getName(i) << " cards: ";
-      if(i > mpcPresenter->getCurrentPlayer()){
-        for (std::string card : cards[i - 1])
-        {
-          std::cout << card << " ";
-        }
-      }
-      else{
-        for (std::string card : cards[i])
-        {
-          std::cout << card << " ";
-        }
+      for (std::string card : cards[i])
+      {
+        std::cout << card << " ";
       }
       std::cout << std::endl;
     }
-	}
-	std::cout << std::endl;
+  }
+  std::cout << std::endl;
 
 	// Print Dealer cards
 	std::cout << "Dealer cards: ";
@@ -286,7 +278,7 @@ void BlackjackTextUI::playGame()
 void BlackjackTextUI::printEndRoundScreen(){
 	std::string something = "";
 	std::vector<std::string> hand = mpcPresenter->getAllCurrentPlayerHands();
-  std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
+  std::vector<std::vector<std::string>> cards = mpcPresenter->getAllCards();
 	int numPlayers = mpcPresenter->getNumPlayers();
 	std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
 
@@ -314,14 +306,16 @@ void BlackjackTextUI::printEndRoundScreen(){
   std::cout << std::endl << std::endl;
 
   // print opponents cards
-  for (int i = 0; i < numPlayers - 1; i++)
+  for (int i = 0; i < numPlayers; i++)
   {
-    std::cout << "Opponent " << i + 1 << " cards: ";
-    for (std::string card : cards[i])
-    {
-      std::cout << card << " ";
+    if(i != mpcPresenter->getCurrentPlayer()){
+      std::cout << mpcPresenter->getName(i) << " cards: ";
+      for (std::string card : cards[i])
+      {
+        std::cout << card << " ";
+      }
+      std::cout << std::endl;
     }
-    std::cout << std::endl;
   }
 	std::cout << std::endl;
 

@@ -24,7 +24,7 @@ public:
 	//virtual void addBalance(long long amount) = 0;
 	virtual long long getBalance() = 0;
 	virtual std::vector<std::string> getCurrentPlayerHand() = 0;
-	virtual std::vector<std::vector<std::string>> getOpponentCards() = 0;
+	virtual std::vector<std::vector<std::string>> getAllCards() = 0;
 	virtual std::vector<std::string> getDealerCards() = 0;
   virtual std::vector<std::string> getAllCurrentPlayerHands() = 0;
 	virtual int getNumPlayers() = 0;
