@@ -28,7 +28,7 @@ mcEndGameButton("New Game", "", 500, 10, 1, { 255,255,255,255 }),
 mcNextRound("Next Round", "", 400, 10, 1, {255, 255, 255, 255}),
 mcPlayerNameInput("Player 1 Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
 mcPlayerTypeInput("Player 1 Type", "", 10, 140, 1, { 255, 255, 255, 255 }),
-mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255}),
+mcSetPlayer("Set Player", "", 10, 200, 1, {255, 255, 255, 255}),
 mcPlayerBalanceInput("Player 1 Balance", "", 10, 110, 1, {255, 255, 255, 255})
 {
   mpcPresenter = new BlackjackPresenterSDL ((IBlackjackView*)this);
@@ -255,7 +255,7 @@ void BlackjackViewSDL::setPlayer ()
     mcPlayerTypeInput.setLabel ("Player " + std::to_string (mPlayersSet + 1) + " type");
     mcPlayerTypeInput.setData ("");
     mcPlayerBalanceInput.setLabel("Player " + std::to_string(mPlayersSet + 1) + " balance");
-    mcPlayerBalanceInput.setLabel("");
+    mcPlayerBalanceInput.setData("");
   }
   else
     newGame(mpcPresenter->getNumPlayers());
