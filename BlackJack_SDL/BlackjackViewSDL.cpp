@@ -258,7 +258,10 @@ void BlackjackViewSDL::setPlayer ()
     mcPlayerBalanceInput.setData("");
   }
   else
+  {
+    mpcPresenter->newGame();
     newGame(mpcPresenter->getNumPlayers());
+  }
 }
 
 void BlackjackViewSDL::setNumPlayers ()
