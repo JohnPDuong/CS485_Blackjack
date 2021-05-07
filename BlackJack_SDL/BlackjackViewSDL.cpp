@@ -120,6 +120,7 @@ void BlackjackViewSDL::newGame (int numPlayers)
   for (int i = 0; i < numPlayers; i++) {
     PlayerView* pcCreated = new PlayerView(10, 150 + 100 * i);
     pcCreated->setName(mpcPresenter->getName(i));
+    pcCreated->setMoney(std::to_string(mpcPresenter->getBalance(i)));
     mcPlayers.push_back(pcCreated);
     mcDrawableWidget.push_back((ISDLWidget*)pcCreated);
   }
@@ -342,6 +343,7 @@ void BlackjackViewSDL::onSplit ()
 void BlackjackViewSDL::onBet (long long amount)
 {
   mpcPresenter->bet(amount);
+  bet(mpcPresenter->getBalance());
 }
 
 //***************************************************************************
