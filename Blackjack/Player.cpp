@@ -357,11 +357,29 @@ bool Player::readyToStart(){
   return mpcMoveStrat != nullptr;
 }
 
+//***************************************************************************
+// Function:    canSplit
+//
+// Description: returns whether or not the player can split
+//
+// Parameters:  None
+//
+// Return:			True if can split
+//***************************************************************************
 bool Player::canSplit()
 {
     return mbSplittable;
 }
 
+//***************************************************************************
+// Function:    endRound
+//
+// Description: manages what happens after a round is over
+//
+// Parameters:  dealerVal - the value of the dealer's cards
+//
+// Return:			None
+//***************************************************************************
 void Player::endRound(int dealerVal){
   for(int i = 0; i < getNumHands(); i++){
     int sum = mcHands[i].getHandValue();
