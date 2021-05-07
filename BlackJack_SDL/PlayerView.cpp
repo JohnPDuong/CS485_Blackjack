@@ -86,8 +86,11 @@ void PlayerView::addCard (SDLApp* app, std::string card, bool isFaceUp,
   SDLSprite* pFaceUp = new SDLSprite;
   SDLSprite* pFaceDown = new SDLSprite;
 
-  pFaceUp->loadSprite(app, "Sprites\\" + card + ".png", 10, 15);
-  pFaceDown->loadSprite(app, "grey_back.png", 10, 15);
+  int offset = mcCards.size();
+  int xOffSet = mX + 200 + offset * 15;
+
+  pFaceUp->loadSprite(app, "Sprites\\" + card + ".png", xOffSet, mY);
+  pFaceDown->loadSprite(app, "grey_back.png", xOffSet, mY);
   pFaceUp->setScale (0.1);
   pFaceDown->setScale (0.1);
 
