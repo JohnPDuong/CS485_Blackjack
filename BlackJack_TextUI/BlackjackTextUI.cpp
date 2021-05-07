@@ -157,6 +157,7 @@ void BlackjackTextUI::playGame()
 
 	while (bKeepPlaying)
 	{
+		move = 0;
 		// Do CPU Moves
 		/*
 		while (!mpcPresenter->isHuman())
@@ -228,22 +229,30 @@ void BlackjackTextUI::playGame()
       turns++;
 		}
     
+		mpcPresenter->doCPUMoves();
     printEndRoundScreen();
-    
+		mpcPresenter->nextRound();   
 	}
 }
 
 
 void BlackjackTextUI::printEndRoundScreen(){
+	std::string something = "";
+	std::vector<std::string> hand = mpcPresenter->getCurrentPlayerHand();
   std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
+	int numPlayers = mpcPresenter->getNumPlayers();
+
   std::vector<Status> endStatuses = mpcPresenter->endRound();
 
+	long long balance = mpcPresenter->getBalance();
+
+
   // Print your bank
-  std::cout << "Chips available: " << mpcPresenter->getBalance() << std::endl;
+  std::cout << "Chips available: " << balance << std::endl;
 
   // Print your cards
   std::cout << "Your cards: ";
-  for (std::string str : mpcPresenter->getCurrentPlayerHand())
+  for (std::string str : hand)
   {
     std::cout << str << " ";
   }
@@ -252,7 +261,7 @@ void BlackjackTextUI::printEndRoundScreen(){
   std::cout << std::endl;
 
   // print opponents cards
-  for (int i = 0; i < mpcPresenter->getNumPlayers() - 1; i++)
+  for (int i = 0; i < numPlayers - 1; i++)
   {
     std::cout << "Opponent " << i + 1 << " cards: ";
     for (std::string card : cards[i])
@@ -262,4 +271,8 @@ void BlackjackTextUI::printEndRoundScreen(){
 		//std::cout <<
     std::cout << std::endl;
   }
+
+	std::cout << "Enter anything to continue: ";
+	std::cin >> something;
+
 }
