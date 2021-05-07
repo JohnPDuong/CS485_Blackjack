@@ -59,6 +59,7 @@ public:
   std::vector<std::string> getTypeList();
   
   std::vector<std::string> getCurrentPlayerHand();
+  std::vector<std::string> getPlayerHand(int index);
   std::vector<std::vector<std::string>> getAllCards();
   
   std::vector<Card> getFaceUpCards();

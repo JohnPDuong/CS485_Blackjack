@@ -73,7 +73,7 @@ void Deck::fillShuffle()
 }
 
 int Deck::numCardsRemaining(){
-  return macCards.size();
+  return (int)macCards.size();
 }
 
 //***************************************************************************

@@ -13,7 +13,7 @@
 
 BlackjackPresenterSDL::BlackjackPresenterSDL ()
 {
-	std::cout << "ctor" << std::endl;
+
 }
 
 BlackjackPresenterSDL::BlackjackPresenterSDL (IBlackjackView* pcView)
@@ -84,10 +84,7 @@ std::vector<std::string> BlackjackPresenterSDL::getCurrentPlayerHand ()
 
 std::vector<std::vector<std::string>> BlackjackPresenterSDL::getAllCards ()
 {
-	std::vector<std::vector<std::string>> cards; // TEMPORARY
-
-	//return mcModel.getOpponentCards();
-	return cards; // TEMPORARY
+	return mcModel.getAllCards();
 }
 
 std::vector<std::string> BlackjackPresenterSDL::getDealerCards ()
