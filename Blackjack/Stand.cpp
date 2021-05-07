@@ -10,37 +10,40 @@
 #include "Stand.h"
 
 //***************************************************************************
-// Function:
+// Function:    execute
 //
-// Description: 
+// Description: Allows the player to stop drawing cards
 //
-// Parameters:  
+// Parameters:  cTableDeck - the deck on the table
+//              cPlayer    - the player that is standing
 //
-// Return:			
+// Return:			true
 //***************************************************************************
 bool Stand::execute(Deck& cTableDeck, Player& cPlayer){
   return true;
 }
 //***************************************************************************
-// Function:
+// Function:    execute
 //
-// Description: 
+// Description: Allows the player to stop drawing cards
 //
-// Parameters:  
+// Parameters:  cTableDeck  - the deck on the table
+//              cPlayerHand - the current hand of the player that is standing
 //
-// Return:			
+// Return:			true
 //***************************************************************************
 bool Stand::execute(Deck& cTableDeck, Hand& cPlayerHand){
   return true;
 }
+
 //***************************************************************************
-// Function:
+// Function:    moveName
 //
-// Description: 
+// Description: returns a string representing the name of the move 
 //
-// Parameters:  
+// Parameters:  None
 //
-// Return:			
+// Return:			"Stand"
 //***************************************************************************
 std::string Stand::moveName(){
   return "Stand";

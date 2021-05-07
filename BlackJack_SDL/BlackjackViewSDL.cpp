@@ -24,7 +24,7 @@ mcStandButton("Stand", "", 100, 10, 1, { 255,255,255,255 }),
 mcSplitButton("Split", "", 200, 10, 1, { 255,255,255,255 }),
 mcDrawButton("Draw", "", 300, 10, 1, { 255,255,255,255 }),
 mcNumPlayersInput("Enter number of Players", "", 10, 50, 1, { 255,255,255,255 }),
-mcEndGameButton("New Game", "", 500, 10, 1, { 255,255,255,255 }),
+mcEndGameButton("New Game", "", 500, 650, 1, { 255,255,255,255 }),
 mcNextRound("Next Round", "", 400, 10, 1, {255, 255, 255, 255}),
 mcPlayerNameInput("Player 1 Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
 mcPlayerTypeInput("Player 1 Type", "", 10, 140, 1, { 255, 255, 255, 255 }),
@@ -296,16 +296,12 @@ void BlackjackViewSDL::betScreen ()
 void BlackjackViewSDL::onStand ()
 {
   mpcPresenter->stand();
+  updateCards();
 
-  if (!mpcPresenter->isHuman())
+  if (!mpcPresenter->roundOngoing())
   {
-    mpcPresenter->doCPUMoves();
-  }
-  else
-  {
-    mcBetButton.setEditable (true);
-    mcBetButton.setData ("");
-    mcSplitButton.setVisible (true);
+    mcNextRound.setVisible(true);
+    mcNextRound.setEditable(true);
   }
 }
 
@@ -320,16 +316,51 @@ void BlackjackViewSDL::onStand ()
 //***************************************************************************
 void BlackjackViewSDL::onDrawCard ()
 {
-  if (Status::Bust != mpcPresenter->result())
+  if (Status::Bust != mpcPresenter->result() && Status::Blackjack != mpcPresenter->result())
   {
     mpcPresenter->draw();
     std::vector<std::string> cards = mpcPresenter->getCurrentPlayerHand();
     mcPlayers.at(mpcPresenter->getCurrentPlayer())->addCard(this, cards.at(cards.size()-1), true, true);
+    updateCards();
   }
 
   if (Status::Bust == mpcPresenter->result() || Status::Blackjack == mpcPresenter->result())
   {
-    mpcPresenter->stand();
+    onStand();
+  }
+}
+
+void BlackjackViewSDL::updateCards()
+{
+  std::vector<std::string> currCards = mpcPresenter->getCurrentPlayerHand();
+  std::vector<std::vector<std::string>> allCards = mpcPresenter->getAllCards();
+  std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
+  int currInd = mpcPresenter->getCurrentPlayer();
+
+  for (int i = 0; i < mcPlayers.size(); i++)
+  {
+    mcPlayers.at(i)->discardHand();
+  }
+
+  for (int i = 0; i < currCards.size(); i++)
+  {
+    mcPlayers.at(currInd)->addCard (this, currCards.at(i), true, true);
+  }
+
+  for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
+  {
+    if (i != currInd)
+    {
+      for (int j = 0; j < allCards.at(i).size(); j++)
+      {
+        mcPlayers.at(i)->addCard(this, allCards.at(i).at(j), true, true);
+      }
+    }
+  }
+
+  for (int i = 0; i < dealerCards.size(); i++)
+  {
+    mcPlayers.at(mcPlayers.size() - 1)->addCard(this, dealerCards.at(i), true, true);
   }
 }
 
@@ -380,7 +411,7 @@ void BlackjackViewSDL::onBet (long long amount)
 //***************************************************************************
 void BlackjackViewSDL::onEndGame ()
 {
-  mpcPresenter->endGame (); //note: at some point in here, new game needs to be
+  //note: at some point in here, new game needs to be
                             //called
 }
 
@@ -395,7 +426,12 @@ void BlackjackViewSDL::onEndGame ()
 //***************************************************************************
 void BlackjackViewSDL::onNextRound ()
 {
+  mcNextRound.setVisible(false);
+  mcNextRound.setEditable(false);
+
   mpcPresenter->nextRound();
+
+  betScreen();
 }
 
 //***************************************************************************
@@ -429,33 +465,20 @@ void BlackjackViewSDL::onConfirmBets ()
   mpcPresenter->doCPUBets();
   mpcPresenter->doCPUMoves();
 
-  std::vector<std::vector<std::string>> allCards = mpcPresenter->getAllCards();
-  std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
-
   mcStandButton.setVisible (true);
   mcSplitButton.setVisible (true);
   mcDrawButton.setVisible (true);
-  mcEndGameButton.setVisible (true);
+  mcEndGameButton.setVisible(true);
   mcConfirmBets.setVisible(false);
   mcConfirmBets.registerClickEventHandler
     (std::bind
     (&BlackjackViewSDL::doNothing, this));
-  for (auto it = mcPlayers.begin (); it != mcPlayers.end (); it++) {
-    (*it)->setBetVisible(false);
-  }
 
-  //MASTER FOR LOOP OF YOUR MOM
-  for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
-  {
-    for (int j = 0; j < allCards.at(i).size(); j++)
-    {
-      mcPlayers.at(i)->addCard(this, allCards.at(i).at(j), true, true);
-    }
-  }
+  updateCards();
 
-  for (int i = 0; i < dealerCards.size(); i++)
+  if (Status::Bust == mpcPresenter->result() || Status::Blackjack == mpcPresenter->result())
   {
-    mcPlayers.at(mcPlayers.size() - 1)->addCard (this, dealerCards.at(i), true, true);
+    onStand();
   }
 
   mpcPresenter->doCPUMoves();
