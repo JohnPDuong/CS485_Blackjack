@@ -230,6 +230,10 @@ void BlackjackModel::makeMove(){
 std::vector<Status> BlackjackModel::nextRound()
 {
   std::vector<Status> results;
+  for (int i = 0; i < mcPlayers.size(); i++)
+  {
+    mcPlayers[i].endTurn();
+  }
   
   if(!mbRoundDone){
     return results;
