@@ -20,7 +20,7 @@
 //***************************************************************************
 PlayerView::PlayerView (int x, int y) :
 mcNameDisplay("Name", "", x, y, 1, {255, 255, 255, 255}),
-mcMoneyDisplay("Money", "", x, y+10, 1, {255, 255, 255, 255})
+mcMoneyDisplay("Money", "", x, y + 25, 1, {255, 255, 255, 255})
 {
   mX = x;
   mY = y;
@@ -77,8 +77,8 @@ void PlayerView::addCard (SDLApp* app, std::string card, bool isFaceUp,
   SDLSprite* pFaceUp = new SDLSprite;
   SDLSprite* pFaceDown = new SDLSprite;
 
-  pFaceUp->loadSprite(app, "Sprites\\" + card + ".png", 130, 200);
-  pFaceDown->loadSprite(app, "grey_back.png", 130, 200);
+  pFaceUp->loadSprite(app, "Sprites\\" + card + ".png", 65, 100);
+  pFaceDown->loadSprite(app, "grey_back.png", 65, 100);
 
   CardViewSDL cNewCard(pFaceUp, pFaceDown, isFaceUp);
 

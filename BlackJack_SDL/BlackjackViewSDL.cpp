@@ -118,11 +118,11 @@ void BlackjackViewSDL::newGame (int numPlayers)
 {
   //create player views
   for (int i = 0; i < numPlayers; i++) {
-    PlayerView* pcCreated = new PlayerView(10, 100 + 10 * i);
+    PlayerView* pcCreated = new PlayerView(10, 150 + 100 * i);
     mcPlayers.push_back(pcCreated);
     mcDrawableWidget.push_back((ISDLWidget*)pcCreated);
   }
-  PlayerView* pcDealer = new PlayerView(10, 90);
+  PlayerView* pcDealer = new PlayerView(10, 50);
   pcDealer->makeDealer();
   mcPlayers.push_back(pcDealer);
   mcDrawableWidget.push_back (pcDealer);
@@ -138,6 +138,7 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcNumPlayersInput.setVisible(false);
   mcPlayerNameInput.setVisible(false);
   mcPlayerTypeInput.setVisible(false);
+  mcSetPlayer.setVisible(false);
 }
 
 //***************************************************************************
@@ -422,7 +423,6 @@ void BlackjackViewSDL::onSetPlayerWidget (SDLTextWidget* name, SDLTextWidget* ty
 //
 // Returned:    None
 //***************************************************************************
-
 void BlackjackViewSDL::initGame ()
 {
   mcStandButton.setVisible (false);
