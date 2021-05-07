@@ -27,8 +27,9 @@ mcNumPlayersInput("Enter number of Players", "", 10, 50, 1, { 255,255,255,255 })
 mcEndGameButton("New Game", "", 500, 10, 1, { 255,255,255,255 }),
 mcNextRound("Next Round", "", 400, 10, 1, {255, 255, 255, 255}),
 mcPlayerNameInput("Player 1 Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
-mcPlayerTypeInput("Player 1 Type", "", 10, 80, 1, { 255, 255, 255, 255 }),
-mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
+mcPlayerTypeInput("Player 1 Type", "", 10, 140, 1, { 255, 255, 255, 255 }),
+mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255}),
+mcPlayerBalanceInput("Player 1 Balance", "", 10, 110, 1, {255, 255, 255, 255})
 {
   mpcPresenter = new BlackjackPresenterSDL ((IBlackjackView*)this);
   loadFont ("c:/Windows/Fonts/Cour.ttf", 20);
@@ -52,7 +53,7 @@ mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
     (std::bind(&BlackjackViewSDL::onNextRound, this));
   mcSetPlayer.registerClickEventHandler 
     (std::bind
-    (&BlackjackViewSDL::onSetPlayerWidget, this, &mcPlayerNameInput, &mcPlayerTypeInput));
+    (&BlackjackViewSDL::onSetPlayerWidget, this, &mcPlayerNameInput, &mcPlayerTypeInput, &mcPlayerBalanceInput));
 
   //set non-editable text objects
   mcStandButton.setEditable(false);
@@ -68,6 +69,7 @@ mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
   registerTextWidget((ISDLWidgetTextable*)&mcNumPlayersInput);
   registerTextWidget((ISDLWidgetTextable*)&mcPlayerNameInput);
   registerTextWidget((ISDLWidgetTextable*)&mcPlayerTypeInput);
+  registerTextWidget((ISDLWidgetTextable*)&mcPlayerBalanceInput);
   registerClickableWidget((ISDLWidgetClickable*)&mcStandButton);
   registerClickableWidget((ISDLWidgetClickable*)&mcSplitButton);
   registerClickableWidget((ISDLWidgetClickable*)&mcDrawButton);
@@ -85,6 +87,7 @@ mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
   mcDrawableWidget.push_back(&mcPlayerTypeInput);
   mcDrawableWidget.push_back(&mcSetPlayer);
   mcDrawableWidget.push_back(&mcSplitButton);
+  mcDrawableWidget.push_back(&mcPlayerBalanceInput);
 }
 
 //***************************************************************************
@@ -140,6 +143,7 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcPlayerNameInput.setVisible(false);
   mcPlayerTypeInput.setVisible(false);
   mcSetPlayer.setVisible(false);
+  mcPlayerBalanceInput.setVisible(false);
   mcSetPlayer.registerClickEventHandler(std::bind
     (&BlackjackViewSDL::doNothing, this));
 
@@ -250,6 +254,8 @@ void BlackjackViewSDL::setPlayer ()
     mcPlayerNameInput.setData ("");
     mcPlayerTypeInput.setLabel ("Player " + std::to_string (mPlayersSet + 1) + " type");
     mcPlayerTypeInput.setData ("");
+    mcPlayerBalanceInput.setLabel("Player " + std::to_string(mPlayersSet + 1) + " balance");
+    mcPlayerBalanceInput.setLabel("");
   }
   else
     newGame(mpcPresenter->getNumPlayers());
@@ -260,6 +266,7 @@ void BlackjackViewSDL::setNumPlayers ()
   mcNumPlayersInput.setVisible(false);
   mcPlayerNameInput.setVisible(true);
   mcPlayerTypeInput.setVisible(true);
+  mcPlayerBalanceInput.setVisible(true);
   mcSetPlayer.setVisible(true);
 }
 
@@ -390,10 +397,11 @@ void BlackjackViewSDL::onSetNumPlayers (int number)
   setNumPlayers();
 }
 
-void BlackjackViewSDL::onSetPlayer (std::string name, std::string type)
+void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, long long balance)
 {
   mpcPresenter->setName(name, mPlayersSet);
   mpcPresenter->setPlayerType(type, mPlayersSet);
+  mpcPresenter->setBalance(balance, mPlayersSet);
   mPlayersSet++;
   setPlayer();
 }
@@ -451,12 +459,12 @@ void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
   }
 }
 
-void BlackjackViewSDL::onSetPlayerWidget (SDLTextWidget* name, SDLTextWidget* type)
+void BlackjackViewSDL::onSetPlayerWidget (SDLTextWidget* name, SDLTextWidget* type, SDLTextWidget* balance)
 {
   if (name->getData () != "" && (type->getData () == "Card Counter" || 
-    type->getData () == "Human"))
+    type->getData () == "Human") && std::stoll(balance->getData()) > 0)
   {
-    onSetPlayer(name->getData(), type->getData());
+    onSetPlayer(name->getData(), type->getData(), std::stoll(balance->getData()));
   }
 }
 
@@ -481,6 +489,7 @@ void BlackjackViewSDL::initGame ()
   mcPlayerNameInput.setVisible(false);
   mcPlayerTypeInput.setVisible(false);
   mcNumPlayersInput.setVisible (true);
+  mcPlayerBalanceInput.setVisible(false);
 }
 
 //***************************************************************************

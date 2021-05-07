@@ -44,12 +44,12 @@ class BlackjackViewSDL : public SDLApp {
     void onEndGame();
     void onNextRound();
     void onSetNumPlayers(int number);
-    void onSetPlayer(std::string name, std::string type);
+    void onSetPlayer(std::string name, std::string type, long long balance);
 
     //widget function
     void onBetWidget(SDLTextWidget* widget);
     void onNumPlayersWidget(SDLTextWidget* widget);
-    void onSetPlayerWidget(SDLTextWidget* name, SDLTextWidget* type);
+    void onSetPlayerWidget(SDLTextWidget* name, SDLTextWidget* type, SDLTextWidget* balance);
 
     void initGame();
     void render ();
@@ -70,6 +70,7 @@ class BlackjackViewSDL : public SDLApp {
     SDLTextWidget mcNextRound;
     SDLTextWidget mcPlayerNameInput;
     SDLTextWidget mcPlayerTypeInput;
+    SDLTextWidget mcPlayerBalanceInput;
     SDLTextWidget mcSetPlayer;
 
     std::vector<ISDLWidget*> mcDrawableWidget;
