@@ -129,13 +129,12 @@ void BlackjackPresenterSDL::stand ()
 
 bool BlackjackPresenterSDL::bet (long long amount)
 {
-	mcModel.makeBet (Money (amount, Currency::USD));
-
-	return true;
+	return mcModel.makeBet(Money(amount, Currency::USD));;
 }
 
 void BlackjackPresenterSDL::setBalance(long long amount, int index)
 {
+	mcModel.setPlayerBalance(amount, index);
 }
 
 void BlackjackPresenterSDL::split ()

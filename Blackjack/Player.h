@@ -43,12 +43,15 @@ public:
   Money getBet();
   std::string getName();
   void setName(std::string name);
+  void setBalance(Money newBalance);
   
   bool isFullyBust();
   bool readyToStart();
 
   bool canSplit ();
-  void endRound();
+  void endRound(int dealerVal);
+  
+  bool doneWithTurn();
   
 private:
   std::string mName;
