@@ -236,8 +236,10 @@ void BlackjackModel::makeMove(){
     mcPlayers.at(mCurrentPlayerIndex).makeMove(cCompMove, getFaceUpCards());
     cCompMove->execute(*mpcDeck,
                      mcPlayers.at(mCurrentPlayerIndex));
+    if(cCompMove->moveName() == "Stand"){
+      incrementPlayer();
+    }
   }
-  incrementPlayer();
 }
 
 //***************************************************************************
@@ -392,8 +394,8 @@ void BlackjackModel::stand(){
     std::shared_ptr<IMove> pcMove = std::make_shared<Stand>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
-    incrementPlayer();
   }
+  incrementPlayer();
 }
 
 //***************************************************************************
@@ -411,7 +413,6 @@ bool BlackjackModel::split(){
     std::shared_ptr<IMove> pcMove = std::make_shared<Split>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
-    incrementPlayer();
   }
   return bSuccess;
 }
@@ -431,7 +432,6 @@ void BlackjackModel::drawCard(){
     std::shared_ptr<IMove> pcMove = std::make_shared<Draw>();
     bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
-    incrementPlayer();
   }
 }
 
@@ -576,9 +576,22 @@ std::vector<std::string> BlackjackModel::getTypeList(){
 // Return:			vector of strings of card values and ranks
 //***************************************************************************
 std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
+  return getPlayerHand(mCurrentPlayerIndex);
+}
+
+//***************************************************************************
+// Function:    getCurrentPlayerHand
+//
+// Description: returns the current player's hand to display in string form
+//
+// Parameters:  None
+//
+// Return:      vector of strings of card values and ranks
+//***************************************************************************
+std::vector<std::string> BlackjackModel::getPlayerHand(int index){
   std::vector<std::string> cardStrs;
   std::vector<Card> cCards = 
-    mcPlayers.at(mCurrentPlayerIndex).getCurrentHand().getHand();
+    mcPlayers.at(index).getCurrentHand().getHand();
 
   for (Card card : cCards)
   {
