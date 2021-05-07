@@ -32,15 +32,18 @@ BlackjackPresenterSDL::~BlackjackPresenterSDL ()
 	delete mpcView;
 }
 
-void BlackjackPresenterSDL::newGame (int players)
+bool BlackjackPresenterSDL::newGame (int players)
 {
 	mcModel.newGame (players);
-	//mpcView->newGame(players);
+	
+	return true;
 }
 
-void BlackjackPresenterSDL::newGame()
+bool BlackjackPresenterSDL::newGame()
 {
 	mcModel.newGame();
+
+	return true;
 }
 
 void BlackjackPresenterSDL::nextRound ()
@@ -115,6 +118,11 @@ void BlackjackPresenterSDL::setName (std::string name, int index)
 void BlackjackPresenterSDL::setPlayerType (std::string stratType, int index)
 {
 	mcModel.setPlayerType (stratType, index);
+}
+
+std::vector<std::string> BlackjackPresenterSDL::listMoveStratTypes()
+{
+	return std::vector<std::string>();
 }
 
 std::string BlackjackPresenterSDL::getName(int index)

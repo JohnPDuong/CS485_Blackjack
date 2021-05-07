@@ -422,6 +422,10 @@ void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, long lon
 
 void BlackjackViewSDL::onConfirmBets ()
 {
+  std::vector<std::string> cards = mpcPresenter->getCurrentPlayerHand();
+  std::vector<std::vector<std::string>> aiCards = mpcPresenter->getOpponentCards();
+  int count = -1;
+
   mpcPresenter->doCPUBets();
   mpcPresenter->doCPUMoves();
 
@@ -438,7 +442,18 @@ void BlackjackViewSDL::onConfirmBets ()
     (*it)->setBetVisible(false);
   }
 
+  for (int i = 0; i < cards.size(); i++)
+  {
+    mcPlayers.at(0)->addCard (this, cards.at(i), true, true);
+  }
 
+  for (int i = 1; i < mpcPresenter->getNumPlayers(); i++)
+  {
+    for (int j = 0; j < aiCards.at(i).size(); j++)
+    {
+      mcPlayers.at(i)->addCard (this, aiCards.at(i).at(j), true, true);
+    }
+  }
 }
 
 //***************************************************************************

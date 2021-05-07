@@ -20,8 +20,8 @@ public:
 	BlackjackPresenterSDL (IBlackjackView* pcView, int numPlayers, int numDecks);
 	virtual ~BlackjackPresenterSDL ();
 
-	virtual void newGame (int players);
-	virtual void newGame ();
+	virtual bool newGame (int players);
+	virtual bool newGame ();
 
 	virtual void nextRound ();
 	virtual void endGame ();
@@ -38,6 +38,7 @@ public:
 	virtual std::string getName ();
 	virtual void setName (std::string name, int index) override;
 	virtual void setPlayerType (std::string stratType, int index);
+	virtual std::vector<std::string> listMoveStratTypes();
 
 	virtual std::string getName(int index);
 	virtual long long getBalance(int index);
