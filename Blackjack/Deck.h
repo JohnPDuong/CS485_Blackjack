@@ -1,10 +1,10 @@
 //***************************************************************************
-// File name:  
-// Author:     
+// File name:  Deck.h
+// Author:     John, Julian, Kitt, Erin
 // Date:       5/7/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    
+// Purpose:    Declares a class to represent a deck of cards
 //***************************************************************************
 #pragma once
 #include <vector>

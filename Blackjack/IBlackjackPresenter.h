@@ -1,10 +1,10 @@
 //***************************************************************************
-// File name:  
-// Author:     
+// File name:  IBlackjackPresenter.h
+// Author:     John, Julian, Kitt, Erin
 // Date:       5/7/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    
+// Purpose:    Declares the class from which all presenters inherit
 //***************************************************************************
 #pragma once
 #include "BlackjackModel.h"
