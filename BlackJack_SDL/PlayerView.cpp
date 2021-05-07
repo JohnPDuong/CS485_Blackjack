@@ -62,10 +62,10 @@ void PlayerView::draw (SDLApp& app)
   if (mcBetDisplay.isVisible ()) {
     mcBetDisplay.draw (app);
   }
-  for (std::vector<CardViewSDL>::iterator it = mcCards.begin(); it != mcCards.end(); it++)
-    it->draw(app);
-  for (std::vector<CardViewSDL>::iterator it = mcSplitHand.begin(); it != mcSplitHand.end(); it++)
-    it->draw(app);
+  for (std::vector<CardViewSDL *>::iterator it = mcCards.begin(); it != mcCards.end(); it++)
+    (*it)->draw(app);
+  for (std::vector<CardViewSDL *>::iterator it = mcSplitHand.begin(); it != mcSplitHand.end(); it++)
+    (*it)->draw(app);
 }
 
 //***************************************************************************
@@ -86,15 +86,15 @@ void PlayerView::addCard (SDLApp* app, std::string card, bool isFaceUp,
   SDLSprite* pFaceUp = new SDLSprite;
   SDLSprite* pFaceDown = new SDLSprite;
 
-  pFaceUp->loadSprite(app, "Sprites\\" + card + ".png", 65, 100);
-  pFaceDown->loadSprite(app, "grey_back.png", 65, 100);
+  pFaceUp->loadSprite(app, "Sprites\\" + card + ".png", 10, 15);
+  pFaceDown->loadSprite(app, "grey_back.png", 10, 15);
 
-  CardViewSDL cNewCard(pFaceUp, pFaceDown, isFaceUp);
+  CardViewSDL *pcNewCard = new CardViewSDL(pFaceUp, pFaceDown, isFaceUp);
 
   if(inMainHand)
-    mcCards.push_back(cNewCard);
+    mcCards.push_back(pcNewCard);
   else
-    mcSplitHand.push_back(cNewCard);
+    mcSplitHand.push_back(pcNewCard);
 }
 
 //***************************************************************************
@@ -124,12 +124,12 @@ void PlayerView::discardHand ()
 void PlayerView::showCards ()
 {
   for (auto it = mcCards.begin (); it != mcCards.end (); it++) {
-    if (!it->isFaceUp())
-      it->flip();
+    if (!(*it)->isFaceUp())
+      (*it)->flip();
   }
   for (auto it = mcSplitHand.begin (); it != mcSplitHand.end (); it++) {
-    if (!it->isFaceUp())
-      it->flip();
+    if (!(*it)->isFaceUp())
+      (*it)->flip();
   }
 }
 
