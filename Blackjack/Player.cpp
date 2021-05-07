@@ -168,10 +168,7 @@ void Player::endRound(int dealerVal){
     }
   }
   
-  for(int i = 0; i < getNumHands(); i++){
-    mcHands.pop_back();
-  }
-  mcHands.push_back(Hand());
+  clearHand();
   mcBet = Money(-1, mcBank.getCurrency());
   mCurrentHand = 0;
 }

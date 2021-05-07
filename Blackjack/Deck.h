@@ -22,6 +22,7 @@ class Deck
 
 		void shuffle ();
 		void fillShuffle ();
+  int numCardsRemaining ();
 
 		Card draw ();
 

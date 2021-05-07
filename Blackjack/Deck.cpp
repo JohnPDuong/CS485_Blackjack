@@ -71,6 +71,11 @@ void Deck::fillShuffle()
 	populate ();
 	shuffle ();
 }
+
+int Deck::numCardsRemaining(){
+  return macCards.size();
+}
+
 //***************************************************************************
 // Function:		draw
 //

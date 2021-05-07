@@ -257,7 +257,9 @@ std::vector<Status> BlackjackModel::nextRound()
   mbRoundDone = false;
   mbBetReady = true;
 
+  if(mpcDeck->numCardsRemaining() < getNumPlayers() * 11){
     mpcDeck.get()->fillShuffle();
+  }
   
   initialDeal();
   
