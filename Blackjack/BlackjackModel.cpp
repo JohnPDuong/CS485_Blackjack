@@ -212,10 +212,12 @@ void BlackjackModel::moveDealer(){
 // Return:			None
 //***************************************************************************
 void BlackjackModel::makeMove(){
-  std::shared_ptr<IMove> cCompMove;
-  mcPlayers.at(mCurrentPlayerIndex).makeMove(cCompMove, getFaceUpCards());
-  cCompMove->execute(*mpcDeck,
+  if(!hasLost()){
+    std::shared_ptr<IMove> cCompMove;
+    mcPlayers.at(mCurrentPlayerIndex).makeMove(cCompMove, getFaceUpCards());
+    cCompMove->execute(*mpcDeck,
                      mcPlayers.at(mCurrentPlayerIndex));
+  }
   incrementPlayer();
 }
 //***************************************************************************
@@ -242,7 +244,9 @@ std::vector<Status> BlackjackModel::nextRound()
   results = result();
   
   for(int i = 0; i < getNumPlayers(); i++){
-    mcPlayers.at(i).endRound(mcDealerHand.getHandValue());
+    if(!hasLost(i)){
+      mcPlayers.at(i).endRound(mcDealerHand.getHandValue());
+    }
   }
   mbRoundDone = false;
   mbBetReady = true;
@@ -271,6 +275,15 @@ std::vector<Status> BlackjackModel::result(){
   
   return results;
 }
+
+bool BlackjackModel::hasLost(){
+  return hasLost(mCurrentPlayerIndex);
+}
+
+bool BlackjackModel::hasLost(int index){
+  return mcPlayers.at(index).hasLost();
+}
+
 //***************************************************************************
 // Function:    makeBet
 //
@@ -765,7 +778,8 @@ void BlackjackModel::doCPUMoves(){
 //***************************************************************************
 void BlackjackModel::doCPUBets(){
   while(!isHuman() && isBetTime()){
-    if(mcPlayers.at(mCurrentPlayerIndex).getBet().getAmount() == -1){
+    if(!hasLost() &&
+       mcPlayers.at(mCurrentPlayerIndex).getBet().getAmount() == -1){
       makeBet();
     }
     else{
@@ -804,6 +818,9 @@ Status BlackjackModel::resultCurrentPlayer(){
 //***************************************************************************
 Status BlackjackModel::resultPlayer(int index)
 {
+  if(mcPlayers.at(index).hasLost()){
+    return Status::Lose;
+  }
   Status eStatus;
   int sum = mcPlayers[index].getCurrentHand().getHandValue();
   int dealerSum = mcDealerHand.getHandValue();

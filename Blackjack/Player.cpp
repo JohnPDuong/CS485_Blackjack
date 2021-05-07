@@ -72,6 +72,10 @@ bool Player::trySplit(){
   return true;
 }
 
+bool Player::hasLost(){
+  return mcBank.getAmount() > 0;
+}
+
 void Player::changeStrat(std::shared_ptr<IMoveStrategy> newStrat){
   mpcMoveStrat = newStrat;
 }

@@ -74,6 +74,8 @@ public:
   Status resultCurrentPlayer ();
   Status resultPlayer (int index);
   
+  bool hasLost();
+  bool hasLost(int index);
   bool roundDone();
   bool lastUnder();
   

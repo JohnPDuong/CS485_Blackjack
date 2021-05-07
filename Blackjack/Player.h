@@ -33,6 +33,8 @@ public:
   bool isHuman();
   bool trySplit();
   
+  bool hasLost();
+  
   void changeStrat(std::shared_ptr<IMoveStrategy> newStrat);
   
   std::vector<Card> getFaceUpCards();
