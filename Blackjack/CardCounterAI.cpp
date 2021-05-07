@@ -71,7 +71,7 @@ bool CardCounterAI::determineBet(Player& player, Money& bet){
   int numBad = 0;
   int numDecks = estimateNumDecks();
   
-  evalCards(numGood, numBad, numDecks);
+  evalCards(numGood, numBad, numDecks, 8);
   
   bet.setAmount(((numGood-numBad)/(double)numDecks) *
                 player.getBank().getAmount()/100);
@@ -91,21 +91,21 @@ void CardCounterAI::evalCards(int &numGoodCards, int &numBadCards,
                               int estimatedNumDecks, int refVal){
   for(int i = 0; i < 13; i++){
     if(i <= refVal && i <= unhashValue(Value::Ten)){
-      numGoodCards += estimatedNumDecks -
+      numGoodCards += 4 * estimatedNumDecks -
                   (mTotalCardsFoundOfEachType[0][i]
                   + mTotalCardsFoundOfEachType[1][i]
                   + mTotalCardsFoundOfEachType[2][i]
                   + mTotalCardsFoundOfEachType[3][i]);
     }
     else if(unhashValue(Value::Ten) <= refVal){
-      numGoodCards += estimatedNumDecks -
+      numGoodCards += 4 * estimatedNumDecks -
                   (mTotalCardsFoundOfEachType[0][i]
                   + mTotalCardsFoundOfEachType[1][i]
                   + mTotalCardsFoundOfEachType[2][i]
                   + mTotalCardsFoundOfEachType[3][i]);
     }
     else{
-      numBadCards += estimatedNumDecks -
+      numBadCards += 4 * estimatedNumDecks -
                   (mTotalCardsFoundOfEachType[0][i]
                   + mTotalCardsFoundOfEachType[1][i]
                   + mTotalCardsFoundOfEachType[2][i]
@@ -163,7 +163,7 @@ int CardCounterAI::unhashValue(Value inputValue){
 }
 
 int CardCounterAI::estimateNumDecks(){
-  int estimatedNumDecks = 0;
+  int estimatedNumDecks = 1;
   for(int i = 0; i < 13; i++){
     for(int j = 0; j < 4; j++){
       if(mTotalCardsFoundOfEachType[j][i] > estimatedNumDecks){

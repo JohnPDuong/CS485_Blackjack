@@ -147,7 +147,7 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcSetPlayer.registerClickEventHandler (std::bind
     (&BlackjackViewSDL::doNothing, this));
 
-  nextRound();
+  mpcPresenter->newGame();
 }
 
 //***************************************************************************
@@ -259,7 +259,6 @@ void BlackjackViewSDL::setPlayer ()
   }
   else
   {
-    mpcPresenter->newGame();
     newGame(mpcPresenter->getNumPlayers());
   }
 }
