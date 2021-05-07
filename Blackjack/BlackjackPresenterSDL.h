@@ -38,6 +38,8 @@ public:
 	virtual void setName (std::string name, int index) override;
 	virtual void setPlayerType (std::string stratType, int index);
 
+	virtual std::string getName(int index);
+
 	virtual void stand ();
 	virtual bool bet (long long amount);
 	virtual void split ();
