@@ -433,7 +433,6 @@ void BlackjackViewSDL::onConfirmBets ()
   mcSplitButton.setVisible (true);
   mcDrawButton.setVisible (true);
   mcEndGameButton.setVisible (true);
-  mcBetButton.setVisible (true);
   mcConfirmBets.setVisible(false);
   mcConfirmBets.registerClickEventHandler
     (std::bind
