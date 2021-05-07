@@ -405,7 +405,7 @@ void BlackjackViewSDL::onBet (long long amount)
 //***************************************************************************
 void BlackjackViewSDL::onEndGame ()
 {
-  mpcPresenter->endGame (); //note: at some point in here, new game needs to be
+  //note: at some point in here, new game needs to be
                             //called
 }
 
