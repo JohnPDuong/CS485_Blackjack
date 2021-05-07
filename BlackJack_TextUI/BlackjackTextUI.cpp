@@ -268,7 +268,7 @@ void BlackjackTextUI::playGame()
 				turns++;
 			}
 
-			mcHand = mpcPresenter->getCurrentPlayerHand();
+			//mcHand = mpcPresenter->getCurrentPlayerHand();
 			mpcPresenter->doCPUMoves();
 			printEndRoundScreen();
 			mpcPresenter->nextRound();
@@ -276,7 +276,7 @@ void BlackjackTextUI::playGame()
 
 		else
 		{
-			std::cout << "Wow, you lost. Hope that wasn't your life's savings!\n\n";
+			std::cout << "\nWow, you lost. Hope that wasn't your life's savings!\n\n";
 			bKeepPlaying = false;
 		}
 	}

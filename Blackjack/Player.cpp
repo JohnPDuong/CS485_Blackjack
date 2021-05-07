@@ -72,6 +72,15 @@ bool Player::trySplit(){
   return true;
 }
 
+void Player::clearHand()
+{
+  Hand cHand;
+  for (Hand h : mcHands)
+  {
+    h = cHand;
+  }
+}
+
 bool Player::hasLost(){
   return mcBank.getAmount() > 0;
 }

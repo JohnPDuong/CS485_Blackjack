@@ -127,6 +127,12 @@ void BlackjackModel::initialDeal(){
   Hand newHand;
   mcDealerHand = newHand;
 
+  // Julian added this loop to reset the cards for each player
+  for (Player p : mcPlayers)
+  {
+    p.clearHand();
+  }
+
   mpcDeck->shuffle();
   for(int i = 0; i < getNumPlayers(); i++){
     mcPlayers.at(i).receiveCard(mpcDeck->draw());
@@ -244,9 +250,9 @@ std::vector<Status> BlackjackModel::nextRound()
   results = result();
   
   for(int i = 0; i < getNumPlayers(); i++){
-    if(!hasLost(i)){
+    //if(!hasLost(i)){
       mcPlayers.at(i).endRound(mcDealerHand.getHandValue());
-    }
+    //}
   }
   mbRoundDone = false;
   mbBetReady = true;

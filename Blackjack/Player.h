@@ -32,6 +32,7 @@ public:
   bool makeBet(Money cAmount);
   bool isHuman();
   bool trySplit();
+  void clearHand();
   
   bool hasLost();
   
