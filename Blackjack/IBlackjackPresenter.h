@@ -35,6 +35,9 @@ public:
 	virtual long long getBalance (int index) = 0;
   virtual void setBalance(long long amount, int index) = 0;
 
+	virtual void setBet (long long amount, int index) = 0;
+	virtual long long getBet (int index) = 0;
+
 	virtual void stand() = 0;
 	virtual bool bet(long long amount) = 0;
 	virtual void split() = 0;
@@ -42,6 +45,7 @@ public:
 
 	virtual void makeMove() = 0;
 	virtual bool isHuman() = 0;
+	virtual bool isHuman(int index) = 0;
 	virtual bool canSplit() = 0;
 	virtual bool isBetTime() = 0;
 

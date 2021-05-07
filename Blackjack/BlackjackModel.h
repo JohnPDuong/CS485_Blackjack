@@ -53,6 +53,8 @@ public:
   void setPlayerType(std::string stratType, int index);
   void setPlayerBalance(long long Balance);
   void setPlayerBalance(long long Balance, int index);
+  void setPlayerBet (long long amount, int index);
+  long long getPlayerBet (int index);
   
   std::vector<std::string> getTypeList();
   

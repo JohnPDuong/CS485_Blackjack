@@ -150,8 +150,8 @@ void BlackjackTextUI::playGame()
 	const int DRAW = 2;
 	const int SPLIT = 3;
 	const int QUIT = 4;
-
 	const bool STOP_PLAYING = false;
+	const std::vector<std::string> EMPTY_HAND;
 
 	bool bKeepPlaying = true;
 	long long betAmount = -1;
@@ -161,6 +161,7 @@ void BlackjackTextUI::playGame()
 	while (bKeepPlaying)
 	{
 		move = -1;
+		mcHand = EMPTY_HAND;		
 
 		// Print state of the game and options
 		system("cls");
@@ -169,80 +170,87 @@ void BlackjackTextUI::playGame()
 		// Do betting
 		mpcPresenter->doCPUBets();
 		std::cout << "\nCurrent balance: " << mpcPresenter->getBalance();
-		std::cout << "\nHow much would you like to bet? ";
-		do
+
+		if (!(0 >= mpcPresenter->getBalance()))
 		{
-			//mpcPresenter->doCPUBets();
-			std::cin >> betAmount;
-
-		} while (!mpcPresenter->bet(betAmount));
-		mpcPresenter->doCPUBets();
-
-		system("cls");
-		printHeader();
-		printGameState();
-
-		// Prints the move options if the human's turn is still going
-		while (/*move != STAND &&*/ mpcPresenter->roundOngoing() && move != QUIT)
-		{
-			mpcPresenter->doCPUMoves();
-
-			// Print your cards
-			std::cout << "Your cards: ";
-			for (std::string str : mpcPresenter->getCurrentPlayerHand())
+			std::cout << "\nHow much would you like to bet? ";
+			do
 			{
-				std::cout << str << " ";
-			}
-			std::cout << std::endl << std::endl;
-			
-			// Sets the move to stand automatically if bust
-			if (Status::Bust == mpcPresenter->result())
+				//mpcPresenter->doCPUBets();
+				std::cin >> betAmount;
+
+			} while (!mpcPresenter->bet(betAmount));
+			mpcPresenter->doCPUBets();
+
+			system("cls");
+			printHeader();
+			printGameState();
+
+			// Prints the move options if the human's turn is still going
+			while (/*move != STAND &&*/ mpcPresenter->roundOngoing() && move != QUIT)
 			{
-				move = STAND;
-			}
+				mpcPresenter->doCPUMoves();
 
-      if (move != STAND)
-      {
-        move = SPLIT;
-        std::cout << "OPTIONS: \n(1) Stand \n(2) Draw\n";
-        if (mpcPresenter->canSplit())
-        {
-          std::cout << "(3) Split\n";
-        }
-        std::cout << "(4) Quit\n";
+				printPlayerCards();
 
-				do
+				// Sets the move to stand automatically if bust
+				if (Status::Bust == mpcPresenter->result())
 				{
-					std::cout << "Enter your move: ";
-					std::cin >> move;
-				} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > QUIT || move < STAND));
-				std::cout << std::endl;
+					move = STAND;
+				}
+
+				if (move != STAND)
+				{
+					move = SPLIT;
+					std::cout << "OPTIONS: \n(1) Stand \n(2) Draw\n";
+					if (mpcPresenter->canSplit())
+					{
+						std::cout << "(3) Split\n";
+					}
+					std::cout << "(4) Quit\n";
+
+					do
+					{
+						std::cout << "Enter your move: ";
+						std::cin >> move;
+					} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > QUIT || move < STAND));
+					std::cout << std::endl;
+				}
+
+				// Executes selected move
+				switch (move)
+				{
+				case STAND:
+					mpcPresenter->stand();
+					break;
+
+				case DRAW:
+					mpcPresenter->draw();
+					break;
+
+				case SPLIT:
+					//mcHand.push_back(mpcPresenter->getCurrentPlayerHand()[1]);// TODO
+					mpcPresenter->split();
+					break;
+				case QUIT:
+					bKeepPlaying = STOP_PLAYING;
+					break;
+				}
+
+				turns++;
 			}
 
-			// Executes selected move
-			switch (move)
-			{
-			case STAND:
-				mpcPresenter->stand();
-				break;
-
-			case DRAW:
-				mpcPresenter->draw();
-				break;
-
-			case SPLIT:
-				mpcPresenter->split();
-				break;
-			case QUIT:
-				bKeepPlaying = STOP_PLAYING;
-				break;
-			}
-      turns++;
+			mcHand = mpcPresenter->getCurrentPlayerHand();
+			mpcPresenter->doCPUMoves();
+			printEndRoundScreen();
+			mpcPresenter->nextRound();
 		}
-    
-		mpcPresenter->doCPUMoves();
-    printEndRoundScreen();
-		mpcPresenter->nextRound();   
+
+		else
+		{
+			std::cout << "Wow, you lost. Hope that wasn't your life's savings!\n\n";
+			bKeepPlaying = false;
+		}
 	}
 }
 
@@ -271,6 +279,11 @@ void BlackjackTextUI::printEndRoundScreen(){
   {
     std::cout << str << " ";
   }  
+	std::cout << "\nSplit hand: ";
+	for (std::string str : mcHand)
+	{
+		std::cout << str << " ";
+	}
   std::cout << std::endl << std::endl;
 
   // print opponents cards
@@ -293,6 +306,5 @@ void BlackjackTextUI::printEndRoundScreen(){
 	}
 	std::cout << std::endl;
 
-	std::cout << "\nEnter literally anything to continue: ";
-	std::cin >> something;
+	system("PAUSE");
 }

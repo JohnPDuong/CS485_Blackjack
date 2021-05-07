@@ -321,6 +321,10 @@ bool BlackjackPresenter::isHuman()
 {
 	return mcModel.isHuman();
 }
+bool BlackjackPresenter::isHuman(int index)
+{
+	return mcModel.isHuman(index);
+}
 //***************************************************************************
 // Function:
 //
@@ -412,4 +416,14 @@ long long BlackjackPresenter::getBalance(int index)
 void BlackjackPresenter::setBalance(long long amount, int index)
 {
 	mcModel.setPlayerBalance (amount, index);
+}
+
+void BlackjackPresenter::setBet(long long amount, int index)
+{
+	mcModel.setPlayerBet(amount, index);
+}
+
+long long BlackjackPresenter::getBet(int index)
+{
+	return mcModel.getPlayerBet(index);
 }

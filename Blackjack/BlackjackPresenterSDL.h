@@ -41,6 +41,9 @@ public:
 	virtual std::string getName(int index);
 	virtual long long getBalance(int index);
 
+	virtual void setBet(long long amount, int index);
+	virtual long long getBet(int index);
+
 	virtual void stand ();
 	virtual bool bet (long long amount);
 	virtual void setBalance(long long amount, int index);
@@ -50,6 +53,7 @@ public:
 
 	virtual void makeMove ();
 	virtual bool isHuman ();
+	virtual bool isHuman(int index);
 	virtual bool canSplit ();
 	virtual bool isBetTime();
 
