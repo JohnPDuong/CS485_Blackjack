@@ -345,7 +345,7 @@ void BlackjackViewSDL::onStand ()
 void BlackjackViewSDL::onDrawCard ()
 {
   if (Status::Bust != mpcPresenter->result() && 
-    Status::Blackjack != mpcPresenter->result())
+    Status::Blackjack != mpcPresenter->result() && mpcPresenter->roundOngoing())
   {
     mpcPresenter->draw();
     std::vector<std::string> cards = mpcPresenter->getCurrentPlayerHand();
@@ -601,8 +601,14 @@ void BlackjackViewSDL::onConfirmBets ()
     {
       if (std::any_of(str.begin(), str.end(), std::isdigit))
       {
-        
-        mpcPresenter->setBet(stoll(str), i);
+        if (mpcPresenter->getBalance(i) >= stoll(str) && stoll(str) > 0)
+        {
+          mpcPresenter->setBet(stoll(str), i);
+        }
+        else
+        {
+          bGoodBets = false;
+        }
       }
       else
       {
