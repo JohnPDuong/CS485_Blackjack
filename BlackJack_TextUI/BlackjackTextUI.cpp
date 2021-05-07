@@ -171,7 +171,7 @@ void BlackjackTextUI::playGame()
 		mpcPresenter->doCPUBets();
 		std::cout << "\nCurrent balance: " << mpcPresenter->getBalance();
 
-		if (0 >= mpcPresenter->getBalance())
+		if (!(0 >= mpcPresenter->getBalance()))
 		{
 			std::cout << "\nHow much would you like to bet? ";
 			do
@@ -229,7 +229,7 @@ void BlackjackTextUI::playGame()
 					break;
 
 				case SPLIT:
-					mcHand.push_back(mpcPresenter->getCurrentPlayerHand()[0]);// TODO
+					//mcHand.push_back(mpcPresenter->getCurrentPlayerHand()[1]);// TODO
 					mpcPresenter->split();
 					break;
 				case QUIT:
@@ -240,6 +240,7 @@ void BlackjackTextUI::playGame()
 				turns++;
 			}
 
+			mcHand = mpcPresenter->getCurrentPlayerHand();
 			mpcPresenter->doCPUMoves();
 			printEndRoundScreen();
 			mpcPresenter->nextRound();
@@ -278,6 +279,11 @@ void BlackjackTextUI::printEndRoundScreen(){
   {
     std::cout << str << " ";
   }  
+	std::cout << "\nSplit hand: ";
+	for (std::string str : mcHand)
+	{
+		std::cout << str << " ";
+	}
   std::cout << std::endl << std::endl;
 
   // print opponents cards
