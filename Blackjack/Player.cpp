@@ -151,8 +151,7 @@ bool Player::trySplit(){
     mbSplittable = false; // can no longer split after splitting
   }
   mcHands.push_back(Hand());
-  ++mCurrentHand;
-  mcHands.at(mCurrentHand).addCard(mcHands.at(mCurrentHand - 1).split());
+  mcHands.at(mCurrentHand + 1).addCard(mcHands.at(mCurrentHand).split());
   //Need a split in hand.
   return true;
 }
@@ -175,6 +174,7 @@ void Player::clearHand()
   }
   
   mcHands = std::vector<Hand>(1);
+  mCurrentHand = 0;
 }
 
 //***************************************************************************
