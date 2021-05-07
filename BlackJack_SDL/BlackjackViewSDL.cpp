@@ -424,15 +424,13 @@ void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, long lon
 
 void BlackjackViewSDL::onConfirmBets ()
 {
-  std::vector<std::string> cards = mpcPresenter->getCurrentPlayerHand();
-  std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
-
   int count = -1;
 
   mpcPresenter->doCPUBets();
   mpcPresenter->doCPUMoves();
 
-  std::vector<std::vector<std::string>> aiCards = mpcPresenter->getOpponentCards();
+  std::vector<std::vector<std::string>> allCards = mpcPresenter->getAllCards();
+  std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
 
   mcStandButton.setVisible (true);
   mcSplitButton.setVisible (true);
@@ -449,21 +447,9 @@ void BlackjackViewSDL::onConfirmBets ()
   //MASTER FOR LOOP OF YOUR MOM
   for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
   {
-    for (int j = 0; j < cards.size(); i++)
+    for (int j = 0; j < allCards.size(); i++)
     {
-
-    }
-  }
-  for (int i = 0; i < cards.size(); i++)
-  {
-    mcPlayers.at(0)->addCard (this, cards.at(i), true, true);
-  }
-
-  for (int i = 1; i < mpcPresenter->getNumPlayers(); i++)
-  {
-    for (int j = 0; j < aiCards.at(i).size(); j++)
-    {
-      mcPlayers.at(i)->addCard (this, aiCards.at(i).at(j), true, true);
+      mcPlayers.at(i)->addCard(this, allCards.at(i).at(j), true, true);
     }
   }
 
