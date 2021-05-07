@@ -316,6 +316,11 @@ void BlackjackViewSDL::betScreen ()
     (std::bind
     (&BlackjackViewSDL::onConfirmBets, this));
   mcConfirmBets.setVisible(true);
+
+  for (int i = 1; i < mcPlayers.size(); i++)
+  {
+    mcPlayers.at(i)->setBetVisible(false);
+  }
 }
 //***************************************************************************
 // Function:    onStand
@@ -329,6 +334,7 @@ void BlackjackViewSDL::betScreen ()
 void BlackjackViewSDL::onStand ()
 {
   mpcPresenter->stand();
+  mpcPresenter->doCPUMoves();
   updateCards();
 
   if (!mpcPresenter->roundOngoing())
@@ -543,7 +549,7 @@ void BlackjackViewSDL::onNextRound ()
   {
     discardHands();
 
-    for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
+    for (int i = 1; i < mpcPresenter->getNumPlayers(); i++)
     {
       mcPlayers.at(i)->setBetVisible(true);
       mcPlayers.at(i)->setMoney((std::to_string(mpcPresenter->getBalance(i))));
@@ -559,13 +565,11 @@ void BlackjackViewSDL::onNextRound ()
   {
     mcLoseMessage.setVisible(true);
 
-    mcStandButton.setEditable(false);
-    mcSplitButton.setEditable(false);
-    mcDrawButton.setEditable(false);
-    mcEndGameButton.setEditable(false);
-    mcNextRound.setEditable(false);
-    mcSetPlayer.setEditable(false);
-    mcConfirmBets.setEditable(false);
+    toggleButtonsOff();
+    mcEndGameButton.setVisible(false);
+    mcNextRound.setVisible(false);
+    mcSetPlayer.setVisible(false);
+    mcConfirmBets.setVisible(false);
     mcConfirmBets.setVisible(false);
     mcLoseMessage.setEditable(false);
   }
@@ -674,9 +678,9 @@ void BlackjackViewSDL::onConfirmBets ()
     (std::bind
     (&BlackjackViewSDL::doNothing, this));
 
-    updateCards();
-
     mpcPresenter->doCPUMoves();
+
+    updateCards();
   }
 }
 //***************************************************************************
@@ -747,7 +751,8 @@ void BlackjackViewSDL::onSetPlayerWidget (SDLTextWidget* name,
   SDLTextWidget* type, SDLTextWidget* balance)
 {
   if (name->getData () != "" && (type->getData () == "Card Counter" || 
-    type->getData () == "Human") && std::stoll(balance->getData()) > 0)
+      type->getData () == "Human" || type->getData () == "Drunk") && 
+      std::stoll(balance->getData()) > 0)
   {
     onSetPlayer(name->getData(), type->getData(), std::stoll(balance->getData()));
   }
