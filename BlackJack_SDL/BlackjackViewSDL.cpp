@@ -24,7 +24,7 @@ mcStandButton("Stand", "", 100, 10, 1, { 255,255,255,255 }),
 mcSplitButton("Split", "", 200, 10, 1, { 255,255,255,255 }),
 mcDrawButton("Draw", "", 300, 10, 1, { 255,255,255,255 }),
 mcNumPlayersInput("Enter number of Players", "", 10, 50, 1, { 255,255,255,255 }),
-mcEndGameButton("New Game", "", 500, 10, 1, { 255,255,255,255 }),
+mcEndGameButton("New Game", "", 500, 650, 1, { 255,255,255,255 }),
 mcNextRound("Next Round", "", 400, 10, 1, {255, 255, 255, 255}),
 mcPlayerNameInput("Player 1 Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
 mcPlayerTypeInput("Player 1 Type", "", 10, 140, 1, { 255, 255, 255, 255 }),
@@ -297,6 +297,12 @@ void BlackjackViewSDL::onStand ()
 {
   mpcPresenter->stand();
   updateCards();
+
+  if (!mpcPresenter->roundOngoing())
+  {
+    mcNextRound.setVisible(true);
+    mcNextRound.setEditable(true);
+  }
 }
 
 //***************************************************************************
@@ -310,7 +316,7 @@ void BlackjackViewSDL::onStand ()
 //***************************************************************************
 void BlackjackViewSDL::onDrawCard ()
 {
-  if (Status::Bust != mpcPresenter->result() || Status::Blackjack != mpcPresenter->result())
+  if (Status::Bust != mpcPresenter->result() && Status::Blackjack != mpcPresenter->result())
   {
     mpcPresenter->draw();
     std::vector<std::string> cards = mpcPresenter->getCurrentPlayerHand();
@@ -420,7 +426,12 @@ void BlackjackViewSDL::onEndGame ()
 //***************************************************************************
 void BlackjackViewSDL::onNextRound ()
 {
+  mcNextRound.setVisible(false);
+  mcNextRound.setEditable(false);
+
   mpcPresenter->nextRound();
+
+  betScreen();
 }
 
 //***************************************************************************
@@ -457,7 +468,7 @@ void BlackjackViewSDL::onConfirmBets ()
   mcStandButton.setVisible (true);
   mcSplitButton.setVisible (true);
   mcDrawButton.setVisible (true);
-  mcEndGameButton.setVisible (true);
+  mcEndGameButton.setVisible(true);
   mcConfirmBets.setVisible(false);
   mcConfirmBets.registerClickEventHandler
     (std::bind
