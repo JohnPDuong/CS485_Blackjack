@@ -19,7 +19,7 @@ Player::Player(std::shared_ptr<IMoveStrategy> pcMoveStrat,
 }
   
 void Player::endTurn(){
-  
+  mbSplittable = true;
 }
 
 void Player::receiveCard(Card cNewCard){

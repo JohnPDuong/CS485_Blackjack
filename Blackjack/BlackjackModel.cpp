@@ -124,6 +124,9 @@ bool BlackjackModel::isBust(int playerIndex){
 // Return:			None
 //***************************************************************************
 void BlackjackModel::initialDeal(){
+  Hand newHand;
+  mcDealerHand = newHand;
+
   mpcDeck->shuffle();
   for(int i = 0; i < getNumPlayers(); i++){
     mcPlayers.at(i).receiveCard(mpcDeck->draw());
