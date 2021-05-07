@@ -82,7 +82,7 @@ void Player::clearHand()
 }
 
 bool Player::hasLost(){
-  return mcBank.getAmount() > 0;
+  return mcBank.getAmount() <= 0;
 }
 
 void Player::changeStrat(std::shared_ptr<IMoveStrategy> newStrat){
