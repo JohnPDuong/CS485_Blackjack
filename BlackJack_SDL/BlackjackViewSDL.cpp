@@ -446,6 +446,14 @@ void BlackjackViewSDL::onConfirmBets ()
     (*it)->setBetVisible(false);
   }
 
+  //MASTER FOR LOOP OF YOUR MOM
+  for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
+  {
+    for (int j = 0; j < cards.size(); i++)
+    {
+
+    }
+  }
   for (int i = 0; i < cards.size(); i++)
   {
     mcPlayers.at(0)->addCard (this, cards.at(i), true, true);
