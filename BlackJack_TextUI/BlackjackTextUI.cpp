@@ -170,76 +170,86 @@ void BlackjackTextUI::playGame()
 		// Do betting
 		mpcPresenter->doCPUBets();
 		std::cout << "\nCurrent balance: " << mpcPresenter->getBalance();
-		std::cout << "\nHow much would you like to bet? ";
-		do
+
+		if (0 >= mpcPresenter->getBalance())
 		{
-			//mpcPresenter->doCPUBets();
-			std::cin >> betAmount;
-
-		} while (!mpcPresenter->bet(betAmount));
-		mpcPresenter->doCPUBets();
-
-		system("cls");
-		printHeader();
-		printGameState();
-
-		// Prints the move options if the human's turn is still going
-		while (/*move != STAND &&*/ mpcPresenter->roundOngoing() && move != QUIT)
-		{
-			mpcPresenter->doCPUMoves();
-
-			printPlayerCards();
-			
-			// Sets the move to stand automatically if bust
-			if (Status::Bust == mpcPresenter->result())
+			std::cout << "\nHow much would you like to bet? ";
+			do
 			{
-				move = STAND;
-			}
+				//mpcPresenter->doCPUBets();
+				std::cin >> betAmount;
 
-      if (move != STAND)
-      {
-        move = SPLIT;
-        std::cout << "OPTIONS: \n(1) Stand \n(2) Draw\n";
-        if (mpcPresenter->canSplit())
-        {
-          std::cout << "(3) Split\n";
-        }
-        std::cout << "(4) Quit\n";
+			} while (!mpcPresenter->bet(betAmount));
+			mpcPresenter->doCPUBets();
 
-				do
+			system("cls");
+			printHeader();
+			printGameState();
+
+			// Prints the move options if the human's turn is still going
+			while (/*move != STAND &&*/ mpcPresenter->roundOngoing() && move != QUIT)
+			{
+				mpcPresenter->doCPUMoves();
+
+				printPlayerCards();
+
+				// Sets the move to stand automatically if bust
+				if (Status::Bust == mpcPresenter->result())
 				{
-					std::cout << "Enter your move: ";
-					std::cin >> move;
-				} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > QUIT || move < STAND));
-				std::cout << std::endl;
+					move = STAND;
+				}
+
+				if (move != STAND)
+				{
+					move = SPLIT;
+					std::cout << "OPTIONS: \n(1) Stand \n(2) Draw\n";
+					if (mpcPresenter->canSplit())
+					{
+						std::cout << "(3) Split\n";
+					}
+					std::cout << "(4) Quit\n";
+
+					do
+					{
+						std::cout << "Enter your move: ";
+						std::cin >> move;
+					} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > QUIT || move < STAND));
+					std::cout << std::endl;
+				}
+
+				// Executes selected move
+				switch (move)
+				{
+				case STAND:
+					mpcPresenter->stand();
+					break;
+
+				case DRAW:
+					mpcPresenter->draw();
+					break;
+
+				case SPLIT:
+					mcHand.push_back(mpcPresenter->getCurrentPlayerHand()[0]);// TODO
+					mpcPresenter->split();
+					break;
+				case QUIT:
+					bKeepPlaying = STOP_PLAYING;
+					break;
+				}
+
+				turns++;
 			}
 
-			// Executes selected move
-			switch (move)
-			{
-			case STAND:
-				mpcPresenter->stand();
-				break;
-
-			case DRAW:
-				mpcPresenter->draw();
-				break;
-
-			case SPLIT:
-				mcHand.push_back(mpcPresenter->getCurrentPlayerHand()[0]);// TODO
-				mpcPresenter->split();
-				break;
-			case QUIT:
-				bKeepPlaying = STOP_PLAYING;
-				break;
-			}
-
-      turns++;
+			mpcPresenter->doCPUMoves();
+			printEndRoundScreen();
+			mpcPresenter->nextRound();
 		}
-    
-		mpcPresenter->doCPUMoves();
-    printEndRoundScreen();
-		mpcPresenter->nextRound();   
+
+		else
+		{
+			std::cout << "Wow, you lost. Hope that wasn't your life's savings!\n\n";
+			bKeepPlaying = false;
+		}
 	}
 }
 
