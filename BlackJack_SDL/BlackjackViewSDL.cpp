@@ -281,7 +281,7 @@ void BlackjackViewSDL::betScreen ()
 {
   mcConfirmBets.registerClickEventHandler
     (std::bind
-    (&BlackjackViewSDL::onConfirnBets, this));
+    (&BlackjackViewSDL::onConfirmBets, this));
   mcConfirmBets.setVisible(true);
 }
 
@@ -421,8 +421,11 @@ void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, long lon
   setPlayer();
 }
 
-void BlackjackViewSDL::onConfirnBets ()
+void BlackjackViewSDL::onConfirmBets ()
 {
+  mpcPresenter->doCPUBets();
+  mpcPresenter->doCPUMoves();
+
   mcStandButton.setVisible (true);
   mcSplitButton.setVisible (true);
   mcDrawButton.setVisible (true);

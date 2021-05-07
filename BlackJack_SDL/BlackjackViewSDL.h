@@ -46,7 +46,7 @@ class BlackjackViewSDL : public SDLApp {
     void onNextRound();
     void onSetNumPlayers(int number);
     void onSetPlayer(std::string name, std::string type, long long balance);
-    void onConfirnBets();
+    void onConfirmBets();
 
     //widget function
     void onBetWidget(SDLTextWidget* widget);
