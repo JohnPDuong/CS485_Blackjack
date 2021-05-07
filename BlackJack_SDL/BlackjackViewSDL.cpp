@@ -377,6 +377,7 @@ void BlackjackViewSDL::updateCards()
   std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
   int currInd = mpcPresenter->getCurrentPlayer();
 
+  discardHands();
 
   for (int i = 0; i < currCards.size(); i++)
   {
@@ -524,10 +525,13 @@ void BlackjackViewSDL::onNextRound ()
 
   discardHands();
 
-  for (int i = 0; i < mcPlayers.size(); i++)
+  for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
   {
     mcPlayers.at(i)->setBetVisible(true);
+    mcPlayers.at(i)->setMoney((std::to_string(mpcPresenter->getBalance(i))));
   }
+
+  mcPlayers.at(mcPlayers.size()-1)->setBetVisible (false);
  
   toggleButtonsOff();
 
