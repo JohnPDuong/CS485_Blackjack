@@ -13,7 +13,7 @@
 class CardViewSDL {
   public:
     CardViewSDL(SDLSprite* faceUp, SDLSprite* faceDown, bool isFaceUp);
-    ~CardViewSDL();
+    virtual ~CardViewSDL();
 
     void flip() { mbIsFaceUp = true; };
     void draw(SDLApp &app);

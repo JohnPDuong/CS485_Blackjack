@@ -19,7 +19,7 @@
 class PlayerView : public ISDLWidget {
   public:
     PlayerView(int x, int y, SDLApp& app);
-    ~PlayerView();
+    virtual ~PlayerView();
     //we're going to need a way of determining where the PlayerView should be 
     //placed on the screen since TextWidget doesn't have a default constructor
 
@@ -45,7 +45,7 @@ class PlayerView : public ISDLWidget {
     SDLTextWidget mcNameDisplay;
     SDLTextWidget mcMoneyDisplay;
     SDLTextWidget mcBetDisplay;
-    std::vector<CardViewSDL> mcCards;
-    std::vector<CardViewSDL> mcSplitHand;
+    std::vector<CardViewSDL *> mcCards;
+    std::vector<CardViewSDL *> mcSplitHand;
     int mX, mY; // need to store these so we can spawn cards in the right place
 };
