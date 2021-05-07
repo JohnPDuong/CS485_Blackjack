@@ -284,7 +284,6 @@ void BlackjackViewSDL::betScreen ()
     (&BlackjackViewSDL::onConfirmBets, this));
   mcConfirmBets.setVisible(true);
 }
-
 //***************************************************************************
 // Function:    onStand
 //
@@ -438,6 +437,8 @@ void BlackjackViewSDL::onConfirmBets ()
   for (auto it = mcPlayers.begin (); it != mcPlayers.end (); it++) {
     (*it)->setBetVisible(false);
   }
+
+
 }
 
 //***************************************************************************
