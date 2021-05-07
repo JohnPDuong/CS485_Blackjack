@@ -242,7 +242,7 @@ std::vector<Status> BlackjackModel::nextRound()
   results = result();
   
   for(int i = 0; i < getNumPlayers(); i++){
-    mcPlayers.at(i).endRound();
+    mcPlayers.at(i).endRound(mcDealerHand.getHandValue());
   }
   mbRoundDone = false;
   mbBetReady = true;
