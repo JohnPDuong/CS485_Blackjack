@@ -425,13 +425,14 @@ void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, long lon
 void BlackjackViewSDL::onConfirmBets ()
 {
   std::vector<std::string> cards = mpcPresenter->getCurrentPlayerHand();
-  std::vector<std::vector<std::string>> aiCards = mpcPresenter->getOpponentCards();
   std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
 
   int count = -1;
 
   mpcPresenter->doCPUBets();
   mpcPresenter->doCPUMoves();
+
+  std::vector<std::vector<std::string>> aiCards = mpcPresenter->getOpponentCards();
 
   mcStandButton.setVisible (true);
   mcSplitButton.setVisible (true);
@@ -463,7 +464,6 @@ void BlackjackViewSDL::onConfirmBets ()
     mcPlayers.at(mcPlayers.size() - 1)->addCard (this, dealerCards.at(i), true, true);
   }
 }
-
 //***************************************************************************
 // Function:    onBetWidget
 //
