@@ -20,8 +20,8 @@ class BlackjackPresenter : public IBlackjackPresenter
 		BlackjackPresenter(IBlackjackView* pcView, int numPlayers, int numDecks);
 		virtual ~BlackjackPresenter();
 
-		virtual void newGame(int players) override;
-		virtual void newGame() override;
+		virtual bool newGame(int players) override;
+		virtual bool newGame() override;
 
 		virtual void nextRound() override;
 		virtual void endGame() override;
@@ -38,6 +38,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual std::string getName() override;
 		virtual void setName(std::string name, int index) override;
 		virtual void setPlayerType(std::string stratType, int index) override;
+    virtual std::vector<std::string> listMoveStratTypes() override;
 
 		virtual std::string getName(int index) override;
 		virtual long long getBalance(int index) override;

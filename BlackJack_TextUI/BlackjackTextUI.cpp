@@ -90,14 +90,24 @@ void BlackjackTextUI::printGameState()
 	std::cout << std::endl;
 
 	// print opponents cards
-	for (int i = 0; i < mpcPresenter->getNumPlayers() - 1; i++)
+	for (int i = 0; i < mpcPresenter->getNumPlayers(); i++)
 	{
-		std::cout << "Opponent " << i + 1 << " cards: ";
-		for (std::string card : cards[i])
-		{
-			std::cout << card << " ";
-		}
-		std::cout << std::endl;
+    if(i != mpcPresenter->getCurrentPlayer()){
+      std::cout << mpcPresenter->getName(i) << " cards: ";
+      if(i > mpcPresenter->getCurrentPlayer()){
+        for (std::string card : cards[i - 1])
+        {
+          std::cout << card << " ";
+        }
+      }
+      else{
+        for (std::string card : cards[i])
+        {
+          std::cout << card << " ";
+        }
+      }
+      std::cout << std::endl;
+    }
 	}
 	std::cout << std::endl;
 
@@ -134,14 +144,32 @@ void BlackjackTextUI::onGameStartup()
 		std::cin >> numPlayers;
 	} while (numPlayers > MAX || numPlayers < MIN);
 	mpcPresenter->newGame(numPlayers);
+  
+  do{
+  for(int i = 0; i < numPlayers; i++){
+    std::string name;
+    std::cout << "Please name the player in the " << i << " position.\n";
+    std::cin >> name;
+    mpcPresenter->setName(name, i);
+  }
 
-	for (int i = 0; i < numPlayers - 1; i++)
+  std::vector<std::string> moveStratList = mpcPresenter->listMoveStratTypes();
+	for (int i = 0; i < numPlayers; i++)
 	{
-		mpcPresenter->setPlayerType("Card Counter", i);
+    int selection;
+    do{
+      std::cout << "Please select a moveStrategy for "
+                << mpcPresenter->getName(i)
+                << " from one of the following by inputting the corresponding"
+                << " number:\n";
+      for(int i = 0; i < moveStratList.size(); i++){
+        std::cout << i + 1 << " " << moveStratList[i] << "\n";
+      }
+      std::cin >> selection;
+    }while(selection < 0 || selection > moveStratList.size() + 1);
+    mpcPresenter->setPlayerType(moveStratList[selection - 1], i);
 	}
-	mpcPresenter->setPlayerType("Human", numPlayers - 1);
-
-	mpcPresenter->newGame();
+  }while(!mpcPresenter->newGame());
 }
 
 void BlackjackTextUI::playGame()
@@ -236,7 +264,7 @@ void BlackjackTextUI::playGame()
 					bKeepPlaying = STOP_PLAYING;
 					break;
 				}
-
+        
 				turns++;
 			}
 

@@ -73,9 +73,9 @@ BlackjackPresenter::~BlackjackPresenter()
 //
 // Return:			None
 //***************************************************************************
-void BlackjackPresenter::newGame(int players)
+bool BlackjackPresenter::newGame(int players)
 {
-	mcModel.newGame(players);
+	return mcModel.newGame(players);
 	//mpcView->newGame(players);
 }
 //***************************************************************************
@@ -87,9 +87,9 @@ void BlackjackPresenter::newGame(int players)
 //
 // Return:			None
 //***************************************************************************
-void BlackjackPresenter::newGame()
+bool BlackjackPresenter::newGame()
 {
-	mcModel.newGame();
+	return mcModel.newGame();
 }
 //***************************************************************************
 // Function:		nextRound
@@ -247,6 +247,10 @@ void BlackjackPresenter::setName(std::string name, int index)
 void BlackjackPresenter::setPlayerType(std::string stratType, int index)
 {
 	mcModel.setPlayerType(stratType, index);
+}
+
+std::vector<std::string> BlackjackPresenter::listMoveStratTypes(){
+  return mcModel.getTypeList();
 }
 //***************************************************************************
 // Function:

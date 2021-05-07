@@ -13,8 +13,8 @@
 
 class IBlackjackPresenter {
 public:
-	virtual void newGame(int players) = 0;
-	virtual void newGame() = 0;
+	virtual bool newGame(int players) = 0;
+	virtual bool newGame() = 0;
 
 	virtual void nextRound() = 0;
 	virtual void endGame() = 0;
@@ -31,6 +31,7 @@ public:
 	virtual std::string getName() = 0;
 	virtual void setName(std::string name, int index) = 0;
 	virtual void setPlayerType(std::string stratType, int index) = 0;
+  virtual std::vector<std::string> listMoveStratTypes() = 0;
 
 	virtual std::string getName(int index) = 0;
 	virtual long long getBalance (int index) = 0;
