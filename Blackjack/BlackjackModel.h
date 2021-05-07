@@ -77,6 +77,8 @@ public:
   void doCPUMoves();
   void doCPUBets();
 
+  int getCurrentPlayer ();
+
 private:
   void incrementPlayer();
   int getNextPlayer();

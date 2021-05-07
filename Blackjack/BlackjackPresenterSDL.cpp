@@ -180,3 +180,8 @@ void BlackjackPresenterSDL::doCPUBets()
 	mcModel.doCPUBets();
 }
 
+int BlackjackPresenterSDL::getCurrentPlayer()
+{
+	return mcModel.getCurrentPlayer();
+}
+

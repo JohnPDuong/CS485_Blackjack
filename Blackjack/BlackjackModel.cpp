@@ -755,6 +755,10 @@ void BlackjackModel::doCPUBets(){
     }
   }
 }
+int BlackjackModel::getCurrentPlayer()
+{
+  return mCurrentPlayerIndex;
+}
 //***************************************************************************
 // Function:    resultCurrentPlayer
 //

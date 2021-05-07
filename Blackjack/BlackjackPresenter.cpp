@@ -347,20 +347,6 @@ bool BlackjackPresenter::isBetTime()
 {
 	return mcModel.isBetTime();
 }
-
-//***************************************************************************
-// Function:
-//
-// Description: 
-//
-// Parameters:  
-//
-// Return:			
-//***************************************************************************
-bool BlackjackPresenter::lastUnder()
-{
-	return mcModel.lastUnder();
-}
 //***************************************************************************
 // Function:
 //
@@ -399,6 +385,10 @@ void BlackjackPresenter::doCPUMoves()
 void BlackjackPresenter::doCPUBets()
 {
 	mcModel.doCPUBets();
+}
+int BlackjackPresenter::getCurrentPlayer()
+{
+	return mcModel.getCurrentPlayer();
 }
 //***************************************************************************
 // Function:

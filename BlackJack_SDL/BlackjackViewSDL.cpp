@@ -129,8 +129,6 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcPlayers.push_back(pcDealer);
   mcDrawableWidget.push_back (pcDealer);
 
-  mCurrentPlayerIndex = 0;
-
   //initialize game UI
   mcStandButton.setVisible (true);
   mcSplitButton.setVisible (true);
@@ -141,6 +139,8 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcPlayerNameInput.setVisible(false);
   mcPlayerTypeInput.setVisible(false);
   mcSetPlayer.setVisible(false);
+  mcSetPlayer.registerClickEventHandler(std::bind
+    (&BlackjackViewSDL::doNothing, this));
 
   nextRound();
 }
@@ -156,15 +156,11 @@ void BlackjackViewSDL::newGame (int numPlayers)
 //***************************************************************************
 void BlackjackViewSDL::stand ()
 {
-  mCurrentPlayerIndex++;
-
-  if(mCurrentPlayerIndex == mpcPresenter->getNumPlayers())
+  if(mpcPresenter->roundOngoing())
     mcNextRound.setVisible(true);
   else
-    mcPlayers[mCurrentPlayerIndex]->showCards();
+    mcPlayers[mpcPresenter->getCurrentPlayer()]->showCards();
 }
-
-
 //***************************************************************************
 // Function:    drawCard
 //
@@ -179,7 +175,7 @@ void BlackjackViewSDL::stand ()
 void BlackjackViewSDL::drawCard (std::string card, bool isFaceUp, 
   bool inMainHand)
 {
-  mcPlayers[mCurrentPlayerIndex]->addCard(this, card, isFaceUp, inMainHand);
+  mcPlayers[mpcPresenter->getCurrentPlayer()]->addCard(this, card, isFaceUp, inMainHand);
 }
 
 //***************************************************************************
@@ -193,7 +189,7 @@ void BlackjackViewSDL::drawCard (std::string card, bool isFaceUp,
 //***************************************************************************
 void BlackjackViewSDL::split ()
 {
-  mcPlayers[mCurrentPlayerIndex]->splitHand();
+  mcPlayers[mpcPresenter->getCurrentPlayer()]->splitHand();
 }
 
 //***************************************************************************
@@ -208,7 +204,7 @@ void BlackjackViewSDL::split ()
 //***************************************************************************
 void BlackjackViewSDL::bet (long long amount) //set money bc Chadd
 {
-  mcPlayers[mCurrentPlayerIndex]->setMoney(std::to_string(amount));
+  mcPlayers[mpcPresenter->getCurrentPlayer()]->setMoney(std::to_string(amount));
 }
 
 //***************************************************************************
@@ -223,8 +219,6 @@ void BlackjackViewSDL::bet (long long amount) //set money bc Chadd
 //***************************************************************************
 void BlackjackViewSDL::nextRound ()
 {
-  mCurrentPlayerIndex = 0;
-
   for (auto it = mcPlayers.begin (); it != mcPlayers.end (); it++)
     (*it)->discardHand ();
 }
@@ -280,6 +274,17 @@ void BlackjackViewSDL::setNumPlayers ()
 void BlackjackViewSDL::onStand ()
 {
   mpcPresenter->stand();
+
+  if (!mpcPresenter->isHuman())
+  {
+    mpcPresenter->doCPUMoves();
+  }
+  else
+  {
+    mcBetButton.setEditable (true);
+    mcBetButton.setData ("");
+    mcSplitButton.setVisible (true);
+  }
 }
 
 //***************************************************************************
@@ -293,7 +298,15 @@ void BlackjackViewSDL::onStand ()
 //***************************************************************************
 void BlackjackViewSDL::onDrawCard ()
 {
-  mpcPresenter->draw();
+  if (Status::Bust == mpcPresenter->result())
+  {
+    mpcPresenter->draw();
+  }
+
+  if (Status::Bust == mpcPresenter->result())
+  {
+    mpcPresenter->stand();
+  }
 }
 
 //***************************************************************************
@@ -307,7 +320,14 @@ void BlackjackViewSDL::onDrawCard ()
 //***************************************************************************
 void BlackjackViewSDL::onSplit ()
 {
-  mpcPresenter->split();
+  if (mpcPresenter->canSplit())
+  {
+    mpcPresenter->split();
+  }
+  else
+  {
+    mcSplitButton.setVisible (false);
+  }
 }
 
 //***************************************************************************
@@ -395,6 +415,8 @@ void BlackjackViewSDL::onBetWidget (SDLTextWidget* widget)
     if ((std::any_of(str.begin(), str.end(), std::isdigit)))
     {
       onBet(stoll(str));
+
+      mcBetButton.setEditable (false);
     }
   }
 }

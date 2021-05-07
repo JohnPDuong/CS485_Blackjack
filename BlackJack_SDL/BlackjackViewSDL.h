@@ -55,11 +55,12 @@ class BlackjackViewSDL : public SDLApp {
     void render ();
 
   private:
+    void doNothing() {};
+
     IBlackjackPresenter* mpcPresenter;
     //not sure how we're going to make sure the player views are in the same
     //order as the players are in the model
     std::vector<PlayerView*> mcPlayers;
-    int mCurrentPlayerIndex = -1;
     SDLTextWidget mcStandButton;
     SDLTextWidget mcBetButton;
     SDLTextWidget mcSplitButton;
@@ -74,5 +75,4 @@ class BlackjackViewSDL : public SDLApp {
     std::vector<ISDLWidget*> mcDrawableWidget;
 
     int mPlayersSet = 0;
-    bool bBetEdittable = false;
 };

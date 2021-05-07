@@ -50,11 +50,12 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual bool isHuman() override;
 		virtual bool canSplit() override;
 		virtual bool isBetTime() override;
-		virtual bool lastUnder() override;
 
 		virtual void updateView() override;
 		virtual void doCPUMoves() override;
 		virtual void doCPUBets() override;
+
+		virtual int getCurrentPlayer();
 
 	private:
 		BlackjackModel mcModel;
