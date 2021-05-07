@@ -388,14 +388,14 @@ void Player::endRound(int dealerVal){
 
     if (sum == (int) Status::Blackjack)
     {
-      mcBank = mcBank + mcBet * 1.5;
+      mcBank.setAmount(mcBank.getAmount() + mcBet.getAmount() * 1.5);
     }
     else if ((sum > dealerVal || dealerVal > (int)Status::Blackjack) && sum < (int) Status::Blackjack)
     {
-      mcBank = mcBank + mcBet;
+      mcBank.setAmount (mcBank.getAmount() + mcBet.getAmount());
     }
     else{
-      mcBank = mcBank - mcBet;
+      mcBank.setAmount (mcBank.getAmount() + mcBet.getAmount());
     }
   }
   

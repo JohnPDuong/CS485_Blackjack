@@ -354,8 +354,8 @@ void BlackjackViewSDL::onDrawCard ()
     updateCards();
   }
 
-  if (Status::Bust == mpcPresenter->result() || 
-    Status::Blackjack == mpcPresenter->result())
+  if ((Status::Bust == mpcPresenter->result() || 
+    Status::Blackjack == mpcPresenter->result()) && mpcPresenter->roundOngoing())
   {
     onStand();
   }
