@@ -327,7 +327,7 @@ void BlackjackViewSDL::onDrawCard ()
     mcPlayers.at(mpcPresenter->getCurrentPlayer())->addCard(this, cards.at(cards.size()-1), true, true);
   }
 
-  if (Status::Bust == mpcPresenter->result())
+  if (Status::Bust == mpcPresenter->result() || Status::Blackjack == mpcPresenter->result())
   {
     mpcPresenter->stand();
   }

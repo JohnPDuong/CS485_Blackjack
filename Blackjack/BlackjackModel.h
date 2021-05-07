@@ -59,6 +59,7 @@ public:
   std::vector<std::string> getTypeList();
   
   std::vector<std::string> getCurrentPlayerHand();
+  std::vector<std::string> getPlayerHand(int index);
   std::vector<std::vector<std::string>> getAllCards();
   
   std::vector<Card> getFaceUpCards();
@@ -81,7 +82,6 @@ public:
   bool hasLost();
   bool hasLost(int index);
   bool roundDone();
-  bool lastUnder();
   
   void doCPUMoves();
   void doCPUBets();
