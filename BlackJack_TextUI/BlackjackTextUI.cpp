@@ -441,6 +441,7 @@ void BlackjackTextUI::playGame()
           move = SPLIT;
         }
         
+        mpcPresenter->doCPUMoves();
 				turns++;
 			}
 

@@ -429,9 +429,11 @@ bool BlackjackModel::split(){
 //***************************************************************************
 void BlackjackModel::drawCard(){
   bool bSuccess = false;
-  if(isHuman()){
+  if(isHuman() &&
+     21 > mcPlayers.at(mCurrentPlayerIndex).getCurrentHand().getHandValue()){
     std::shared_ptr<IMove> pcMove = std::make_shared<Draw>();
-    bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove, getFaceUpCards());
+    bSuccess = mcPlayers.at(mCurrentPlayerIndex).makeMove(pcMove,
+                                                          getFaceUpCards());
     pcMove->execute(*mpcDeck, mcPlayers.at(mCurrentPlayerIndex));
   }
 }
