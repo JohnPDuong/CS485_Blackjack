@@ -387,7 +387,6 @@ void BlackjackTextUI::playGame()
 			// Prints the move options if the human's turn is still going
 			while (/*move != STAND &&*/ mpcPresenter->roundOngoing() && move != QUIT)
 			{
-				mpcPresenter->doCPUMoves();
         system("cls");
         printHeader();
         printGameState();

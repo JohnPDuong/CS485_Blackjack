@@ -395,7 +395,7 @@ void Player::endRound(int dealerVal){
       mcBank.setAmount (mcBank.getAmount() + mcBet.getAmount());
     }
     else{
-      mcBank.setAmount (mcBank.getAmount() + mcBet.getAmount());
+      mcBank.setAmount (mcBank.getAmount() - mcBet.getAmount());
     }
   }
   
