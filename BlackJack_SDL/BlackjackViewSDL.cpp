@@ -20,12 +20,12 @@
 //***************************************************************************
 BlackjackViewSDL::BlackjackViewSDL () :
 mcBetButton("Bet", "", 10, 10, 1, { 255,255,255,255 }),
-mcStandButton("Stand", "", 10, 20, 1, { 255,255,255,255 }),
-mcSplitButton("Split", "", 10, 30, 1, { 255,255,255,255 }),
-mcDrawButton("Draw", "", 10, 40, 1, { 255,255,255,255 }),
+mcStandButton("Stand", "", 100, 10, 1, { 255,255,255,255 }),
+mcSplitButton("Split", "", 200, 10, 1, { 255,255,255,255 }),
+mcDrawButton("Draw", "", 300, 10, 1, { 255,255,255,255 }),
 mcNumPlayersInput("Enter number of Players", "", 10, 50, 1, { 255,255,255,255 }),
-mcEndGameButton("New Game", "", 10, 60, 1, { 255,255,255,255 }),
-mcNextRound("Next Round", "", 10, 70, 1, {255, 255, 255, 255}),
+mcEndGameButton("New Game", "", 500, 10, 1, { 255,255,255,255 }),
+mcNextRound("Next Round", "", 400, 10, 1, {255, 255, 255, 255}),
 mcPlayerNameInput("Player 1 Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
 mcPlayerTypeInput("Player 1 Type", "", 10, 80, 1, { 255, 255, 255, 255 }),
 mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
@@ -84,6 +84,7 @@ mcSetPlayer("Set Player", "", 10, 110, 1, {255, 255, 255, 255})
   mcDrawableWidget.push_back(&mcPlayerNameInput);
   mcDrawableWidget.push_back(&mcPlayerTypeInput);
   mcDrawableWidget.push_back(&mcSetPlayer);
+  mcDrawableWidget.push_back(&mcSplitButton);
 }
 
 //***************************************************************************
