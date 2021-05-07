@@ -774,6 +774,12 @@ void BlackjackModel::doCPUBets(){
   }
 }
 
+
+int BlackjackModel::getCurrentPlayer()
+{
+  return mCurrentPlayerIndex;
+}
+
 //***************************************************************************
 // Function:    resultCurrentPlayer
 //
@@ -783,11 +789,6 @@ void BlackjackModel::doCPUBets(){
 //
 // Return:      return the status of the player
 //***************************************************************************
-int BlackjackModel::getCurrentPlayer()
-{
-  return mCurrentPlayerIndex;
-}
-
 Status BlackjackModel::resultCurrentPlayer(){
   return resultPlayer(mCurrentPlayerIndex);
 }
@@ -811,7 +812,8 @@ Status BlackjackModel::resultPlayer(int index)
   {
     eStatus = Status::Blackjack;
   }
-  else if (sum > dealerSum && sum < (int) Status::Blackjack)
+  else if ((sum > dealerSum || dealerSum > (int)Status::Blackjack)
+           && sum < (int) Status::Blackjack)
   {
     eStatus = Status::Win;
   }

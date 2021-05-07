@@ -14,6 +14,7 @@ Player::Player(std::shared_ptr<IMoveStrategy> pcMoveStrat,
   mpcMoveStrat = pcMoveStrat;
   mName = name;
   mcBank = cBank;
+  mcBet = -1;
   mCurrentHand = 0;
   mcHands = std::vector<Hand>(1);
 }
@@ -145,7 +146,7 @@ void Player::endRound(int dealerVal){
     {
       mcBank = mcBank + mcBet * 1.5;
     }
-    else if (sum > dealerVal && sum < (int) Status::Blackjack)
+    else if ((sum > dealerVal || dealerVal > (int)Status::Blackjack) && sum < (int) Status::Blackjack)
     {
       mcBank = mcBank + mcBet;
     }

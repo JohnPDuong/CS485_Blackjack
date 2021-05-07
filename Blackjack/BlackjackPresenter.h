@@ -56,7 +56,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 		virtual void doCPUMoves() override;
 		virtual void doCPUBets() override;
 
-		virtual int getCurrentPlayer();
+		virtual int getCurrentPlayer() override;
 
 	private:
 		BlackjackModel mcModel;
