@@ -412,7 +412,7 @@ void BlackjackViewSDL::onBetWidget (SDLTextWidget* widget)
 
   if (size != 0)
   {
-    if ((std::any_of(str.begin(), str.end(), std::isdigit)))
+    if (std::any_of(str.begin(), str.end(), std::isdigit))
     {
       onBet(stoll(str));
 
@@ -431,11 +431,21 @@ void BlackjackViewSDL::onBetWidget (SDLTextWidget* widget)
 //***************************************************************************
 void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
 {
-  int number = stoi (widget->getData());
+  std::string str = widget->getData();
+  int size = str.size();
+  int number;
 
-  if (number <= 5 || number >= 1)
+  if (size != 0)
   {
-    onSetNumPlayers(number);
+    if (std::any_of(str.begin(), str.end(), std::isdigit))
+    {
+      number = (stoi(str));
+
+      if (number <= 5 && number >= 1)
+      {
+        onSetNumPlayers(number);
+      }
+    }
   }
 }
 
