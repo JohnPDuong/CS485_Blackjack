@@ -134,6 +134,10 @@ bool BlackjackPresenterSDL::bet (long long amount)
 	return true;
 }
 
+void BlackjackPresenterSDL::setBalance(long long amount, int index)
+{
+}
+
 void BlackjackPresenterSDL::split ()
 {
 	mcModel.split ();
