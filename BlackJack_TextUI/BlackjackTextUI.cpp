@@ -4,7 +4,7 @@
 // Date:       5/7/2021
 // Class:      CS485
 // Assignment: Blackjack
-// Purpose:    Defines the class declared in BlackjackModel.h
+// Purpose:    Defines the class declared in BlackjackTextUI.h
 //***************************************************************************
 
 #include "BlackjackTextUI.h"

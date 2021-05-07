@@ -1,6 +1,14 @@
+//***************************************************************************
+// File name:  BlackjackTextUI.h
+// Author:     John, Julian, Kitt, Erin
+// Date:       5/7/2021
+// Class:      CS485
+// Assignment: Blackjack
+// Purpose:    Defines the class declared in BlackjackModel.h
+//***************************************************************************
+
 #pragma once
 
-//#include "../Blackjack/BlackjackView.h"
 #include "../Blackjack/BlackjackPresenter.h"
 
 class BlackjackTextUI : public IBlackjackView {
