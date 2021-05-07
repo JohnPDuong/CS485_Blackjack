@@ -239,6 +239,8 @@ std::vector<Status> BlackjackModel::nextRound()
   }
   mbRoundDone = false;
   mbBetReady = true;
+
+  mpcDeck.get()->fillShuffle();
   
   initialDeal();
   
