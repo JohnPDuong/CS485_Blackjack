@@ -35,6 +35,7 @@ class BlackjackViewSDL : public SDLApp {
     void endGame(); //should be called in endGame in the presenter
     void setPlayer();
     void setNumPlayers();
+    void betScreen(); 
 
     //events from UI
     void onStand ();
@@ -45,6 +46,7 @@ class BlackjackViewSDL : public SDLApp {
     void onNextRound();
     void onSetNumPlayers(int number);
     void onSetPlayer(std::string name, std::string type, long long balance);
+    void onConfirnBets();
 
     //widget function
     void onBetWidget(SDLTextWidget* widget);
@@ -72,6 +74,7 @@ class BlackjackViewSDL : public SDLApp {
     SDLTextWidget mcPlayerTypeInput;
     SDLTextWidget mcPlayerBalanceInput;
     SDLTextWidget mcSetPlayer;
+    SDLTextWidget mcConfirmBets;
 
     std::vector<ISDLWidget*> mcDrawableWidget;
 

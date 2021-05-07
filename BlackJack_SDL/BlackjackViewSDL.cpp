@@ -29,7 +29,8 @@ mcNextRound("Next Round", "", 400, 10, 1, {255, 255, 255, 255}),
 mcPlayerNameInput("Player 1 Name", "", 10, 50, 1, { 255, 255, 255, 255 }),
 mcPlayerTypeInput("Player 1 Type", "", 10, 140, 1, { 255, 255, 255, 255 }),
 mcSetPlayer("Set Player", "", 10, 200, 1, {255, 255, 255, 255}),
-mcPlayerBalanceInput("Player 1 Balance", "", 10, 110, 1, {255, 255, 255, 255})
+mcPlayerBalanceInput("Player 1 Balance", "", 10, 110, 1, {255, 255, 255, 255}),
+mcConfirmBets("Confirm Bets", "", 10, 10, 1, {255, 255, 255, 255})
 {
   mpcPresenter = new BlackjackPresenterSDL ((IBlackjackView*)this);
   loadFont ("c:/Windows/Fonts/Cour.ttf", 20);
@@ -121,30 +122,29 @@ void BlackjackViewSDL::newGame (int numPlayers)
 {
   //create player views
   for (int i = 0; i < numPlayers; i++) {
-    PlayerView* pcCreated = new PlayerView(10, 150 + 100 * i);
+    PlayerView* pcCreated = new PlayerView(10, 150 + 100 * i, *this);
     pcCreated->setName(mpcPresenter->getName(i));
     pcCreated->setMoney(std::to_string(mpcPresenter->getBalance(i)));
     mcPlayers.push_back(pcCreated);
     mcDrawableWidget.push_back((ISDLWidget*)pcCreated);
   }
 
-  PlayerView* pcDealer = new PlayerView(10, 50);
+  PlayerView* pcDealer = new PlayerView(10, 50, *this);
   pcDealer->makeDealer();
   mcPlayers.push_back(pcDealer);
   mcDrawableWidget.push_back (pcDealer);
 
-  //initialize game UI
-  mcStandButton.setVisible (true);
-  mcSplitButton.setVisible (true);
-  mcDrawButton.setVisible (true);
-  mcEndGameButton.setVisible (true);
-  mcBetButton.setVisible (true);
-  mcNumPlayersInput.setVisible(false);
-  mcPlayerNameInput.setVisible(false);
-  mcPlayerTypeInput.setVisible(false);
-  mcSetPlayer.setVisible(false);
-  mcPlayerBalanceInput.setVisible(false);
-  mcSetPlayer.registerClickEventHandler(std::bind
+  //mcStandButton.setVisible (true);
+  //mcSplitButton.setVisible (true);
+  //mcDrawButton.setVisible (true);
+  //mcEndGameButton.setVisible (true);
+  //mcBetButton.setVisible (true);
+  mcNumPlayersInput.setVisible (false);
+  mcPlayerNameInput.setVisible (false);
+  mcPlayerTypeInput.setVisible (false);
+  mcSetPlayer.setVisible (false);
+  mcPlayerBalanceInput.setVisible (false);
+  mcSetPlayer.registerClickEventHandler (std::bind
     (&BlackjackViewSDL::doNothing, this));
 
   nextRound();
@@ -271,6 +271,13 @@ void BlackjackViewSDL::setNumPlayers ()
   mcPlayerTypeInput.setVisible(true);
   mcPlayerBalanceInput.setVisible(true);
   mcSetPlayer.setVisible(true);
+}
+
+void BlackjackViewSDL::betScreen ()
+{
+  mcConfirmBets.registerClickEventHandler
+    (std::bind
+    (&BlackjackViewSDL::onConfirnBets, this));
 }
 
 //***************************************************************************
@@ -407,6 +414,22 @@ void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, long lon
   mpcPresenter->setBalance(balance, mPlayersSet);
   mPlayersSet++;
   setPlayer();
+}
+
+void BlackjackViewSDL::onConfirnBets ()
+{
+  mcStandButton.setVisible (true);
+  mcSplitButton.setVisible (true);
+  mcDrawButton.setVisible (true);
+  mcEndGameButton.setVisible (true);
+  mcBetButton.setVisible (true);
+  mcConfirmBets.setVisible(false);
+  mcConfirmBets.registerClickEventHandler
+    (std::bind
+    (&BlackjackViewSDL::doNothing, this));
+  for (auto it = mcPlayers.begin (); it != mcPlayers.end (); it++) {
+    (*it)->setBetVisible(false);
+  }
 }
 
 //***************************************************************************

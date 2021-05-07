@@ -18,7 +18,7 @@
 
 class PlayerView : public ISDLWidget {
   public:
-    PlayerView(int x, int y);
+    PlayerView(int x, int y, SDLApp& app);
     ~PlayerView();
     //we're going to need a way of determining where the PlayerView should be 
     //placed on the screen since TextWidget doesn't have a default constructor
@@ -34,7 +34,9 @@ class PlayerView : public ISDLWidget {
     void setName(std::string name) { mcNameDisplay.setData(name); };
     void setMoney(std::string amount) { mcMoneyDisplay.setData(amount); };
     void setBetDisplay(std::string amount) { mcBetDisplay.setData(amount); };
-    void setBetVisible(bool visible) { mcBetDisplay.setVisible(visible); };
+    void setBetVisible(bool visible) { mcBetDisplay.setVisible(visible); mcBetDisplay.setEditable(visible); };
+
+    std::string getBet() { return mcBetDisplay.getData(); };
 
     void makeDealer() { setName("Dealer"); mcMoneyDisplay.setVisible(false); };
 

@@ -18,10 +18,14 @@
 //
 // Returned:    None
 //***************************************************************************
-PlayerView::PlayerView (int x, int y) :
+PlayerView::PlayerView (int x, int y, SDLApp& app) :
 mcNameDisplay("Name", "", x, y, 1, {255, 255, 255, 255}),
-mcMoneyDisplay("Money", "", x, y + 25, 1, {255, 255, 255, 255})
+mcMoneyDisplay("Money", "", x, y + 25, 1, {255, 255, 255, 255}),
+mcBetDisplay("Bet", "", x, y + 50, 1, {255, 255, 255, 255})
 {
+  mcBetDisplay.setEditable(true);
+  app.registerTextWidget((ISDLWidgetTextable*)&mcBetDisplay);
+
   mX = x;
   mY = y;
 }
