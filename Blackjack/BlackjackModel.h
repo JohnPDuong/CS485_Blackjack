@@ -72,6 +72,7 @@ public:
   Status resultCurrentPlayer ();
   
   bool roundDone();
+  bool lastUnder();
   
   void doCPUMoves();
   void doCPUBets();

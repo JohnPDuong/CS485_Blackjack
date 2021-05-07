@@ -347,6 +347,20 @@ bool BlackjackPresenter::isBetTime()
 {
 	return mcModel.isBetTime();
 }
+
+//***************************************************************************
+// Function:
+//
+// Description: 
+//
+// Parameters:  
+//
+// Return:			
+//***************************************************************************
+bool BlackjackPresenter::lastUnder()
+{
+	return mcModel.lastUnder();
+}
 //***************************************************************************
 // Function:
 //

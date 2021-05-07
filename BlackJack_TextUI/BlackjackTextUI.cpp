@@ -86,16 +86,6 @@ void BlackjackTextUI::printHeader()
 void BlackjackTextUI::printGameState()
 {
 	std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
-
-	// Print your bank
-	std::cout << "Chips available: " << mpcPresenter->getBalance() << std::endl;
-
-	// Print your cards
-	std::cout << "Your cards: ";
-	for (std::string str : mpcPresenter->getCurrentPlayerHand())
-	{
-		std::cout << str << " ";
-	}
 	std::cout << std::endl;
 
 	// print opponents cards
@@ -108,6 +98,10 @@ void BlackjackTextUI::printGameState()
 		}
 		std::cout << std::endl;
 	}
+	std::cout << std::endl;
+
+	// Print your bank
+	std::cout << "Chips available: " << mpcPresenter->getBalance() << std::endl;
 }
 
 void BlackjackTextUI::printPlayerCards()
@@ -153,11 +147,11 @@ void BlackjackTextUI::playGame()
 	bool bKeepPlaying = true;
 	long long betAmount = -1;
 	int turns = 0;
-	int move = 0;
+	int move;
 
 	while (bKeepPlaying)
 	{
-		move = 0;
+		move = -1;
 		// Do CPU Moves
 		/*
 		while (!mpcPresenter->isHuman())
@@ -172,7 +166,7 @@ void BlackjackTextUI::playGame()
 
 		// Do betting
 		mpcPresenter->doCPUBets();
-		std::cout << "Current balance: " << mpcPresenter->getBalance();
+		std::cout << "\nCurrent balance: " << mpcPresenter->getBalance();
 		std::cout << "\nHow much would you like to bet? ";
 		do
 		{
@@ -182,14 +176,28 @@ void BlackjackTextUI::playGame()
 		} while (!mpcPresenter->bet(betAmount));
 		mpcPresenter->doCPUBets();
 
+		system("cls");
+		printHeader();
+		printGameState();
+
 		// Prints the move options if the human's turn is still going
 		while (/*move != STAND &&*/ mpcPresenter->roundOngoing() && move != QUIT)
 		{
 			mpcPresenter->doCPUMoves();
 
-			system("cls");
-			printHeader();
-			printGameState();
+			// Print your cards
+			std::cout << "Your cards: ";
+			for (std::string str : mpcPresenter->getCurrentPlayerHand())
+			{
+				std::cout << str << " ";
+			}
+			std::cout << std::endl;
+			
+			// Sets the move to stand automatically if bust
+			if (Status::Bust == mpcPresenter->result())
+			{
+				move = STAND;
+			}
 
       if (move != STAND)
       {
@@ -206,6 +214,7 @@ void BlackjackTextUI::playGame()
 					std::cout << "Enter your move: ";
 					std::cin >> move;
 				} while ((move == SPLIT && !mpcPresenter->canSplit()) || (move > QUIT || move < STAND));
+				std::cout << std::endl;
 			}
 
 			// Executes selected move
@@ -256,7 +265,7 @@ void BlackjackTextUI::printEndRoundScreen(){
   {
     std::cout << str << " ";
   }
-  std::cout << " Round Result: ";
+  std::cout << std::endl << "Round Result: ";
   
   std::cout << std::endl;
 

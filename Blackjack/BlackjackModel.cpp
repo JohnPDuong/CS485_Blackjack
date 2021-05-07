@@ -715,6 +715,13 @@ std::vector<std::string> BlackjackModel::getDealerCards()
 bool BlackjackModel::roundDone(){
   return mbRoundDone;
 }
+
+
+bool BlackjackModel::lastUnder() // Author: Julian Bunch
+{
+  return mcPlayers[mcPlayers.size() - 1].getCurrentHand().getHandValue() < 21;
+}
+
 //***************************************************************************
 // Function:    doCPUMoves
 //
