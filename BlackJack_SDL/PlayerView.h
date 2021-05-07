@@ -35,6 +35,7 @@ class PlayerView : public ISDLWidget {
     void setMoney(std::string amount) { mcMoneyDisplay.setData(amount); };
     void setBetDisplay(std::string amount) { mcBetDisplay.setData(amount); };
     void setBetVisible(bool visible) { mcBetDisplay.setVisible(visible); mcBetDisplay.setEditable(visible); };
+    void setCPUBet(long long bet) { mcBetDisplay.setEditable(false); mcBetDisplay.setData(std::to_string(bet)); };
 
     std::string getBet() { return mcBetDisplay.getData(); };
 
