@@ -45,6 +45,7 @@ public:
 
 	virtual void makeMove() = 0;
 	virtual bool isHuman() = 0;
+	virtual bool isHuman(int index) = 0;
 	virtual bool canSplit() = 0;
 	virtual bool isBetTime() = 0;
 

@@ -168,6 +168,11 @@ bool BlackjackPresenterSDL::isHuman ()
 	return true;
 }
 
+bool BlackjackPresenterSDL::isHuman(int index)
+{
+	return mcModel.isHuman(index);
+}
+
 bool BlackjackPresenterSDL::canSplit ()
 {
 	return mcModel.canSplit ();

@@ -53,6 +53,7 @@ public:
 
 	virtual void makeMove ();
 	virtual bool isHuman ();
+	virtual bool isHuman(int index);
 	virtual bool canSplit ();
 	virtual bool isBetTime();
 
