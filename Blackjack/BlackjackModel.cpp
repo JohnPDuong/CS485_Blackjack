@@ -281,6 +281,7 @@ std::vector<Status> BlackjackModel::nextRound()
   }
   
   initialDeal();
+  mCurrentPlayerIndex = 0;
   
   return results;
 }

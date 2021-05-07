@@ -360,7 +360,8 @@ void BlackjackTextUI::playGame()
 
 	while (bKeepPlaying)
 	{
-		move = -1;
+    bDidSplit = false;
+    move = -1;
 		mcHand = EMPTY_HAND;		
 
 		// Print state of the game and options
@@ -430,6 +431,7 @@ void BlackjackTextUI::playGame()
 				case SPLIT:
 					//mcHand.push_back(mpcPresenter->getCurrentPlayerHand()[1]);// TODO
 					mpcPresenter->split();
+          bDidSplit = true;
 					break;
 				case QUIT:
 					bKeepPlaying = STOP_PLAYING;
