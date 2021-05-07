@@ -1078,6 +1078,27 @@ int BlackjackModel::getNextPlayer(int currentPlayer){
 // Return:			true if the current player is done with their turn, otherwise
 //              false
 //***************************************************************************
-  bool BlackjackModel::doneWithTurn(){
-    return mcPlayers[mCurrentPlayerIndex].doneWithTurn();
-  }
+bool BlackjackModel::doneWithTurn(){
+  return mcPlayers[mCurrentPlayerIndex].doneWithTurn();
+}
+
+//***************************************************************************
+// Function:    toStrMoney
+//
+// Description: makes a string out of money (long long)
+//
+// Parameters:  amount - the number of pennies
+//
+// Return:			the string 
+//***************************************************************************
+std::string BlackjackModel::toStrMoney(long long amount)
+{
+  std::string str = "$";
+
+  str += std::to_string(amount / 100);
+  str += ".";
+  str += std::to_string(amount % 100);
+  str += std::to_string(amount % 10);
+
+  return str;
+}
