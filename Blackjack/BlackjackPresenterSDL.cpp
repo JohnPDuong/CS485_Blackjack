@@ -82,7 +82,7 @@ std::vector<std::string> BlackjackPresenterSDL::getCurrentPlayerHand ()
 	return mcModel.getCurrentPlayerHand ();
 }
 
-std::vector<std::vector<std::string>> BlackjackPresenterSDL::getOpponentCards ()
+std::vector<std::vector<std::string>> BlackjackPresenterSDL::getAllCards ()
 {
 	std::vector<std::vector<std::string>> cards; // TEMPORARY
 

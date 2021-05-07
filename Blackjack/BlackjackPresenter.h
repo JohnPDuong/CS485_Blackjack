@@ -31,7 +31,7 @@ class BlackjackPresenter : public IBlackjackPresenter
 		//virtual void addBalance(long long amount) = 0;
 		virtual long long getBalance() override;
 		virtual std::vector<std::string> getCurrentPlayerHand() override;
-		virtual std::vector<std::vector<std::string>> getOpponentCards() override;
+		virtual std::vector<std::vector<std::string>> getAllCards() override;
 		virtual std::vector<std::string> getDealerCards() override;
     virtual std::vector<std::string> getAllCurrentPlayerHands() override;
 		virtual int getNumPlayers() override;

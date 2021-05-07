@@ -174,9 +174,9 @@ std::vector<std::string> BlackjackPresenter::getCurrentPlayerHand()
 //
 // Return:			
 //***************************************************************************
-std::vector<std::vector<std::string>> BlackjackPresenter::getOpponentCards()
+std::vector<std::vector<std::string>> BlackjackPresenter::getAllCards()
 {
-	return mcModel.getOpponentCards();
+	return mcModel.getAllCards();
 }
 //***************************************************************************
 // Function:

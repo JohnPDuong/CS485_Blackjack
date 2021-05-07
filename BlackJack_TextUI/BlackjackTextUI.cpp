@@ -85,7 +85,7 @@ void BlackjackTextUI::printHeader()
 
 void BlackjackTextUI::printGameState()
 {
-	std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
+	std::vector<std::vector<std::string>> cards = mpcPresenter->getAllCards();
 	std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
 	std::cout << std::endl;
 
@@ -286,7 +286,7 @@ void BlackjackTextUI::playGame()
 void BlackjackTextUI::printEndRoundScreen(){
 	std::string something = "";
 	std::vector<std::string> hand = mpcPresenter->getAllCurrentPlayerHands();
-  std::vector<std::vector<std::string>> cards = mpcPresenter->getOpponentCards();
+  std::vector<std::vector<std::string>> cards = mpcPresenter->getAllCards();
 	int numPlayers = mpcPresenter->getNumPlayers();
 	std::vector<std::string> dealerCards = mpcPresenter->getDealerCards();
 

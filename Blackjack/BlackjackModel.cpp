@@ -260,6 +260,9 @@ std::vector<Status> BlackjackModel::nextRound()
   if(mpcDeck->numCardsRemaining() < getNumPlayers() * 11){
     mpcDeck.get()->fillShuffle();
   }
+  else{
+    mpcDeck->shuffle();
+  }
   
   initialDeal();
   
@@ -497,21 +500,20 @@ std::vector<std::string> BlackjackModel::getCurrentPlayerHand(){
   return cardStrs;
 }
 //***************************************************************************
-// Function:    getOpponentCards
+// Function:    getAllCards
 //
-// Description: returns the opponents' cards
+// Description: returns the all' cards
 //
 // Parameters:  None
 //
 // Return:			2d vector of strings of opponent's cards
 //***************************************************************************
-std::vector<std::vector<std::string>> BlackjackModel::getOpponentCards(){
+std::vector<std::vector<std::string>> BlackjackModel::getAllCards(){
   std::vector<std::vector<std::string>> stringHands(getNumPlayers());
   std::vector<std::vector<Card>> cCardHands;
   
   //get hands
-  for(int i = getNextPlayer(mCurrentPlayerIndex); i != mCurrentPlayerIndex;
-      i = getNextPlayer(i)){
+  for(int i = 0; i < getNumPlayers(); i++){
     std::vector<Card> cThisPlayerCards;
     for(int j = 0; j < mcPlayers.at(i).getNumHands(); j++){
       if(j > 0){
@@ -713,6 +715,7 @@ std::string BlackjackModel::toString (Card cCard)
       break;
         
     case Value::Count:
+      cardStr += "|";
       break;
     }
 
@@ -736,6 +739,7 @@ std::string BlackjackModel::toString (Card cCard)
       break;
         
     case Suit::Count:
+      cardStr += "S";
       break;
     }
   }
