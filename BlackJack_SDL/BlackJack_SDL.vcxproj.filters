@@ -36,7 +36,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerView.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

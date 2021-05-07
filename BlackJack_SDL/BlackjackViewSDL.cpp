@@ -119,6 +119,7 @@ void BlackjackViewSDL::newGame (int numPlayers)
   //create player views
   for (int i = 0; i < numPlayers; i++) {
     PlayerView* pcCreated = new PlayerView(10, 150 + 100 * i);
+    pcCreated->setName(mpcPresenter->getName(i));
     mcPlayers.push_back(pcCreated);
     mcDrawableWidget.push_back((ISDLWidget*)pcCreated);
   }
@@ -139,6 +140,8 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcPlayerNameInput.setVisible(false);
   mcPlayerTypeInput.setVisible(false);
   mcSetPlayer.setVisible(false);
+
+  mpcPresenter->nextRound();
 }
 
 //***************************************************************************
@@ -223,6 +226,8 @@ void BlackjackViewSDL::nextRound ()
 
   for (auto it = mcPlayers.begin (); it != mcPlayers.end (); it++)
     (*it)->discardHand ();
+
+  mpcPresenter->doCPUBets();
 }
 
 //***************************************************************************
