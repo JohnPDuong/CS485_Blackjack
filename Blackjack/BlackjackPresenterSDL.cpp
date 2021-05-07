@@ -13,7 +13,7 @@
 
 BlackjackPresenterSDL::BlackjackPresenterSDL ()
 {
-	std::cout << "ctor" << std::endl;
+
 }
 
 BlackjackPresenterSDL::BlackjackPresenterSDL (IBlackjackView* pcView)
