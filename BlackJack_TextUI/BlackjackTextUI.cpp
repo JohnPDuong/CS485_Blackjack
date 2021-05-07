@@ -150,8 +150,8 @@ void BlackjackTextUI::playGame()
 	const int DRAW = 2;
 	const int SPLIT = 3;
 	const int QUIT = 4;
-
 	const bool STOP_PLAYING = false;
+	const std::vector<std::string> EMPTY_HAND;
 
 	bool bKeepPlaying = true;
 	long long betAmount = -1;
@@ -161,6 +161,7 @@ void BlackjackTextUI::playGame()
 	while (bKeepPlaying)
 	{
 		move = -1;
+		mcHand = EMPTY_HAND;		
 
 		// Print state of the game and options
 		system("cls");
@@ -187,13 +188,7 @@ void BlackjackTextUI::playGame()
 		{
 			mpcPresenter->doCPUMoves();
 
-			// Print your cards
-			std::cout << "Your cards: ";
-			for (std::string str : mpcPresenter->getCurrentPlayerHand())
-			{
-				std::cout << str << " ";
-			}
-			std::cout << std::endl << std::endl;
+			printPlayerCards();
 			
 			// Sets the move to stand automatically if bust
 			if (Status::Bust == mpcPresenter->result())
@@ -231,12 +226,14 @@ void BlackjackTextUI::playGame()
 				break;
 
 			case SPLIT:
+				mcHand.push_back(mpcPresenter->getCurrentPlayerHand()[0]);// TODO
 				mpcPresenter->split();
 				break;
 			case QUIT:
 				bKeepPlaying = STOP_PLAYING;
 				break;
 			}
+
       turns++;
 		}
     

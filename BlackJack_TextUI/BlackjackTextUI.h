@@ -33,5 +33,6 @@ public:
 
 private:
   virtual void printEndRoundScreen();
+  std::vector<std::string> mcHand;
   IBlackjackPresenter* mpcPresenter;
 };
