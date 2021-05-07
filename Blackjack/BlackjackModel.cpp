@@ -211,14 +211,14 @@ bool BlackjackModel::isBetTime(){
 //***************************************************************************
 void BlackjackModel::moveDealer(){
   std::shared_ptr<IMove> cDealerMove;
+  do{
   std::vector<Card> cFaceUpCards = getFaceUpCards(); //Dealer doesn't use these
   //so could be an empty vector. Populating it correctly anyway but if worried
   //about run time minor efficiency opportunity here.
   mcDealerBrain.determineMove(mcDealerHand, cDealerMove, cFaceUpCards);
   cDealerMove->execute(*mpcDeck, mcDealerHand);
-  if(cDealerMove->moveName() == "Stand"){
-    mbRoundDone = true;
-  }
+  }while(cDealerMove->moveName() != "Stand");
+  mbRoundDone = true;
 }
 
 //***************************************************************************
