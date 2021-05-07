@@ -17,7 +17,6 @@ public:
 	virtual bool newGame() = 0;
 
 	virtual void nextRound() = 0;
-	virtual void endGame() = 0;
   virtual std::vector<Status> endRound() = 0;
   virtual bool roundOngoing() = 0;
 	virtual Status result() = 0;
