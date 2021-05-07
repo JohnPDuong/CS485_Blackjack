@@ -252,6 +252,15 @@ void BlackjackViewSDL::endGame ()
   mcNumPlayersInput.setVisible (true);
 }
 
+//***************************************************************************
+// Function:    setPlayer
+//
+// Description: Sets the type of the current player
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
 void BlackjackViewSDL::setPlayer ()
 {
   if (mPlayersSet < mpcPresenter->getNumPlayers ()) {
@@ -268,6 +277,16 @@ void BlackjackViewSDL::setPlayer ()
   }
 }
 
+//***************************************************************************
+// Function:    setNumPlayers
+//
+// Description: Runs after the number of players has been set. Inititalizes
+//              the UI to allow user to specify types of players
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
 void BlackjackViewSDL::setNumPlayers ()
 {
   mcNumPlayersInput.setVisible(false);
@@ -277,6 +296,15 @@ void BlackjackViewSDL::setNumPlayers ()
   mcSetPlayer.setVisible(true);
 }
 
+//***************************************************************************
+// Function:    betScreen
+//
+// Description: Displays the UI to allow users to place their bets
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
 void BlackjackViewSDL::betScreen ()
 {
   mcConfirmBets.registerClickEventHandler
@@ -316,20 +344,32 @@ void BlackjackViewSDL::onStand ()
 //***************************************************************************
 void BlackjackViewSDL::onDrawCard ()
 {
-  if (Status::Bust != mpcPresenter->result() && Status::Blackjack != mpcPresenter->result())
+  if (Status::Bust != mpcPresenter->result() && 
+    Status::Blackjack != mpcPresenter->result())
   {
     mpcPresenter->draw();
     std::vector<std::string> cards = mpcPresenter->getCurrentPlayerHand();
-    mcPlayers.at(mpcPresenter->getCurrentPlayer())->addCard(this, cards.at(cards.size()-1), true, true);
+    mcPlayers.at(mpcPresenter->getCurrentPlayer())->addCard(this, 
+      cards.at(cards.size()-1), true, true);
     updateCards();
   }
 
-  if (Status::Bust == mpcPresenter->result() || Status::Blackjack == mpcPresenter->result())
+  if (Status::Bust == mpcPresenter->result() || 
+    Status::Blackjack == mpcPresenter->result())
   {
     onStand();
   }
 }
 
+//***************************************************************************
+// Function:    updateCards
+//
+// Description: Updates cards so that they render correctly
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
 void BlackjackViewSDL::updateCards()
 {
   std::vector<std::string> currCards = mpcPresenter->getCurrentPlayerHand();
@@ -360,6 +400,15 @@ void BlackjackViewSDL::updateCards()
   }
 }
 
+//***************************************************************************
+// Function:    toggleButtonOff
+//
+// Description: Hides the buttons at the top of the screen
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
 void BlackjackViewSDL::toggleButtonsOff()
 {
   mcDrawButton.setVisible(false);
@@ -370,6 +419,15 @@ void BlackjackViewSDL::toggleButtonsOff()
   mcStandButton.setEditable (false);
 }
 
+//***************************************************************************
+// Function:    toggleButtonOn
+//
+// Description: displays the buttons at the top of the screen
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
 void BlackjackViewSDL::toggleButtonsOn()
 {
   mcDrawButton.setVisible(true);
@@ -380,6 +438,15 @@ void BlackjackViewSDL::toggleButtonsOn()
   mcStandButton.setEditable(true);
 }
 
+//***************************************************************************
+// Function:    discardHands
+//
+// Description: removes all CardViewSDLs from the PlayerView's hands
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
 void BlackjackViewSDL::discardHands()
 {
   for (int i = 0; i < mcPlayers.size(); i++)
@@ -482,7 +549,21 @@ void BlackjackViewSDL::onSetNumPlayers (int number)
   setNumPlayers();
 }
 
-void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, long long balance)
+//***************************************************************************
+// Function:    onSetPlayer
+//
+// Description: Runs when the user has input the correct parameters to set
+//              the name and type of a player, as well as their starting bank
+//              balance
+//
+// Parameters:  name    - the name of the player
+//              type    - the type of the player
+//              balance - the player's starting bank balance
+//
+// Returned:    None
+//***************************************************************************
+void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, 
+  long long balance)
 {
   mpcPresenter->setName(name, mPlayersSet);
   mpcPresenter->setPlayerType(type, mPlayersSet);
@@ -491,6 +572,16 @@ void BlackjackViewSDL::onSetPlayer (std::string name, std::string type, long lon
   setPlayer();
 }
 
+//***************************************************************************
+// Function:    onConfirmBets
+//
+// Description: Runs when the player has input all of the bets. Begins a new
+//              round
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
 void BlackjackViewSDL::onConfirmBets ()
 {
   int count = -1;
@@ -570,7 +661,19 @@ void BlackjackViewSDL::onNumPlayersWidget (SDLTextWidget* widget)
   }
 }
 
-void BlackjackViewSDL::onSetPlayerWidget (SDLTextWidget* name, SDLTextWidget* type, SDLTextWidget* balance)
+//***************************************************************************
+// Function:    onSetPlayerWidget
+//
+// Description: validates input and passes it to onSetPlayer
+//
+// Parameters:  string    - the name of the player
+//              string    - the type of the player
+//              long long - the player's starting bank balance
+//
+// Returned:    None
+//***************************************************************************
+void BlackjackViewSDL::onSetPlayerWidget (SDLTextWidget* name, 
+  SDLTextWidget* type, SDLTextWidget* balance)
 {
   if (name->getData () != "" && (type->getData () == "Card Counter" || 
     type->getData () == "Human") && std::stoll(balance->getData()) > 0)
