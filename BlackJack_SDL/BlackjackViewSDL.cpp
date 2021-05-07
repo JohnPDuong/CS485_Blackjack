@@ -142,7 +142,7 @@ void BlackjackViewSDL::newGame (int numPlayers)
   mcPlayerTypeInput.setVisible(false);
   mcSetPlayer.setVisible(false);
 
-  mpcPresenter->nextRound();
+  nextRound();
 }
 
 //***************************************************************************
@@ -206,7 +206,7 @@ void BlackjackViewSDL::split ()
 //
 // Returned:    None
 //***************************************************************************
-void BlackjackViewSDL::bet (long long amount)
+void BlackjackViewSDL::bet (long long amount) //set money bc Chadd
 {
   mcPlayers[mCurrentPlayerIndex]->setMoney(std::to_string(amount));
 }
@@ -227,8 +227,6 @@ void BlackjackViewSDL::nextRound ()
 
   for (auto it = mcPlayers.begin (); it != mcPlayers.end (); it++)
     (*it)->discardHand ();
-
-  mpcPresenter->doCPUBets();
 }
 
 //***************************************************************************
@@ -389,9 +387,17 @@ void BlackjackViewSDL::onSetPlayer (std::string name, std::string type)
 //***************************************************************************
 void BlackjackViewSDL::onBetWidget (SDLTextWidget* widget)
 {
-  onBet(stoll(widget->getData()));
-}
+  std::string str = widget->getData();
+  int size = str.size();
 
+  if (size != 0)
+  {
+    if ((std::any_of(str.begin(), str.end(), std::isdigit)))
+    {
+      onBet(stoll(str));
+    }
+  }
+}
 //***************************************************************************
 // Function:    onNumPlayersWidget
 //
